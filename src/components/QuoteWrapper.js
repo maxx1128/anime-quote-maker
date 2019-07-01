@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "@reach/router";
 
 import QuoteBox from "./QuoteBox";
 import RadioItems from "./RadioItems";
@@ -208,6 +209,8 @@ class QuoteWrapper extends React.Component {
          <div className={`qig-l-wrapper qig-l-wrapper--${this.props.view}`}>
             <div className="qig-l-wrapper__form">
                <div className="qig-l-wrapper__form-item qig-l-controls__tags">
+                  <Link to="/random/">Random</Link>
+
                   <h2>
                      Make An Anime Quote Image!
                   </h2>
