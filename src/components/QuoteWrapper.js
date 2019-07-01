@@ -17,19 +17,24 @@ class QuoteWrapper extends React.Component {
    allColorSchemes = colorSchemes
    allFilters = filters
 
-   componentDidMount() {
-      this.refreshAll();
-   }
+   componentDidMount() { this.refreshAll(); }
 
-   getQuote = () => {
-      axios.get('https://favqs.com/api/qotd').then(data => {
-         const { body } = data.data.quote;
+   getQuote = () => axios.get('https://favqs.com/api/qotd').then(data => this.setState({ quote: data.data.quote.body }));
 
-         this.setState({
-            quote: body
-         })
-      });
-   }
+   randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
+   emptyFilters = () => this.state.filters.forEach(filter => this.updateFilters(filter));
+   updateSection = (section) => this.setState({ section: section });
+   updateAlignment = (alignment) => this.setState({ alignment: alignment });
+   updatePosX = (posX) => this.setState({ posX: posX });
+   updatePosY = (posY) => this.setState({ posY: posY });
+   updateQuote = (e) => this.setState({ quote: e.target.value })
+   updateBgColor = (e) => this.setState({ bgColor: e.target.value })
+   updateTextColor = (e) => this.setState({ textColor: e.target.value })
+   updateStyle = (style) => this.setState({ style: style })
+   updateFontStyle = (fontStyle) => this.setState({ fontStyle: fontStyle })
+   updateFontFamily = (e) => this.setState({ fontFamily: e.target.value })
+   updateTags = (e) => this.setState({ tags: e.target.value });
+   updateSize = (e) => this.setState({ size: e.target.value });
 
    updateFilters = (newFilterVal) => {
       let { filters } = this.state;
@@ -38,87 +43,7 @@ class QuoteWrapper extends React.Component {
          ? filters.splice(filters.indexOf(newFilterVal), 1)
          : filters.push(newFilterVal);
 
-      this.setState({
-         filters: filters
-      });
-   }
-
-   emptyFilters = () => {
-      this.state.filters.forEach(filter => {
-         this.updateFilters(filter);
-      });
-   }
-
-   updateSection = (section) => {
-      this.setState({
-         section: section
-      });
-   }
-
-   updateAlignment = (alignment) => {
-      this.setState({
-         alignment: alignment
-      });
-   }
-
-   updatePosX = (posX) => {
-      this.setState({
-         posX: posX
-      });
-   }
-
-   updatePosY = (posY) => {
-      this.setState({
-         posY: posY
-      });
-   }
-
-   updateQuote = (e) => {
-      this.setState({
-         quote: e.target.value
-      })
-   }
-
-   updateBgColor = (e) => {
-      this.setState({
-         bgColor: e.target.value
-      })
-   }
-
-   updateTextColor = (e) => {
-      this.setState({
-         textColor: e.target.value
-      })
-   }
-
-   updateStyle = (style) => {
-      this.setState({
-         style: style
-      })
-   }
-
-   updateFontStyle = (fontStyle) => {
-      this.setState({
-         fontStyle: fontStyle
-      })
-   }
-
-   updateFontFamily = (e) => {
-      this.setState({
-         fontFamily: e.target.value
-      })
-   }
-
-   updateTags = (e) => {
-      this.setState({
-         tags: e.target.value
-      });
-   }
-
-   updateSize = (e) => {
-      this.setState({
-         size: e.target.value
-      });
+      this.setState({ filters: filters });
    }
 
    updateColorScheme = (calledScheme) => {
@@ -146,13 +71,9 @@ class QuoteWrapper extends React.Component {
       });
    }
 
-   randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
-
    randomizeFontSize = () => {
       const number = Math.floor(Math.random() * (30 - 20) + 20)
-      this.setState({
-         size: number
-      })
+      this.setState({ size: number });
    }
 
    randomFilter = () => {
@@ -170,9 +91,7 @@ class QuoteWrapper extends React.Component {
 
    randomFontFamily = () => {
       const randomFamily = this.randomProperty(this.allFontFamilies);
-      this.setState({
-         fontFamily: randomFamily
-      })
+      this.setState({ fontFamily: randomFamily });
    }
 
    randomizeImage = () => {
@@ -193,8 +112,6 @@ class QuoteWrapper extends React.Component {
       this.updateSection(this.randomProperty(this.allSections).value)
       this.updateAlignment(this.randomProperty(this.allAlignments).value)
       this.updateFontStyle(this.randomProperty(this.allFontStyles).value)
-      // this.updatePosX(this.randomProperty(this.allPosX).value)
-      // this.updatePosY(this.randomProperty(this.allPosY).value)
       this.noTagImage();
       this.randomizeFontSize();
       this.randomColorScheme();
@@ -221,6 +138,7 @@ class QuoteWrapper extends React.Component {
                   <p>
                      Can't decide? Leave it blank for something totally random!
                   </p>
+
                  <label>
                    Tags:
                    <input type="text" name="tags" value={this.state.tags} onChange={this.updateTags} />
@@ -306,9 +224,9 @@ class QuoteWrapper extends React.Component {
                   <div>
                      {this.allColorSchemes.map(color => {
                         const styles = {
-                           'background-color': color.values.bgColor,
+                           'backgroundColor': color.values.bgColor,
                            'color': color.values.color,
-                           'font-family': color.values.fontFamily
+                           'fontFamily': color.values.fontFamily
                         };
 
                         return (
