@@ -16,6 +16,7 @@ textarea {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   box-sizing: border-box;
+  border: 1px solid black;
 }
 
 label input {
@@ -58,18 +59,20 @@ button {
   }
 }
 
-.qig-l-wrapper--noUI .qig-l-wrapper__form,
-.qig-l-wrapper--noUI .qig-l-wrapper__randomize {
-  display: none;
-}
-
-.qig-l-wrapper--noUI .qig-l-wrapper__result {
-  padding: 0;
-}
-
-.qig-l-wrapper__form,
-.qig-l-wrapper__result {
+.qig-l-wrapper__form {
   padding: 1rem;
+  grid-row: 2;
+}
+
+.qig-l-wrapper__result {
+  grid-row: 1;
+}
+
+@media (min-width: 800px) {
+  .qig-l-wrapper__result {
+    padding: 1rem;
+    grid-row: 2;
+  }
 }
 
 @media (min-width: 800px) {
@@ -88,12 +91,20 @@ button {
   position: relative;
   width: 100%;
   max-width: 700px;
-  height: 85vh;
+  height: 700px;
   max-height: 700px;
+  margin-bottom: 2rem;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  border: 1px solid black;
   overflow: hidden;
+}
+
+@media (min-width: 800px) {
+  .qig__image-wrapper {
+    height: 85vh;
+    margin-bottom: 0;
+    border: 1px solid black;
+  }
 }
 
 .qig__image-bg {

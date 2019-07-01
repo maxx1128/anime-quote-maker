@@ -205,7 +205,7 @@ class QuoteWrapper extends React.Component {
    render() {
       const image = `https://ruby-anime-newsletter.herokuapp.com/?min_width=800&min_height=800&max_width=1500&max_height=1200&tags=${this.state.tags}#${this.state.hash}`;
       return (
-         <div className={`qig-l-wrapper qig-l-wrapper--${this.props.view}`}>
+         <div className={"qig-l-wrapper"}>
             <div className="qig-l-wrapper__form">
                <div className="qig-l-wrapper__form-item qig-l-controls__tags">
                   <h2>
@@ -359,11 +359,6 @@ class QuoteWrapper extends React.Component {
             </div>
 
             <div className="qig-l-wrapper__result">
-               <div className="qig-l-wrapper__randomize">
-                  <button className="qig-button--full" onClick={this.refreshAll}>
-                     Randomize All!
-                  </button>
-               </div>
                <QuoteBox
                   image={image}
                   bgColor={this.state.bgColor}
@@ -377,6 +372,12 @@ class QuoteWrapper extends React.Component {
                   quote={this.state.quote}
                   posX={this.state.posX}
                   posY={this.state.posY} />
+
+               <div className="qig-l-wrapper__randomize">
+                  <button className="qig-button--full" onClick={this.refreshAll}>
+                     Randomize All!
+                  </button>
+               </div>
             </div>
          </div>
       );
