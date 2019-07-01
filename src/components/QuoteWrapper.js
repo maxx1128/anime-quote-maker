@@ -5,6 +5,9 @@ import QuoteBox from "./QuoteBox";
 import RadioItems from "./RadioItems";
 import { defaultState, tags, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
 
+import Intro from "./QuoteForm/Intro";
+import Tags from "./QuoteForm/Tags";
+
 class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
@@ -124,36 +127,15 @@ class QuoteWrapper extends React.Component {
       return (
          <div className={`qig-l-wrapper qig-l-wrapper--${this.props.view}`}>
             <div className="qig-l-wrapper__form">
+
+               <Intro />
+
                <div className="qig-l-wrapper__form-item qig-l-controls__tags">
-                  <h2>
-                     Make An Anime Quote Image!
-                  </h2>
-
-                  <h4 className="qig-l-wrapper__form-header">
-                    Change the Image Tags
-                 </h4>
-                  <p>
-                     Each tag should be <strong>comma-separated without spaces</strong>. Tags with multiple words should <strong>replace spaces with underscores.</strong> There's lots of potential tags, so try locations, items, characters, types of clothing, games, and more!
-                  </p>
-                  <p>
-                     Can't decide? Leave it blank for something totally random!
-                  </p>
-
-                 <label>
-                   Tags:
-                   <input type="text" name="tags" value={this.state.tags} onChange={this.updateTags} />
-                 </label>
-
-                  <br />
-                  <br />
-
-                 <button className="qig-button--right-space" onClick={() => this.refreshImage(this.state.tags)}>
-                   Try Another Image
-                 </button>
-
-                 <button onClick={() => this.randomizeImage()}>
-                   Get a Random Tag
-                 </button>
+                  <Tags
+                     tags={this.state.tags}
+                     update={this.updateTags}
+                     refresh={this.refreshImage}
+                     random={this.randomizeImage}/>
                </div>
 
                <div className="qig-l-wrapper__form-item qig-l-controls__quote">
