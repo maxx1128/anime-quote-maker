@@ -22,7 +22,10 @@ class QuoteWrapper extends React.Component {
 
    componentDidMount() { this.refreshAll(); }
 
-   getQuote = () => axios.get('https://favqs.com/api/qotd').then(data => this.setState({ quote: data.data.quote.body }));
+   getQuote = () => axios.get('https://favqs.com/api/qotd').then(data => this.setState({
+      quote: data.data.quote.body,
+      author: data.data.quote.author
+   }));
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.state.filters.forEach(filter => this.updateFilters(filter));
@@ -275,6 +278,7 @@ class QuoteWrapper extends React.Component {
                   section={this.state.section}
                   size={this.state.size}
                   quote={this.state.quote}
+                  author={this.state.author}
                   posX={this.state.posX}
                   posY={this.state.posY} />
             </div>

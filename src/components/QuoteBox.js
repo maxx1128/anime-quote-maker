@@ -1,6 +1,6 @@
 import React from "react";
 
-const QuoteBox = ({quote, image, section, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, filters}) => {
+const QuoteBox = ({quote, author, image, section, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, filters}) => {
 
   let filterList = filters();
 
@@ -24,6 +24,9 @@ const QuoteBox = ({quote, image, section, alignment, fontStyle, size, posX, posY
         <div className={`qig__quote-wrapper qig__quote-wrapper--${section}`}>
            <div className={`qig__quote qig__quote--font-${fontStyle}`} style={quoteStyle}>
               <p>{quote}</p>
+              <span class="qig__quote-author">
+                 {author}
+              </span>
            </div>
         </div>
      </div>
