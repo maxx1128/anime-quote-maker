@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import Home from "./Home";
-import Random from "./Random";
 
 class App extends React.Component {
   render() {
@@ -11,7 +10,6 @@ class App extends React.Component {
       <React.Fragment>
         <Router>
           <Home path="/" />
-          <Random path="/random/" />
         </Router>
       </React.Fragment>
     );
