@@ -24,7 +24,7 @@ const QuoteBox = ({quote, author, image, section, alignment, fontStyle, size, po
         <div className={`qig__quote-wrapper qig__quote-wrapper--${section}`}>
            <div className={`qig__quote qig__quote--font-${fontStyle}`} style={quoteStyle}>
               <p>{quote}</p>
-              <span class="qig__quote-author">
+              <span className="qig__quote-author">
                  {author}
               </span>
            </div>

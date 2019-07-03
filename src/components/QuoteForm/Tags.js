@@ -1,7 +1,7 @@
 import React from "react";
 
 const Tags = ({tags, update, random, refresh}) => (
-  <React.Fragment>
+  <div className="qig-l-wrapper__form-item qig-l-controls__tags">
     <label>
       Tags:
       <input type="text" name="tags" value={tags} onChange={update} />
@@ -17,7 +17,7 @@ const Tags = ({tags, update, random, refresh}) => (
     <button onClick={() => random()}>
       Get a Random Tag
     </button>
-  </React.Fragment>
+  </div>
 );
 
 export default Tags;

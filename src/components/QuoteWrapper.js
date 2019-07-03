@@ -2,20 +2,21 @@ import React from "react";
 import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
-import RadioItems from "./RadioItems";
-import { defaultState, tags, slimSections, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
+import { defaultState, tags, slimSections, alignments, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import Tags from "./QuoteForm/Tags";
+import Quote from "./QuoteForm/Quote";
+import Styling from "./QuoteForm/Styling";
+import Position from "./QuoteForm/Position";
+import Filters from "./QuoteForm/Filters";
+import Alignment from "./QuoteForm/Alignment";
 
 class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
-   allSections = sections
    allSlimSections = slimSections
    allAlignments = alignments
-   allPosX = posX
-   allPosY = posY
    allFontStyles = fontStyles
    allFontFamilies = fontFamilies
    allColorSchemes = colorSchemes
@@ -134,132 +135,44 @@ class QuoteWrapper extends React.Component {
 
                <Intro />
 
-               <div className="qig-l-wrapper__form-item qig-l-controls__tags">
-                  <Tags
-                     tags={this.state.tags}
-                     update={this.updateTags}
-                     refresh={this.refreshImage}
-                     random={this.randomizeImage}/>
-               </div>
+               <Tags
+                  update={this.updateTags}
+                  refresh={this.refreshImage}
+                  random={this.randomizeImage}/>
 
-               <div className="qig-l-wrapper__form-item qig-l-controls__quote">
-                  <h4 className="qig-l-wrapper__form-header">
-                     Change the Quote's Content
-                  </h4>
-                  <label>
-                    <textarea rows="3" value={this.state.quote} onChange={this.updateQuote} />
-                  </label>
+               <Quote
+                  quote={this.state.quote}
+                  update={this.updateQuote}
+                  get={this.getQuote}/>
 
-                  <button onClick={() => this.getQuote()}>
-                     Get a Random Quote
-                  </button>
-               </div>
+               <Styling
+                  bg={this.state.bgColor}
+                  updateBg={this.updateBgColor}
+                  text={this.state.textColor}
+                  updateText={this.updateTextColor}
+                  alignment={this.state.alignment}
+                  updateAlignment={this.updateAlignment}
+                  fontStyle={this.state.fontStyle}
+                  updateFontStyle={this.updateFontStyle}
+                  size={this.state.size}
+                  updateSize={this.updateSize}
+                  fontFamily={this.state.fontFamily}
+                  updateFontFamily={this.updateFontFamily}
+                  updateColorScheme={this.updateColorScheme}/>
 
-               <div className="qig-l-wrapper__form-item qig-l-controls__styling">
-                  <h4 className="qig-l-wrapper__form-header">
-                     Change the Quote Styling
-                  </h4>
+               <Position
+                  selected={this.state.section}
+                  updateSection={this.updateSection}/>
 
-                  <div className="qig-l-radios__wrapper">
-                     <div className="qig-l-radios__wrapper qig-l-radios__wrapper--spaced-right">
-                        <input type="color" name="background-color" onChange={this.updateBgColor} value={this.state.bgColor} />
-                         Background Color
-                     </div>
-                     <div className="qig-l-radios__wrapper">
-                        <input type="color" name="text-color" onChange={this.updateTextColor} value={this.state.textColor} />
-                        Text Color
-                     </div>
-                  </div>
-                  <br />
+               <Filters
+                  setFilters={this.state.filters}
+                  updateFilters={this.updateFilters}/>
 
-                  <div className="qig-l-wrapper__form-multi">
-                     <div>
-                        <p className="qig-p--short-label">Text Alignment</p>
-                        <RadioItems allItems={this.allAlignments} selected={this.state.alignment} updateSection={this.updateAlignment} />
-                     </div>
-
-                     <div>
-                        <p className="qig-p--short-label">Text Styling</p>
-                        <RadioItems allItems={this.allFontStyles} selected={this.state.fontStyle} updateSection={this.updateFontStyle} />
-                     </div>
-                  </div>
-
-                  <br />
-
-                  <div className="qig-l-wrapper__form-multi">
-                     <label>
-                       Font size:
-                       <input type="number" name="size" value={this.state.size} onChange={this.updateSize} />
-                     </label>
-
-                     <label>
-                         Font Family:
-
-                         <select value={this.state.fontFamily} onChange={this.updateFontFamily}>
-                           {this.allFontFamilies.map(fontFamily => <option value={fontFamily}>{fontFamily}</option>)}
-                         </select>
-                     </label>
-                  </div>
-                  <br />
-                  <br />
-
-                  <h5 className="qig-l-wrapper__form-subheader">
-                     Preset Color Palettes
-                  </h5>
-
-                  <div>
-                     {this.allColorSchemes.map(color => {
-                        const styles = {
-                           'backgroundColor': color.values.bgColor,
-                           'color': color.values.color,
-                           'fontFamily': color.values.fontFamily
-                        };
-
-                        return (
-                          <button
-                             style={styles}
-                             className="qig-button--right-space"
-                             onClick={() => this.updateColorScheme(color.label)}>
-                              {color.label.toUpperCase()}
-                          </button>
-                        )
-                      })}
-                  </div>
-               </div>
-
-               <div className="qig-l-wrapper__form-item qig-l-controls__position">
-                  <h4 className="qig-l-wrapper__form-header">
-                     Change the Quote's Position
-                  </h4>
-                  <RadioItems allItems={this.allSections} selected={this.state.section} updateSection={this.updateSection} />
-               </div>
-
-               <div className="qig-l-wrapper__form-item">
-                  <h4 className="qig-l-wrapper__form-header">
-                     Restyle the Image
-                  </h4>
-                  <RadioItems allItems={this.allFilters} selected={this.state.filters} updateSection={this.updateFilters} type="checkbox" />
-               </div>
-
-               <div className="qig-l-wrapper__form-item qig-l-controls__image-pos">
-                  <h4 className="qig-l-wrapper__form-header">
-                     Change the Image Alignment
-                  </h4>
-                  <p>
-                     Based on the image's size, one of these alignments won't change the image.
-                  </p>
-                  <div className="qig-l-wrapper__form-multi">
-                     <div>
-                        <p className="qig-p--short-label">Horizontal</p>
-                        <RadioItems allItems={this.allPosX} selected={this.state.posX} updateSection={this.updatePosX} />
-                     </div>
-
-                     <div>
-                        <p className="qig-p--short-label">Vertical</p>
-                        <RadioItems allItems={this.allPosY} selected={this.state.posY} updateSection={this.updatePosY} />
-                     </div>
-                  </div>
-               </div>
+               <Alignment
+                  setPosX={this.state.posX}
+                  updatePosX={this.updatePosX}
+                  setPosY={this.state.posY}
+                  updatePosY={this.updatePosY}/>
             </div>
 
             <div className="qig-l-wrapper__result">

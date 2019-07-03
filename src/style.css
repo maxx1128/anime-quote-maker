@@ -93,7 +93,7 @@ button {
   max-width: 700px;
   height: 700px;
   max-height: 700px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   overflow: hidden;
@@ -102,7 +102,6 @@ button {
 @media (min-width: 800px) {
   .qig__image-wrapper {
     height: 85vh;
-    margin-bottom: 0;
     border: 1px solid black;
   }
 }
@@ -148,6 +147,7 @@ button {
 }
 .qig__quote p {
   margin: 0;
+  line-height: 1.2;
 }
 .qig__quote p::first-line {
   font-size: 115%;
