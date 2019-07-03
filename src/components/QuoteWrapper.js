@@ -3,7 +3,7 @@ import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
 import RadioItems from "./RadioItems";
-import { defaultState, tags, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
+import { defaultState, tags, slimSections, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import Tags from "./QuoteForm/Tags";
@@ -12,6 +12,7 @@ class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
    allSections = sections
+   allSlimSections = slimSections
    allAlignments = alignments
    allPosX = posX
    allPosY = posY
@@ -78,7 +79,7 @@ class QuoteWrapper extends React.Component {
    }
 
    randomizeFontSize = () => {
-      const number = Math.floor(Math.random() * (30 - 20) + 20)
+      const number = Math.floor(Math.random() * (30 - 26) + 26)
       this.setState({ size: number });
    }
 
@@ -115,7 +116,7 @@ class QuoteWrapper extends React.Component {
 
    refreshAll = () => {
       this.getQuote();
-      this.updateSection(this.randomProperty(this.allSections).value)
+      this.updateSection(this.randomProperty(this.allSlimSections).value)
       this.updateAlignment(this.randomProperty(this.allAlignments).value)
       this.updateFontStyle(this.randomProperty(this.allFontStyles).value)
       this.noTagImage();

@@ -16,41 +16,45 @@ const defaultState = {
 
 const tags = ['absurdres', 'scenery', 'library', 'city', 'space', 'thinking', 'sad', 'happy', 'forest', 'military', 'city', 'singing', 'running', 'heart', 'pokemon', 'animal', 'ponytail', 'jacket', 'goggles', 'weapon', 'skateboard']
 
-const sections = [
-  {
-     'value': 'center-top',
-     'label': 'Center Top'
-  }, {
-     'value': 'center-bottom',
-     'label': 'Center Bottom'
-  }, {
-     'value': 'top-row',
-     'label': 'Top Row'
-  }, {
-     'value': 'middle-row',
-     'label': 'Middle Row'
-  }, {
-     'value': 'bottom-row',
-     'label': 'Bottom Row'
-  }, {
-     'value': 'left-column',
-     'label': 'Left Column'
-  }, {
-     'value': 'right-column',
-     'label': 'Right Column'
-  }, {
-     'value': 'top-left',
-     'label': 'Top Left'
-  }, {
-     'value': 'top-right',
-     'label': 'Top Right'
-  }, {
-     'value': 'bottom-left',
-     'label': 'Bottom Left'
-  }, {
-     'value': 'bottom-right',
-     'label': 'Bottom Right'
-  }
+const slimSections = [
+   {
+      'value': 'center-bottom',
+      'label': 'Center Bottom'
+   }, {
+      'value': 'top-row',
+      'label': 'Top Row'
+   }, {
+      'value': 'middle-row',
+      'label': 'Middle Row'
+   }, {
+      'value': 'bottom-row',
+      'label': 'Bottom Row'
+   }, {
+      'value': 'top-left',
+      'label': 'Top Left'
+   }, {
+      'value': 'top-right',
+      'label': 'Top Right'
+   }, {
+      'value': 'bottom-left',
+      'label': 'Bottom Left'
+   }, {
+      'value': 'bottom-right',
+      'label': 'Bottom Right'
+   }
+ ]
+
+const sections = [...slimSections,
+   {
+      'value': 'center-top',
+      'label': 'Center Top'
+   }, {
+      'value': 'left-column',
+      'label': 'Left Column'
+   }, {
+      'value': 'right-column',
+      'label': 'Right Column'
+   }
 ]
 
 const alignments = [
@@ -157,13 +161,6 @@ const colorSchemes = [
         'color': '#01FF70',
         'fontFamily': 'Space Mono'
      }
-  }, {
-     'label': 'Christmas',
-     'values': {
-        'bgColor': '#4d8951',
-        'color': '#f095e1',
-        'fontFamily': 'Dancing Script'
-     }
   }
 ]
 
@@ -177,17 +174,13 @@ const filters = [
      'value': 'grayscale',
      'cssValue': 'grayscale(90%)'
   }, {
-     'label': 'Blur',
-     'value': 'blur',
-     'cssValue': 'blur(1.5px)'
-  }, {
      'label': 'Contrast',
      'value': 'contrast',
      'cssValue': 'contrast(190%)'
   }, {
      'label': 'Saturate',
      'value': 'saturate',
-     'cssValue': 'saturate(190%)'
+     'cssValue': 'saturate(210%)'
   }, {
      'label': 'Invert',
      'value': 'invert',
@@ -195,4 +188,4 @@ const filters = [
   }
 ];
 
-export { defaultState, tags, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters }
+export { defaultState, tags, slimSections, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters }
