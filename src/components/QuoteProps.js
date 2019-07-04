@@ -30,12 +30,6 @@ const slimSections = [
       'value': 'bottom-row',
       'label': 'Bottom Row'
    }, {
-      'value': 'top-left',
-      'label': 'Top Left'
-   }, {
-      'value': 'top-right',
-      'label': 'Top Right'
-   }, {
       'value': 'bottom-left',
       'label': 'Bottom Left'
    }, {
@@ -46,6 +40,12 @@ const slimSections = [
 
 const sections = [...slimSections,
    {
+      'value': 'top-left',
+      'label': 'Top Left'
+   }, {
+      'value': 'top-right',
+      'label': 'Top Right'
+   }, {
       'value': 'center-top',
       'label': 'Center Top'
    }, {
