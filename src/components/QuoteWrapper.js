@@ -136,6 +136,7 @@ class QuoteWrapper extends React.Component {
                <Intro />
 
                <Tags
+                  tags={this.state.tags}
                   update={this.updateTags}
                   refresh={this.refreshImage}
                   random={this.randomizeImage}/>
