@@ -165,27 +165,47 @@ const colorSchemes = [
 ]
 
 const filters = [
-  {
-     'label': 'Sepia',
-     'value': 'sepia',
-     'cssValue': 'sepia(90%)'
-  }, {
-     'label': 'Grayscale',
-     'value': 'grayscale',
-     'cssValue': 'grayscale(90%)'
-  }, {
-     'label': 'Contrast',
-     'value': 'contrast',
-     'cssValue': 'contrast(190%)'
-  }, {
-     'label': 'Saturate',
-     'value': 'saturate',
-     'cssValue': 'saturate(210%)'
-  }, {
-     'label': 'Invert',
-     'value': 'invert',
-     'cssValue': 'invert(90%)'
-  }
+   {
+      'label': 'Sepia',
+      'value': 'sepia',
+      'cssValue': 'sepia(90%) contrast(90%) brightness(90%)'
+   }, {
+      'label': 'Grayscale',
+      'value': 'grayscale',
+      'cssValue': 'grayscale(95%) contrast(125%)'
+   }, {
+      'label': 'Contrast',
+      'value': 'contrast',
+      'cssValue': 'contrast(190%)'
+   }, {
+      'label': 'Saturate',
+      'value': 'saturate',
+      'cssValue': 'saturate(190%)'
+   }, {
+      'label': 'Invert',
+      'value': 'invert',
+      'cssValue': 'invert(100%) contrast(150%) brightness(105%)'
+   }, {
+      'label': 'Soft Light',
+      'value': 'soft_light',
+      'cssValue': 'contrast(115%) saturate(115%)'
+   }, {
+      'label': 'Hard Light',
+      'value': 'hard_light',
+      'cssValue': 'contrast(140%) saturate(140%)'
+   }, {
+      'label': 'Heavy Light',
+      'value': 'heavy_light',
+      'cssValue': 'contrast(170%) saturate(170%) blur(0.3px)'
+   }, {
+      'label': 'Tilt',
+      'value': 'tilt',
+      'cssValue': 'brightness(105%) hue-rotate(90deg) saturate(110%) contrast(105%)'
+   }, {
+      'label': 'Reverse',
+      'value': 'reverse',
+      'cssValue': 'brightness(105%) hue-rotate(180deg) saturate(125%) contrast(110%)'
+   }
 ];
 
 export { defaultState, tags, slimSections, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters }
