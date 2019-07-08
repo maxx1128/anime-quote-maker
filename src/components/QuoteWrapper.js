@@ -54,12 +54,15 @@ class QuoteWrapper extends React.Component {
       this.setState({ filters: filters });
    }
 
-   updateColorScheme = (calledScheme) => {
-      const selectedScheme = this.allColorSchemes.find(scheme => scheme.label === calledScheme)['values'];
+   updateColorScheme = (calledScheme, swap = false) => {
+      const selectedScheme  = this.allColorSchemes.find(scheme => scheme.label === calledScheme)['values'],
+            willSwap        = (swap && Math.random() >= 0.5),
+            backgroundColor = willSwap ? selectedScheme['color'] : selectedScheme['bgColor'],
+            textColor       = willSwap ? selectedScheme['bgColor'] : selectedScheme['color'];
 
       this.setState({
-         bgColor: selectedScheme['bgColor'],
-         textColor: selectedScheme['color'],
+         bgColor: backgroundColor,
+         textColor: textColor,
          fontFamily: selectedScheme['fontFamily']
       })
    }
@@ -94,7 +97,7 @@ class QuoteWrapper extends React.Component {
 
    randomColorScheme = () => {
       const randomScheme = this.randomProperty(this.allColorSchemes)['label'];
-      this.updateColorScheme(randomScheme);
+      this.updateColorScheme(randomScheme, true);
    }
 
    randomFontFamily = () => {

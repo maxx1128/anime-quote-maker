@@ -127,13 +127,48 @@ const colorSchemes = [
         'fontFamily': 'Open Sans'
      }
   }, {
-     'label': 'cute',
-     'values': {
-        'bgColor': '#f69acd',
-        'color': '#4d0220',
-        'fontFamily': 'Cabin Sketch'
-     }
-  }, {
+      'label': 'fuscia',
+      'values': {
+         'bgColor': '#F9CAFF',
+         'color': '#6D1172',
+         'fontFamily': 'PT Serif'
+      }
+   }, {
+      'label': 'orange',
+      'values': {
+         'bgColor': '#FFAF4D',
+         'color': '#001F3F',
+         'fontFamily': 'Poppins'
+      }
+   }, {
+      'label': 'teal',
+      'values': {
+         'bgColor': '#005661',
+         'color': '#BBFEE8',
+         'fontFamily': 'Montserrat'
+      }
+   }, {
+      'label': 'navy',
+      'values': {
+         'bgColor': '#001F3F',
+         'color': '#FFE747',
+         'fontFamily': 'Montserrat'
+      }
+   }, {
+      'label': 'watermelon',
+      'values': {
+         'bgColor': '#BF1303',
+         'color': '#AAF3B3',
+         'fontFamily': 'Abril Fatface'
+      }
+   }, {
+      'label': 'silver',
+      'values': {
+         'bgColor': '#DDDDDD',
+         'color': '#575260',
+         'fontFamily': 'Roboto Slab'
+      }
+   }, {
      'label': 'royal',
      'values': {
         'bgColor': '#FFDC00',

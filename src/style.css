@@ -41,6 +41,7 @@ button {
 
 .qig-button--right-space {
   margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .qig-button--full {
