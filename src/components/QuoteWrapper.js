@@ -80,7 +80,7 @@ class QuoteWrapper extends React.Component {
    }
 
    randomizeFontSize = () => {
-      const number = Math.floor(Math.random() * (30 - 26) + 26)
+      const number = Math.floor(Math.random() * (30 - 27) + 27)
       this.setState({ size: number });
    }
 
