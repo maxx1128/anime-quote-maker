@@ -21,9 +21,6 @@ const slimSections = [
       'value': 'center-bottom',
       'label': 'Center Bottom'
    }, {
-      'value': 'top-row',
-      'label': 'Top Row'
-   }, {
       'value': 'middle-row',
       'label': 'Middle Row'
    }, {
@@ -54,6 +51,9 @@ const sections = [...slimSections,
    }, {
       'value': 'right-column',
       'label': 'Right Column'
+   }, {
+      'value': 'top-row',
+      'label': 'Top Row'
    }
 ]
 
