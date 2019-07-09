@@ -24,6 +24,9 @@ const slimSections = [
       'value': 'middle-row',
       'label': 'Middle Row'
    }, {
+      'value': '3-4-row',
+      'label': '3/4 Row'
+   }, {
       'value': 'bottom-row',
       'label': 'Bottom Row'
    }, {
@@ -54,6 +57,9 @@ const sections = [...slimSections,
    }, {
       'value': 'top-row',
       'label': 'Top Row'
+   }, {
+      'value': '1-4-row',
+      'label': '1/4 Row'
    }
 ]
 
@@ -109,7 +115,7 @@ const fontStyles = [
   }
 ]
 
-const fontFamilies = ['Open Sans', 'Archivo Black', 'Abril Fatface', 'Dosis', 'Cabin Sketch', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Poppins', 'PT Serif', 'Dancing Script'].sort()
+const fontFamilies = ['Open Sans', 'Archivo Black', 'Abril Fatface', 'Dosis', 'Cabin Sketch', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Poppins', 'PT Serif'].sort()
 
 const colorSchemes = [
   {

@@ -24,10 +24,14 @@ class QuoteWrapper extends React.Component {
 
    componentDidMount() { this.refreshAll(); }
 
-   getQuote = () => axios.get('https://favqs.com/api/qotd').then(data => this.setState({
-      quote: data.data.quote.body,
-      author: data.data.quote.author
-   }));
+   getQuote = (set) => axios.get('https://favqs.com/api/qotd').then(data => {
+      this.setState({
+         quote: data.data.quote.body,
+         author: data.data.quote.author
+      });
+
+      if (set === 'fontSize') { this.randomizeFontSize(data.data.quote.body); }
+   });
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.state.filters.forEach(filter => this.updateFilters(filter));
@@ -82,8 +86,18 @@ class QuoteWrapper extends React.Component {
       });
    }
 
-   randomizeFontSize = () => {
-      const number = Math.floor(Math.random() * (30 - 27) + 27)
+   randomizeFontSize = (quote) => {
+      console.log(quote);
+      console.log(quote.split('').length);
+      const quoteLength = quote.split('').length,
+            decrease = Math.floor((quoteLength - 40) / 15),
+            ceiling = 29 - decrease,
+            bottom = 27 - decrease;
+
+      console.log(ceiling);
+      console.log(bottom);
+
+      const number = Math.floor(Math.random() * (ceiling - bottom) + bottom)
       this.setState({ size: number });
    }
 
@@ -119,12 +133,11 @@ class QuoteWrapper extends React.Component {
    }
 
    refreshAll = () => {
-      this.getQuote();
+      this.getQuote('fontSize');
       this.updateSection(this.randomProperty(this.allSlimSections).value)
       this.updateAlignment(this.randomProperty(this.allAlignments).value)
       this.updateFontStyle(this.randomProperty(this.allFontStyles).value)
       this.noTagImage();
-      this.randomizeFontSize();
       this.randomColorScheme();
       this.randomFontFamily();
       this.randomFilter();

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Dosis|Cabin+Sketch|Open+Sans|Raleway|Space+Mono|Montserrat|Roboto+Slab|Poppins|PT+Serif|Dancing+Script|Abril+Fatface");
+@import url("https://fonts.googleapis.com/css?family=Archivo+Black|Dosis|Cabin+Sketch|Open+Sans|Raleway|Space+Mono|Montserrat|Roboto+Slab|Poppins|PT+Serif|Abril+Fatface");
 
 body {
   padding: 0;
@@ -181,9 +181,21 @@ button {
   grid-row: 1 / span 2;
 }
 
+.qig__quote-wrapper--1-4-row {
+  grid-column: 1 / span 5;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
 .qig__quote-wrapper--middle-row {
   grid-column: 1 / span 5;
   grid-row: 2 / span 3;
+  align-self: center;
+}
+
+.qig__quote-wrapper--3-4-row {
+  grid-column: 1 / span 5;
+  grid-row: 4 / span 2;
   align-self: center;
 }
 
@@ -194,23 +206,23 @@ button {
 }
 
 .qig__quote-wrapper--top-left {
-  grid-column: 1 / span 3;
+  grid-column: 1 / span 4;
   grid-row: 1 / span 3;
 }
 
 .qig__quote-wrapper--top-right {
-  grid-column: 3 / span 3;
+  grid-column: 2 / span 4;
   grid-row: 1 / span 3;
 }
 
 .qig__quote-wrapper--bottom-left {
-  grid-column: 1 / span 3;
+  grid-column: 1 / span 4;
   grid-row: 4 / span 3;
   align-self: end;
 }
 
 .qig__quote-wrapper--bottom-right {
-  grid-column: 3 / span 3;
+  grid-column: 2 / span 4;
   grid-row: 4 / span 3;
   align-self: end;
 }
