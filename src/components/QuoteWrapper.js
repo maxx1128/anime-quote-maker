@@ -35,7 +35,6 @@ class QuoteWrapper extends React.Component {
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.state.filters.forEach(filter => this.updateFilters(filter));
-   updateSection = (section) => this.setState({ section: section });
    updateAlignment = (alignment) => this.setState({ alignment: alignment });
    updatePosX = (posX) => this.setState({ posX: posX });
    updatePosY = (posY) => this.setState({ posY: posY });
@@ -47,6 +46,12 @@ class QuoteWrapper extends React.Component {
    updateFontFamily = (e) => this.setState({ fontFamily: e.target.value })
    updateTags = (e) => this.setState({ tags: e.target.value });
    updateSize = (e) => this.setState({ size: e.target.value });
+
+   updateSection = (section, type = 'set') => {
+      this.setState({ section: section });
+
+      if (type === 'random') { this.fittingAlignment(section); }
+   };
 
    updateFilters = (newFilterVal) => {
       let { filters } = this.state;
@@ -87,18 +92,15 @@ class QuoteWrapper extends React.Component {
    }
 
    randomizeFontSize = (quote) => {
-      console.log(quote);
-      console.log(quote.split('').length);
       const quoteLength = quote.split('').length,
             decrease = Math.floor((quoteLength - 40) / 15),
             ceiling = 29 - decrease,
-            bottom = 27 - decrease;
+            bottom = 27 - decrease,
+            floor = 24;
 
-      console.log(ceiling);
-      console.log(bottom);
-
-      const number = Math.floor(Math.random() * (ceiling - bottom) + bottom)
-      this.setState({ size: number });
+      const number = Math.floor(Math.random() * (ceiling - bottom) + bottom),
+            weightedNumber = number > floor ? number : floor;
+      this.setState({ size: weightedNumber });
    }
 
    randomFilter = () => {
@@ -127,6 +129,21 @@ class QuoteWrapper extends React.Component {
       this.refreshImage(randomTag);
    }
 
+   fittingAlignment = (section) => {
+      const getAlign = (alignVal) => {
+         const alignArray = this.allAlignments.filter(alignment => alignment.label === alignVal);
+         return alignArray[0].value;
+      };
+
+      if (section.includes('left')) {
+         this.updateAlignment(getAlign('Left'));
+      } else if (section.includes('right')) {
+         this.updateAlignment(getAlign('Right'));
+      } else {
+         this.updateAlignment(getAlign('Center'));
+      }
+   }
+
    noTagImage = () => {
       this.setState({ tags: '' });
       this.refreshImage('');
@@ -134,9 +151,8 @@ class QuoteWrapper extends React.Component {
 
    refreshAll = () => {
       this.getQuote('fontSize');
-      this.updateSection(this.randomProperty(this.allSlimSections).value)
-      this.updateAlignment(this.randomProperty(this.allAlignments).value)
-      this.updateFontStyle(this.randomProperty(this.allFontStyles).value)
+      this.updateSection(this.randomProperty(this.allSlimSections).value, 'random');
+      this.updateFontStyle(this.randomProperty(this.allFontStyles).value);
       this.noTagImage();
       this.randomColorScheme();
       this.randomFontFamily();
