@@ -142,6 +142,20 @@ button {
   justify-content: space-between;
 }
 
+.qig-l-wrapper__form-multi > * {
+  margin-right: 3rem;
+}
+
+@media (min-width: 800px) {
+  .qig-l-wrapper--vertical .qig-l-wrapper__form-multi {
+    justify-content: flex-start
+  }
+
+  .qig-l-wrapper__form-multi > * {
+    margin-right: 5rem;
+  }
+}
+
 .qig-l-wrapper__form-header {
   margin-top: 0;
 }
