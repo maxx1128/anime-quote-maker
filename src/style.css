@@ -3,6 +3,9 @@
 body {
   padding: 0;
   margin: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 
   font-family: 'Open Sans', sans-serif;
 }
@@ -54,6 +57,7 @@ button {
   display: grid;
   grid-template-columns: 1fr;
 }
+
 @media (min-width: 800px) {
   .qig-l-wrapper {
     grid-template-columns: 1fr 1fr;
