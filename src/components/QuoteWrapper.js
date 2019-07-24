@@ -76,6 +76,12 @@ class QuoteWrapper extends React.Component {
       })
    }
 
+   toggleVertical = () => {
+      this.setState({
+         vertical: !this.state.vertical
+      });
+   }
+
    getFilterValues = () => {
       const { filters } = this.state,
             activeFilters = this.allFilters.filter(filterItem => filters.includes(filterItem.value)),
@@ -162,7 +168,7 @@ class QuoteWrapper extends React.Component {
    render() {
       const image = `https://ruby-anime-newsletter.herokuapp.com/?min_width=800&min_height=800&max_width=1500&max_height=1200&tags=${this.state.tags}#${this.state.hash}`;
       return (
-         <div className={"qig-l-wrapper"}>
+         <div className={`qig-l-wrapper ${this.state.vertical ? 'qig-l-wrapper--vertical' : ''}`}>
             <div className="qig-l-wrapper__form">
 
                <Intro />
@@ -206,6 +212,11 @@ class QuoteWrapper extends React.Component {
                   updatePosX={this.updatePosX}
                   setPosY={this.state.posY}
                   updatePosY={this.updatePosY}/>
+
+               <button class="qig-button--full" onClick={this.toggleVertical}>
+                 {this.state.vertical ? 'Horizontal' : 'Vertical'} View
+               </button>
+               <br/>
             </div>
 
             <div className="qig-l-wrapper__result">

@@ -55,7 +55,7 @@ button {
   grid-template-columns: 1fr;
 }
 @media (min-width: 800px) {
-  .qig-l-wrapper {
+  .qig-l-wrapper:not(.qig-l-wrapper--vertical) {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -74,12 +74,20 @@ button {
     padding: 1rem;
     grid-row: 2;
   }
+
+  .qig-l-wrapper--vertical .qig-l-wrapper__result {
+    grid-row: 1;
+  }
 }
 
 @media (min-width: 800px) {
   .qig-l-wrapper__form {
     max-height: 90vh;
     overflow-y: scroll;
+  }
+
+  .qig-l-wrapper--vertical .qig-l-wrapper__form {
+    max-height: 40vh;
   }
 }
 
