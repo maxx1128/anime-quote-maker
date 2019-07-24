@@ -5,6 +5,7 @@ import QuoteBox from "./QuoteBox";
 import { defaultState, tags, slimSections, alignments, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
+import Size from "./QuoteForm/Size";
 import Tags from "./QuoteForm/Tags";
 import Quote from "./QuoteForm/Quote";
 import Styling from "./QuoteForm/Styling";
@@ -46,6 +47,8 @@ class QuoteWrapper extends React.Component {
    updateFontFamily = (e) => this.setState({ fontFamily: e.target.value })
    updateTags = (e) => this.setState({ tags: e.target.value });
    updateSize = (e) => this.setState({ size: e.target.value });
+   updateWidth = (e) => this.setState({ width: e.target.value });
+   updateHeight = (e) => this.setState({ height: e.target.value });
 
    updateSection = (section, type = 'set') => {
       this.setState({ section: section });
@@ -179,6 +182,12 @@ class QuoteWrapper extends React.Component {
                   refresh={this.refreshImage}
                   random={this.randomizeImage}/>
 
+               <Size
+                  width={this.state.width}
+                  updateWidth={this.updateWidth}
+                  height={this.state.height}
+                  updateHeight={this.updateHeight}/>
+
                <Quote
                   quote={this.state.quote}
                   update={this.updateQuote}
@@ -213,7 +222,7 @@ class QuoteWrapper extends React.Component {
                   setPosY={this.state.posY}
                   updatePosY={this.updatePosY}/>
 
-               <button class="qig-button--full" onClick={this.toggleVertical}>
+               <button className="qig-button--full" onClick={this.toggleVertical}>
                  {this.state.vertical ? 'Horizontal' : 'Vertical'} View
                </button>
                <br/>
@@ -222,6 +231,8 @@ class QuoteWrapper extends React.Component {
             <div className="qig-l-wrapper__result">
                <QuoteBox
                   image={image}
+                  width={this.state.width}
+                  height={this.state.height}
                   bgColor={this.state.bgColor}
                   textColor={this.state.textColor}
                   filters={this.getFilterValues}

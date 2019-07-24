@@ -12,7 +12,9 @@ const defaultState = {
   bgColor: '#111111',
   textColor: '#eeeeee',
   fontFamily: 'Open Sans',
-  vertical: false
+  vertical: false,
+  width: 700,
+  height: 700
 }
 
 const tags = ['absurdres', 'scenery', 'library', 'city', 'space', 'thinking', 'sad', 'happy', 'forest', 'military', 'city', 'singing', 'running', 'heart', 'pokemon', 'animal', 'ponytail', 'jacket', 'goggles', 'weapon', 'skateboard']

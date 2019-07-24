@@ -1,8 +1,13 @@
 import React from "react";
 
-const QuoteBox = ({quote, author, image, section, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, filters}) => {
+const QuoteBox = ({width, height, quote, author, image, section, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, filters}) => {
 
   let filterList = filters();
+
+  const wrapperSizes = {
+   'maxWidth': `${width}px`,
+   'maxHeight': `${height}px`
+  };
 
   const wrapperStyle = {
      'backgroundImage': `url(${image})`,
@@ -19,7 +24,7 @@ const QuoteBox = ({quote, author, image, section, alignment, fontStyle, size, po
   }
 
   return (
-     <div className="qig__image-wrapper">
+     <div className="qig__image-wrapper" style={wrapperSizes}>
         <div className="qig__image-bg" style={wrapperStyle}></div>
         <div className={`qig__quote-wrapper qig__quote-wrapper--${section}`}>
            <div className={`qig__quote qig__quote--font-${fontStyle}`} style={quoteStyle}>

@@ -99,10 +99,8 @@ button {
   display: grid;
   position: relative;
   width: 100%;
-  max-width: 700px;
   height: 700px;
-  max-height: 700px;
-  margin-bottom: 1rem;
+  margin: 0 auto 1rem auto;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   overflow: hidden;
@@ -110,7 +108,7 @@ button {
 
 @media (min-width: 800px) {
   .qig__image-wrapper {
-    height: 85vh;
+    height: 100vh;
     border: 1px solid black;
   }
 }
