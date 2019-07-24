@@ -80,8 +80,14 @@ class QuoteWrapper extends React.Component {
    }
 
    toggleVertical = () => {
+      const isNowVertical = !this.state.vertical,
+            width = isNowVertical ? 1024 : 700,
+            height = isNowVertical ? 300 : 700;
+
       this.setState({
-         vertical: !this.state.vertical
+         vertical: isNowVertical,
+         width: width,
+         height: height
       });
    }
 
