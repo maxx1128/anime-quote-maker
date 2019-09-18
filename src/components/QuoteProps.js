@@ -7,8 +7,8 @@ const defaultState = {
   size: 20,
   fontStyle: 'base',
   filters: [],
-  posX: 'center',
-  posY: 'center',
+  posX: 50,
+  posY: 50,
   bgColor: '#111111',
   textColor: '#eeeeee',
   fontFamily: 'Open Sans',
@@ -77,56 +77,6 @@ const alignments = [
      'value': 'right',
      'label': 'Right'
   }
-]
-
-const posX = [
-   {
-     'value': 'left',
-     'label': 'Left'
-   }, {
-      'value': '10% ',
-      'label': '10%'
-   }, {
-      'value': '25% ',
-      'label': '25%'
-   }, {
-     'value': 'center',
-     'label': 'Center'
-   }, {
-      'value': '75% ',
-      'label': '75%'
-   }, {
-      'value': '90% ',
-      'label': '90%'
-   }, {
-     'value': 'right',
-     'label': 'Right'
-  }
-]
-
-const posY = [
-   {
-     'value': 'top',
-     'label': 'Top'
-   }, {
-      'value': '10% ',
-      'label': '10%'
-   }, {
-     'value': '25% ',
-     'label': '25%'
-   }, {
-     'value': 'center',
-     'label': 'Center'
-   }, {
-      'value': '75% ',
-      'label': '75%'
-   }, {
-      'value': '90% ',
-      'label': '90%'
-   }, {
-     'value': 'bottom',
-     'label': 'Bottom'
-   }
 ]
 
 const fontStyles = [
@@ -276,4 +226,4 @@ const filters = [
    }
 ];
 
-export { defaultState, tags, slimSections, sections, alignments, posX, posY, fontStyles, fontFamilies, colorSchemes, filters }
+export { defaultState, tags, slimSections, sections, alignments, fontStyles, fontFamilies, colorSchemes, filters }

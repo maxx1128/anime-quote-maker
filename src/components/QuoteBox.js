@@ -11,7 +11,7 @@ const QuoteBox = ({width, height, quote, author, image, section, alignment, font
 
   const wrapperStyle = {
      'backgroundImage': `url(${image})`,
-     'backgroundPosition': `${posX} ${posY}`,
+     'backgroundPosition': `${posX}% ${posY}%`,
      'filter': filterList.join(' ')
   };
 

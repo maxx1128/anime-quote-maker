@@ -37,8 +37,8 @@ class QuoteWrapper extends React.Component {
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.state.filters.forEach(filter => this.updateFilters(filter));
    updateAlignment = (alignment) => this.setState({ alignment: alignment });
-   updatePosX = (posX) => this.setState({ posX: posX });
-   updatePosY = (posY) => this.setState({ posY: posY });
+   updatePosX = (e) => this.setState({ posX: e.target.value });
+   updatePosY = (e) => this.setState({ posY: e.target.value });
    updateQuote = (e) => this.setState({ quote: e.target.value })
    updateBgColor = (e) => this.setState({ bgColor: e.target.value })
    updateTextColor = (e) => this.setState({ textColor: e.target.value })
