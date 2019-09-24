@@ -144,6 +144,24 @@ class QuoteWrapper extends React.Component {
       this.refreshImage(randomTag);
    }
 
+   randomColorCode = (characters) => {
+      const getRandomChar = () => characters[Math.floor(Math.random()*characters.length)];
+
+      return `#${getRandomChar()}${getRandomChar()}${getRandomChar()}${getRandomChar()}${getRandomChar()}${getRandomChar()}`
+   }
+
+   randomColorCodes = () => {
+      const lightColor  = this.randomColorCode([0, 1, 2, 3, 4, 5]),
+            darkColor   = this.randomColorCode(['F', 'E', 'D', 'C', 'B', 'A']),
+            hasDarkText = Math.random() >= 0.5;
+
+
+      this.setState({
+         textColor: hasDarkText ? darkColor : lightColor,
+         bgColor:   hasDarkText ? lightColor : darkColor
+      });
+   }
+
    fittingAlignment = (section) => {
       const getAlign = (alignVal) => {
          const alignArray = this.allAlignments.filter(alignment => alignment.label === alignVal);
@@ -169,7 +187,7 @@ class QuoteWrapper extends React.Component {
       this.updateSection(this.randomProperty(this.allSlimSections).value, 'random');
       this.updateFontStyle(this.randomProperty(this.allFontStyles).value);
       this.noTagImage();
-      this.randomColorScheme();
+      this.randomColorCodes();
       this.randomFontFamily();
       this.randomFilter();
    }
@@ -212,7 +230,8 @@ class QuoteWrapper extends React.Component {
                   updateSize={this.updateSize}
                   fontFamily={this.state.fontFamily}
                   updateFontFamily={this.updateFontFamily}
-                  updateColorScheme={this.updateColorScheme}/>
+                  updateColorScheme={this.updateColorScheme}
+                  randomColorScheme={this.randomColorCodes}/>
 
                <Position
                   selected={this.state.section}
