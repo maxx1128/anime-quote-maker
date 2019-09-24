@@ -50,6 +50,17 @@ class QuoteWrapper extends React.Component {
    updateWidth = (e) => this.setState({ width: e.target.value });
    updateHeight = (e) => this.setState({ height: e.target.value });
 
+   shuffle = (a) => {
+      var j, x, i;
+      for (i = a.length - 1; i > 0; i--) {
+          j = Math.floor(Math.random() * (i + 1));
+          x = a[i];
+          a[i] = a[j];
+          a[j] = x;
+      }
+      return a;
+   }
+
    updateSection = (section, type = 'set') => {
       this.setState({ section: section });
 
@@ -130,10 +141,9 @@ class QuoteWrapper extends React.Component {
       }
 
       const invertFilter = (filter) => filter === 'inverse' && (Math.random() >= 0.8),
-            shuffledFilters = this.allFilters
+            shuffledFilters = this.shuffle(this.allFilters
                                 .map(filter => filter.value)
-                                .filter(filter => !invertFilter(filter))
-                                .sort(() => 0.5 - Math.random()),
+                                .filter(filter => !invertFilter(filter))),
             randomFilters = shuffledFilters.slice(0, numberOfFilters);
 
       this.setState({ filters: randomFilters });
