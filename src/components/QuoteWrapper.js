@@ -35,7 +35,7 @@ class QuoteWrapper extends React.Component {
    });
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
-   emptyFilters = () => this.state.filters.forEach(filter => this.updateFilters(filter));
+   emptyFilters = () => this.setState({ filters: [] });
    updateAlignment = (alignment) => this.setState({ alignment: alignment });
    updatePosX = (e) => this.setState({ posX: e.target.value });
    updatePosY = (e) => this.setState({ posY: e.target.value });
@@ -119,11 +119,24 @@ class QuoteWrapper extends React.Component {
    }
 
    randomFilter = () => {
-      this.emptyFilters();
+      let numberOfFilters;
 
-      const randomFilter = this.allFilters[Math.floor(Math.random()*this.allFilters.length)].value;
+      if (Math.random() >= 0.6) {
+         numberOfFilters = 1;
+      } else if (Math.random() >= 0.5) {
+         numberOfFilters = 2;
+      } else {
+         numberOfFilters = 3;
+      }
 
-      this.updateFilters(randomFilter);
+      const invertFilter = (filter) => filter === 'inverse' && (Math.random() >= 0.8),
+            shuffledFilters = this.allFilters
+                                .map(filter => filter.value)
+                                .filter(filter => !invertFilter(filter))
+                                .sort(() => 0.5 - Math.random()),
+            randomFilters = shuffledFilters.slice(0, numberOfFilters);
+
+      this.setState({ filters: randomFilters });
    }
 
    randomColorScheme = () => {
@@ -239,7 +252,8 @@ class QuoteWrapper extends React.Component {
 
                <Filters
                   setFilters={this.state.filters}
-                  updateFilters={this.updateFilters}/>
+                  updateFilters={this.updateFilters}
+                  randomFilter={this.randomFilter}/>
 
                <Alignment
                   setPosX={this.state.posX}
