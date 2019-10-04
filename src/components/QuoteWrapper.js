@@ -140,7 +140,7 @@ class QuoteWrapper extends React.Component {
          numberOfFilters = 3;
       }
 
-      const invertFilter = (filter) => filter === 'inverse' && (Math.random() >= 0.8),
+      const invertFilter = (filter) => filter === 'inverse' && (Math.random() >= 0.95),
             shuffledFilters = this.shuffle(this.allFilters
                                 .map(filter => filter.value)
                                 .filter(filter => !invertFilter(filter))),
