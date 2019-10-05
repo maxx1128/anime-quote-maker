@@ -21,12 +21,6 @@ const tags = ['absurdres', 'scenery', 'library', 'city', 'space', 'thinking', 's
 
 const slimSections = [
    {
-      'value': 'top-row',
-      'label': 'Top Row'
-   }, {
-      'value': '1-4-row',
-      'label': '1/4 Row'
-   }, {
       'value': 'middle-row',
       'label': 'Middle Row'
    }, {
@@ -41,7 +35,15 @@ const slimSections = [
    }
  ]
 
-const sections = [...slimSections,
+const sections = [
+   {
+      'value': 'top-row',
+      'label': 'Top Row'
+   }, {
+      'value': '1-4-row',
+      'label': '1/4 Row'
+   },
+   ...slimSections,
    {
       'value': 'center-top',
       'label': 'Center Top'
