@@ -1,23 +1,78 @@
 import React from "react";
+import TagItem from "./TagItem";
 
-const Tags = ({tags, update, random, refresh}) => (
-  <div className="qig-l-wrapper__form-item qig-l-controls__tags">
-    <label>
-      Tags:
-      <input type="text" name="tags" value={tags} onChange={update} />
-    </label>
+class Tags extends React.Component {
+  state = {
+    'tags': '',
+    'tagField': ''
+  }
 
-    <br />
-    <br />
+  tagsArray = () => this.props.tags.split(',').filter(tag => tag.length > 0);
+  typeNewTag = (e) => this.setState({ tagField: e.target.value });
+  updateTags = (newTags) => {
+    this.setState({ tags: newTags });
+    this.props.update(newTags);
+    this.props.refresh(newTags);
+  }
 
-    <button className="qig-button--right-space" onClick={() => refresh(tags)}>
-      Try Another Image
-    </button>
+  addNewTag = () => {
+    const newTags = `${this.props.tags}${this.props.tags.length > 0 ? ',' : ''}${this.state.tagField.replace(' ', '_')}`;
 
-    <button onClick={() => random()}>
-      Get a Random Tag
-    </button>
-  </div>
-);
+    this.setState({ 'tagField': '' });
+    this.updateTags(newTags);
+  }
+
+  flipIncludedStateFor = (tag) => {
+    const newTags = this.tagsArray().map(arrayTag => {
+      if (tag === arrayTag) {
+        const isExcluded = tag.charAt(0) === '-';
+        return isExcluded ? arrayTag.substring(1) : `-${arrayTag}`;
+      } else {
+        return arrayTag;
+      }
+    }).join(',');
+
+    this.updateTags(newTags);
+  }
+
+  deleteTag = (tag) => {
+    const newTags = this.tagsArray()
+                      .filter(arrayTag => arrayTag !== tag)
+                      .join(',');
+
+    this.updateTags(newTags);
+  }
+
+  tagInputKeyPress = () => {
+    if (event.key === "Enter") { this.addNewTag(); }
+  }
+
+  render() {
+    return (
+      <div>
+        <label>
+          New Tag:
+          <input className="qig-button--right-space" type="text" name="tags" value={this.state.tagField} onKeyPress={this.tagInputKeyPress} onChange={this.typeNewTag} />
+          <button className="qig-button--right-space" onClick={this.addNewTag}>Add Tag</button>
+        </label>
+
+        <button className="qig-button--right-space" onClick={() => this.props.refresh(this.props.tags)}>
+          Refresh Image
+        </button>
+
+        <button onClick={() => this.props.random()}>
+          Get Random Tags!
+        </button>
+
+        <br />
+        <br />
+
+        <ul className="qig__tags-list">
+          { this.tagsArray().map((tag, i) => <TagItem key={i} title={tag} flipIncludedState={() => this.flipIncludedStateFor(tag)} deleteTag={() => this.deleteTag(tag)} />) }
+        </ul>
+      </div>
+    )
+  }
+}
 
 export default Tags;

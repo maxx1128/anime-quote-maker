@@ -10,10 +10,10 @@ const Intro = () => (
       Change the Image Tags
     </h4>
     <p>
-      Each tag should be <strong>comma-separated without spaces</strong>. Tags with multiple words should <strong>replace spaces with underscores.</strong> There's lots of potential tags, so try locations, items, characters, types of clothing, games, and more!
+      Type in and enter different tags to get certain images. You can use many tags for something more specific, or exclude tags from your results. There are lots of potential tags, so try locations, items, characters, types of clothing, games, and more!
     </p>
     <p>
-      Can't decide? Leave it blank for something totally random!
+      Can't decide? Try adding a random group of example tags, or leave it blank for something totally random!
     </p>
   </React.Fragment>
 );
