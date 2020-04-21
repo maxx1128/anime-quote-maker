@@ -21,11 +21,8 @@ const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_ha
 
 const slimSections = [
    {
-      'value': 'top-row',
-      'label': 'Top Row'
-   }, {
-      'value': '1-4-row',
-      'label': '1/4 Row'
+      'value': 'middle-row',
+      'label': 'Middle Row'
    }, {
       'value': '3-4-row',
       'label': '3/4 Row'
@@ -38,8 +35,11 @@ const slimSections = [
 const sections = [
    ...slimSections,
    {
-      'value': 'middle-row',
-      'label': 'Middle Row'
+      'value': 'top-row',
+      'label': 'Top Row'
+   }, {
+      'value': '1-4-row',
+      'label': '1/4 Row'
    }, {
       'value': 'center-bottom',
       'label': 'Center Bottom'
