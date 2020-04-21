@@ -8,7 +8,7 @@ const defaultState = {
   fontStyle: 'base',
   filters: [],
   posX: 50,
-  posY: 50,
+  posY: 0,
   bgColor: '#111111',
   textColor: '#eeeeee',
   fontFamily: 'Open Sans',
@@ -21,25 +21,25 @@ const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_ha
 
 const slimSections = [
    {
-      'value': 'middle-row',
-      'label': 'Middle Row'
+      'value': 'bottom-row',
+      'label': 'Bottom Row'
    }, {
       'value': '3-4-row',
       'label': '3/4 Row'
-   }, {
-      'value': 'bottom-row',
-      'label': 'Bottom Row'
    }
  ]
 
 const sections = [
    ...slimSections,
    {
-      'value': 'top-row',
-      'label': 'Top Row'
+      'value': 'middle-row',
+      'label': 'Middle Row'
    }, {
       'value': '1-4-row',
       'label': '1/4 Row'
+   }, {
+      'value': 'top-row',
+      'label': 'Top Row'
    }, {
       'value': 'center-bottom',
       'label': 'Center Bottom'
