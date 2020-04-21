@@ -17,34 +17,33 @@ const defaultState = {
   height: 700
 }
 
-const tags = ['absurdres', 'scenery', 'library', 'city', 'space', 'thinking', 'sad', 'happy', 'forest', 'military', 'city', 'singing', 'running', 'heart', 'pokemon', 'animal', 'ponytail', 'jacket', 'goggles', 'weapon', 'skateboard']
+const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_hair', 'long_hair', 'hat', 'outdoors', 'day', 'night', 'rain', 'forest', 'building', 'water', 'instrument', 'running', 'heart', 'animal', 'ponytail', 'weapon', '1girl', '1boy']
 
 const slimSections = [
-   {
-      'value': 'middle-row',
-      'label': 'Middle Row'
-   }, {
-      'value': '3-4-row',
-      'label': '3/4 Row'
-   }, {
-      'value': 'bottom-row',
-      'label': 'Bottom Row'
-   }, {
-      'value': 'center-bottom',
-      'label': 'Center Bottom'
-   }
- ]
-
-const sections = [
    {
       'value': 'top-row',
       'label': 'Top Row'
    }, {
       'value': '1-4-row',
       'label': '1/4 Row'
-   },
+   }, {
+      'value': '3-4-row',
+      'label': '3/4 Row'
+   }, {
+      'value': 'bottom-row',
+      'label': 'Bottom Row'
+   }
+ ]
+
+const sections = [
    ...slimSections,
    {
+      'value': 'middle-row',
+      'label': 'Middle Row'
+   }, {
+      'value': 'center-bottom',
+      'label': 'Center Bottom'
+   }, {
       'value': 'center-top',
       'label': 'Center Top'
    }, {
@@ -81,20 +80,27 @@ const alignments = [
   }
 ]
 
-const fontStyles = [
+const slimFontStyles = [
   {
      'value': 'base',
      'label': 'Base'
   }, {
      'value': 'italic',
      'label': 'Italic'
-  }, {
-     'value': 'bold',
-     'label': 'Bold'
   }
 ]
 
-const fontFamilies = ['Open Sans', 'Archivo Black', 'Abril Fatface', 'Dosis', 'Gloria Hallelujah', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Poppins', 'PT Serif', 'Baumans', 'Risque'].sort()
+const fontStyles = [
+   ...slimFontStyles,
+   {
+      'value': 'bold',
+      'label': 'Bold'
+   }
+]
+
+const slimFontFamilies = ['Open Sans', 'Archivo Black', 'Abril Fatface', 'Dosis', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Poppins', 'PT Serif'];
+
+const fontFamilies = [...slimFontFamilies, 'Baumans', 'Gloria Hallelujah', 'Risque'].sort()
 
 const colorSchemes = [
   {
@@ -184,7 +190,7 @@ const colorSchemes = [
   }
 ]
 
-const filters = [
+const slimFilters = [
    {
       'label': 'Sepia',
       'value': 'sepia',
@@ -193,10 +199,6 @@ const filters = [
       'label': 'Grayscale',
       'value': 'grayscale',
       'cssValue': 'grayscale(95%) contrast(125%)'
-   }, {
-      'label': 'Contrast',
-      'value': 'contrast',
-      'cssValue': 'contrast(190%)'
    }, {
       'label': 'Saturate',
       'value': 'saturate',
@@ -210,14 +212,6 @@ const filters = [
       'value': 'soft_light',
       'cssValue': 'contrast(115%) saturate(115%)'
    }, {
-      'label': 'Hard Light',
-      'value': 'hard_light',
-      'cssValue': 'contrast(140%) saturate(140%)'
-   }, {
-      'label': 'Heavy Light',
-      'value': 'heavy_light',
-      'cssValue': 'contrast(170%) saturate(170%) blur(0.3px)'
-   }, {
       'label': 'Tilt',
       'value': 'tilt',
       'cssValue': 'brightness(105%) hue-rotate(90deg) saturate(110%) contrast(105%)'
@@ -228,4 +222,21 @@ const filters = [
    }
 ];
 
-export { defaultState, tags, slimSections, sections, alignments, fontStyles, fontFamilies, colorSchemes, filters }
+const filters = [
+   ...slimFilters,
+   {
+      'label': 'Contrast',
+      'value': 'contrast',
+      'cssValue': 'contrast(150%)'
+   }, {
+      'label': 'Hard Light',
+      'value': 'hard_light',
+      'cssValue': 'contrast(140%) saturate(140%)'
+   }, {
+      'label': 'Heavy Light',
+      'value': 'heavy_light',
+      'cssValue': 'contrast(170%) saturate(170%) blur(0.3px)'
+   }
+]
+
+export { defaultState, tags, slimSections, sections, alignments, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, slimFilters, filters }

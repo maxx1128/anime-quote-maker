@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
-import { defaultState, tags, slimSections, alignments, fontStyles, fontFamilies, colorSchemes, filters } from "./QuoteProps";
+import { defaultState, tags, slimSections, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, slimFilters, filters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import Size from "./QuoteForm/Size";
@@ -19,9 +19,12 @@ class QuoteWrapper extends React.Component {
    allSlimSections = slimSections
    allAlignments = alignments
    allFontStyles = fontStyles
+   allSlimFontStyles = slimFontStyles
+   allSlimFontFamilies = slimFontFamilies
    allFontFamilies = fontFamilies
    allColorSchemes = colorSchemes
    allFilters = filters
+   allSlimFilters = slimFilters
 
    componentDidMount() { this.refreshAll(); }
 
@@ -45,7 +48,7 @@ class QuoteWrapper extends React.Component {
    updateStyle = (style) => this.setState({ style: style })
    updateFontStyle = (fontStyle) => this.setState({ fontStyle: fontStyle })
    updateFontFamily = (e) => this.setState({ fontFamily: e.target.value })
-   updateTags = (e) => this.setState({ tags: e.target.value });
+   updateTags = (newTags) => this.setState({ tags: newTags });
    updateSize = (e) => this.setState({ size: e.target.value });
    updateWidth = (e) => this.setState({ width: e.target.value });
    updateHeight = (e) => this.setState({ height: e.target.value });
@@ -120,9 +123,9 @@ class QuoteWrapper extends React.Component {
    randomizeFontSize = (quote) => {
       const quoteLength = quote.split('').length,
             decrease = Math.floor((quoteLength - 40) / 15),
-            ceiling = 29 - decrease,
-            bottom = 27 - decrease,
-            floor = 24;
+            ceiling = 26 - decrease,
+            bottom = 24 - decrease,
+            floor = 21;
 
       const number = Math.floor(Math.random() * (ceiling - bottom) + bottom),
             weightedNumber = number > floor ? number : floor;
@@ -141,7 +144,7 @@ class QuoteWrapper extends React.Component {
       }
 
       const invertFilter = (filter) => filter === 'invert' && (Math.random() <= 0.85),
-            shuffledFilters = this.shuffle(this.allFilters
+            shuffledFilters = this.shuffle(this.allSlimFilters
                                 .map(filter => filter.value)
                                 .filter(filter => !invertFilter(filter))),
             randomFilters = shuffledFilters.slice(0, numberOfFilters);
@@ -155,16 +158,38 @@ class QuoteWrapper extends React.Component {
    }
 
    randomFontFamily = () => {
-      const randomFamily = this.randomProperty(this.allFontFamilies);
+      const randomFamily = this.randomProperty(this.allSlimFontFamilies);
       this.setState({ fontFamily: randomFamily });
    }
 
    randomizeImage = () => {
-      const newTags = this.allTags.sort(() => 0.5 - Math.random()),
-            randomTag = this.randomProperty(newTags);
+      const shuffle = (array) => {
+         var currentIndex = array.length, temporaryValue, randomIndex;
 
-      this.setState({ tags: randomTag });
-      this.refreshImage(randomTag);
+         // While there remain elements to shuffle...
+         while (0 !== currentIndex) {
+
+           // Pick a remaining element...
+           randomIndex = Math.floor(Math.random() * currentIndex);
+           currentIndex -= 1;
+
+           // And swap it with the current element.
+           temporaryValue = array[currentIndex];
+           array[currentIndex] = array[randomIndex];
+           array[randomIndex] = temporaryValue;
+         }
+
+         return array;
+      };
+
+      const newTags = shuffle(this.allTags),
+            tagLimit = Math.floor(Math.random() * (3) + 1),
+            randomTags = newTags.slice(0, tagLimit)
+                                .map(tag => tagLimit > 1 && Math.random() >= 0.8 ? `-${tag}` : tag)
+                                .join(',');
+
+      this.setState({ tags: randomTags });
+      this.refreshImage(randomTags);
    }
 
    randomColorCode = (characters) => {
@@ -207,12 +232,14 @@ class QuoteWrapper extends React.Component {
 
    refreshAll = () => {
       this.getQuote('fontSize');
-      this.updateSection(this.randomProperty(this.allSlimSections).value, 'random');
-      this.updateFontStyle(this.randomProperty(this.allFontStyles).value);
+      this.updateSection(this.randomProperty(this.allSlimSections).value);
+      this.updateFontStyle(this.randomProperty(this.allSlimFontStyles).value);
       this.noTagImage();
       this.randomColorCodes();
       this.randomFontFamily();
       this.randomFilter();
+
+      this.updateAlignment('center');
    }
 
    render() {
