@@ -28,7 +28,7 @@ class QuoteWrapper extends React.Component {
 
    componentDidMount() { this.refreshAll(); }
 
-   getQuote = (set) => axios.get('http://api.quotable.io/random').then(response => {
+   getQuote = (set) => axios.get('https://api.quotable.io/random').then(response => {
       this.setState({
          quote: response.data.content,
          author: response.data.author
