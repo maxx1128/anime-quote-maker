@@ -28,13 +28,13 @@ class QuoteWrapper extends React.Component {
 
    componentDidMount() { this.refreshAll(); }
 
-   getQuote = (set) => axios.get('https://favqs.com/api/qotd').then(data => {
+   getQuote = (set) => axios.get('http://api.quotable.io/random').then(response => {
       this.setState({
-         quote: data.data.quote.body,
-         author: data.data.quote.author
+         quote: response.data.content,
+         author: response.data.author
       });
 
-      if (set === 'fontSize') { this.randomizeFontSize(data.data.quote.body); }
+      if (set === 'fontSize') { this.randomizeFontSize(response.data.content); }
    });
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
