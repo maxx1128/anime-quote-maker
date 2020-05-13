@@ -192,10 +192,6 @@ const colorSchemes = [
 
 const slimFilters = [
    {
-      'label': 'Sepia',
-      'value': 'sepia',
-      'cssValue': 'sepia(90%) contrast(90%) brightness(90%)'
-   }, {
       'label': 'Grayscale',
       'value': 'grayscale',
       'cssValue': 'grayscale(95%) contrast(125%)'
@@ -225,6 +221,10 @@ const slimFilters = [
 const filters = [
    ...slimFilters,
    {
+      'label': 'Sepia',
+      'value': 'sepia',
+      'cssValue': 'sepia(90%) contrast(90%) brightness(90%)'
+   }, {
       'label': 'Contrast',
       'value': 'contrast',
       'cssValue': 'contrast(150%)'
