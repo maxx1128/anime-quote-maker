@@ -13,6 +13,8 @@ import Position from "./QuoteForm/Position";
 import Filters from "./QuoteForm/Filters";
 import Alignment from "./QuoteForm/Alignment";
 
+import randomCustomQuote from "./../data/customQuotes";
+
 class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
@@ -28,14 +30,32 @@ class QuoteWrapper extends React.Component {
 
    componentDidMount() { this.refreshAll(); }
 
-   getQuote = (set) => axios.get('https://api.quotable.io/random').then(response => {
-      this.setState({
-         quote: response.data.content,
-         author: response.data.author
-      });
+   getQuote = (set) => {
+      let quote, author;
+      const randomQuote = randomCustomQuote();
 
-      if (set === 'fontSize') { this.randomizeFontSize(response.data.content); }
-   });
+      axios.get('https://api.quotable.io/random').then(response => {
+         const useRandomQuote = Math.floor(Math.random() * 10) === 0; // 1 in 10
+
+         if (useRandomQuote) {
+            quote = randomQuote.content;
+            author = randomQuote.author;
+         } else {
+            quote = response.data.content;
+            author = response.data.author;
+         }
+      }).catch(() => {
+         quote = randomQuote.content;
+         author = randomQuote.author;
+      }).finally(() => {
+         this.setState({
+            quote: quote,
+            author: author
+         });
+
+         if (set === 'fontSize') { this.randomizeFontSize(quote); }
+      });
+   };
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.setState({ filters: [] });
