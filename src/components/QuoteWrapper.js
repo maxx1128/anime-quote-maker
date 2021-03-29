@@ -35,7 +35,7 @@ class QuoteWrapper extends React.Component {
       const randomQuote = randomCustomQuote();
 
       axios.get('https://api.quotable.io/random').then(response => {
-         const useRandomQuote = Math.floor(Math.random() * 10) === 0; // 1 in 10
+         const useRandomQuote = Math.floor(Math.random() * 4) === 0;
 
          if (useRandomQuote) {
             quote = randomQuote.content;
