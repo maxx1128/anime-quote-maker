@@ -756,7 +756,8 @@ const allQuotes = [
   mq("Perfection is not real. Perfection is not human...those imperfections in our reality are the seams and cracks into which our outsized love can seep and pool.", "Cecil Palmer"),
   mq("None of us are talking to the teenagers that exist now, but talking back to the teenager we ourselves once were – all stupid mistakes and lack of fear.", "Cecil Palmer"),
   mq("Are we living a life that is safe from harm? Of course not. We never are. But that’s not the right question. The question is are we living a life that is worth the harm?", "Cecil Palmer"),
-  mq("I like my coffee like I like my nights: dark, endless and impossible to sleep through.", "Cecil Palmer")
+  mq("I like my coffee like I like my nights: dark, endless and impossible to sleep through.", "Cecil Palmer"),
+  mq("If you would like to learn more about starting a militia, simply learn to be a true American.", "Cecil Palmer")
 ]
 
 const randomCustomQuote = () => allQuotes[Math.floor(Math.random() * allQuotes.length)];
