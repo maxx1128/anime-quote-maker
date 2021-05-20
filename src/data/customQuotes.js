@@ -327,7 +327,7 @@ const allQuotes = [
   mq("How wonderful it is that nobody need wait a single moment before starting to improve the world.", "Anne Frank"),
   mq("A children's story that can only be enjoyed by children is not a good children's story in the slightest.", "C.S. Lewis"),
   mq("If you don't have time to read, you don't have the time (or the tools) to write. Simple as that.", "Stephen King"),
-  mq("I am no bird; and no net ensnares me: I am a free human being with an independent will.", "Charlotte BrontÃ«"),
+  mq("I am no bird; and no net ensnares me: I am a free human being with an independent will.", "Charlotte Bronte"),
   mq("I wish I could freeze this moment, right here, right now and live in it forever.", "Suzanne Collins"),
   mq("You will never be happy if you continue to search for what happiness consists of. You will never live if you are looking for the meaning of life.", "Albert Camus"),
   mq("The statistics on sanity are that one out of every four people is suffering from a mental illness. Look at your 3 best friends. If they're ok, then it's you.", "Rita Mae Brown"),
@@ -415,7 +415,7 @@ const allQuotes = [
   mq("In a good bookroom you feel in some mysterious way that you are absorbing the wisdom contained in all the books through your skin, without even opening them.", "Mark Twain"),
   mq("Grief does not change you, Hazel. It reveals you.", "John Green"),
   mq("Friendship is unnecessary, like philosophy, like art.... It has no survival value; rather it is one of those things which give value to survival.", "C.S. Lewis"),
-  mq("I would always rather be happy than dignified.", "Charlotte BrontÃ«"),
+  mq("I would always rather be happy than dignified.", "Charlotte Bronte"),
   mq("In the depth of winter, I finally learned that within me there lay an invincible summer.", "Albert Camus"),
   mq("Those who believe in telekinetics, raise my hand.", "Kurt Vonnegut"),
   mq("Happy Hunger Games! And may the odds be ever in your favor.", "Suzanne Collins"),
@@ -425,7 +425,7 @@ const allQuotes = [
   mq("Some humans would do anything to see if it was possible to do it. If you put a large switch in some cave somewhere, with a sign on it saying 'End-of-the-World Switch. PLEASE DO NOT TOUCH', the paint wouldn't even have time to dry.", "Terry Pratchett"),
   mq("Promise me you'll always remember: You're braver than you believe, and stronger than you seem, and smarter than you think.", "Carter Crocker"),
   mq("Whatever you are, be a good one.", "Abraham Lincoln"),
-  mq("He's more myself than I am. Whatever our souls are made of, his and mine are the same.", "Emily BrontÃ«"),
+  mq("He's more myself than I am. Whatever our souls are made of, his and mine are the same.", "Emily Bronte"),
   mq("I hope she'll be a fool -- that's the best thing a girl can be in this world, a beautiful little fool.", "F. Scott Fitzgerald"),
   mq("If ever there is tomorrow when we're not together... there is something you must always remember. You are braver than you believe, stronger than you seem, and smarter than you think. But the most important thing is, even if we're apart... I'll always be with you.", "Carter Crocker"),
   mq("When you are courting a nice girl an hour seems like a second. When you sit on a red-hot cinder a second seems like an hour. That's relativity.", "Albert Einstein"),
@@ -662,7 +662,7 @@ const allQuotes = [
   mq("The very essence of romance is uncertainty.", "Oscar Wilde"),
   mq("The unexamined life is not worth living.", "Socrates"),
   mq("\"You could rattle the stars,\" she whispered. \"You could do anything, if only you dared. And deep down, you know it, too. That's what scares you most.\"", "Sarah J. Maas"),
-  mq("If all else perished, and he remained, I should still continue to be; and if all else remained, and he were annihilated, the universe would turn to a mighty stranger.", "Emily Jane BrontÃ«"),
+  mq("If all else perished, and he remained, I should still continue to be; and if all else remained, and he were annihilated, the universe would turn to a mighty stranger.", "Emily Jane Bronte"),
   mq("Books may well be the only true magic.", "Alice Hoffman"),
   mq("Books are mirrors: you only see in them what you already have inside you.", "Carlos Ruiz ZafÃ³n"),
   mq("Try not to become a man of success. Rather become a man of value.", "Albert Einstein"),
@@ -757,7 +757,8 @@ const allQuotes = [
   mq("None of us are talking to the teenagers that exist now, but talking back to the teenager we ourselves once were – all stupid mistakes and lack of fear.", "Cecil Palmer"),
   mq("Are we living a life that is safe from harm? Of course not. We never are. But that’s not the right question. The question is are we living a life that is worth the harm?", "Cecil Palmer"),
   mq("I like my coffee like I like my nights: dark, endless and impossible to sleep through.", "Cecil Palmer"),
-  mq("If you would like to learn more about starting a militia, simply learn to be a true American.", "Cecil Palmer")
+  mq("If you would like to learn more about starting a militia, simply learn to be a true American.", "Cecil Palmer"),
+  mq("The living tell the dying not to leave, and the dying do not listen. The dying tell us not to be sad for them, and we do not listen. The dialogue between the living and the dead is full of misunderstanding and silence.", "Cecil Palmer")
 ]
 
 const randomCustomQuote = () => allQuotes[Math.floor(Math.random() * allQuotes.length)];
