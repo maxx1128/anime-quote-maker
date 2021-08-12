@@ -284,6 +284,12 @@ button {
   font-weight: 700;
 }
 
+.qig__long-buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .qig__buttons-wrapper {
   display: grid;
   max-width: 150px;

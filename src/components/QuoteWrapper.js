@@ -219,8 +219,8 @@ class QuoteWrapper extends React.Component {
    }
 
    randomColorCodes = () => {
-      const lightColor  = this.randomColorCode([0, 1, 2, 3, 4, 5]),
-            darkColor   = this.randomColorCode(['F', 'E', 'D', 'C', 'B', 'A']),
+      const lightColor  = this.randomColorCode(['F', 'E', 'D', 'C']),
+            darkColor   = this.randomColorCode([0, 1, 2, 3]),
             hasDarkText = Math.random() >= 0.5;
 
 
@@ -228,6 +228,13 @@ class QuoteWrapper extends React.Component {
          textColor: hasDarkText ? darkColor : lightColor,
          bgColor:   hasDarkText ? lightColor : darkColor
       });
+   }
+
+   flipColorCodes = () => {
+      this.setState({
+         textColor: this.state.bgColor,
+         bgColor: this.state.textColor
+      })
    }
 
    fittingAlignment = (section) => {
@@ -301,7 +308,8 @@ class QuoteWrapper extends React.Component {
                   fontFamily={this.state.fontFamily}
                   updateFontFamily={this.updateFontFamily}
                   updateColorScheme={this.updateColorScheme}
-                  randomColorScheme={this.randomColorCodes}/>
+                  randomColorScheme={this.randomColorCodes}
+                  flipColorScheme={this.flipColorCodes}/>
 
                <Position
                   selected={this.state.section}

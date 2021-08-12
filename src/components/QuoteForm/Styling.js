@@ -3,7 +3,7 @@ import RadioItems from "./../RadioItems";
 
 import { alignments, fontStyles, fontFamilies, colorSchemes } from "./../QuoteProps";
 
-const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fontStyle, updateFontStyle, size, updateSize, fontFamily, updateFontFamily, updateColorScheme, randomColorScheme}) => (
+const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fontStyle, updateFontStyle, size, updateSize, fontFamily, updateFontFamily, updateColorScheme, randomColorScheme, flipColorScheme}) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__styling">
     <h4 className="qig-l-wrapper__form-header">
       Change the Quote Styling
@@ -20,14 +20,20 @@ const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fo
       </div>
     </div>
 
-    <br/>
+    <br />
 
-    <button onClick={() => randomColorScheme()}>
-      Random Color Scheme
-    </button>
+    <div className="qig__long-buttons-wrapper">
+      <button onClick={() => randomColorScheme()}>
+        Random Color Scheme
+      </button>
+
+      <button onClick={() => flipColorScheme()}>
+        Flip Color Scheme
+      </button>
+    </div>
 
     <br />
-    <br/>
+    <br />
 
     <div className="qig-l-wrapper__form-multi">
       <div>
@@ -57,6 +63,7 @@ const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fo
         </select>
       </label>
     </div>
+
     <br />
     <br />
 
