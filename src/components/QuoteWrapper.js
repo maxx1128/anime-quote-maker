@@ -70,8 +70,8 @@ class QuoteWrapper extends React.Component {
    updateFontFamily = (e) => this.setState({ fontFamily: e.target.value })
    updateTags = (newTags) => this.setState({ tags: newTags });
    updateSize = (e) => this.setState({ size: e.target.value });
-   updateWidth = (e) => this.setState({ width: e.target.value });
-   updateHeight = (e) => this.setState({ height: e.target.value });
+   updateWidth = (e) => this.setState({ width: e.target ? e.target.value : e });
+   updateHeight = (e) => this.setState({ height: e.target ? e.target.value : e });
 
    shuffle = (a) => {
       var j, x, i;

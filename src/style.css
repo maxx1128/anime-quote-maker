@@ -297,6 +297,26 @@ button {
   grid-template-rows: repeat(5, 1fr);
 }
 
+.qig-l-slider__container {
+  display: flex;
+  gap: 2rem;
+}
+
+.qig-l-slider__container--column {
+  flex-direction: column;
+}
+
+.qig-l-slider__label {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.qig-l-slider__label input {
+  width: 100%;
+  margin-left: 0;
+}
+
 .qig-l-radios__wrapper {
   display: flex;
   flex-wrap: wrap;
