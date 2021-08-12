@@ -50,9 +50,11 @@ const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fo
     <br />
 
     <div className="qig-l-wrapper__form-multi">
-      <label>
-        Font size:
-        <input type="number" name="size" value={size} onChange={updateSize} />
+      <label className="qig-l-slider__label">
+        <span>
+          Font size: <strong>{size} pixels</strong>
+        </span>
+        <input type="range" min="10" max="60" name="size" value={size} onChange={updateSize} />
       </label>
 
       <label>
