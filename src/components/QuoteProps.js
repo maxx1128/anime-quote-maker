@@ -2,13 +2,16 @@ const defaultState = {
   quote: '',
   hash: '123',
   tags: '',
-  section: 'top-row',
   alignment: 'left',
   size: 20,
   fontStyle: 'base',
   filters: [],
   posX: 50,
   posY: 0,
+  quoteTop: 'auto',
+  quoteRight: 0,
+  quoteBottom: 0,
+  quoteLeft: 0,
   bgColor: '#111111',
   textColor: '#eeeeee',
   fontFamily: 'Open Sans',
@@ -19,51 +22,140 @@ const defaultState = {
 
 const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_hair', 'long_hair', 'hat', 'outdoors', 'day', 'night', 'rain', 'forest', 'building', 'water', 'instrument', 'running', 'heart', 'animal', 'ponytail', 'weapon', '1girl', '1boy']
 
-const slimSections = [
+const slimPositions = [
    {
-      'value': 'bottom-row',
-      'label': 'Bottom Row'
+      'value': {
+         'top': 'auto',
+         'right': '0',
+         'bottom': '0',
+         'left': '0'
+      },
+      'label': 'Bottom '
    }, {
-      'value': '3-4-row',
-      'label': '3/4 Row'
+      'value': {
+         'top': 'auto',
+         'right': '35',
+         'bottom': '35',
+         'left': '35'
+      },
+      'label': 'Spaced Bottom'
+   }, {
+      'value': {
+         'top': 'auto',
+         'right': '0',
+         'bottom': '125',
+         'left': '0'
+      },
+      'label': '3/4'
    }
- ]
+]
 
-const sections = [
-   ...slimSections,
-   {
-      'value': 'middle-row',
-      'label': 'Middle Row'
+const positions = [
+   ...slimPositions,
+    {
+      'value': {
+         'top': 'auto',
+         'right': '0',
+         'bottom': '250',
+         'left': '0'
+      },
+      'label': 'Middle'
    }, {
-      'value': '1-4-row',
-      'label': '1/4 Row'
+      'value': {
+         'top': 'auto',
+         'right': '35',
+         'bottom': '250',
+         'left': '35'
+      },
+      'label': 'Spaced Middle'
    }, {
-      'value': 'top-row',
-      'label': 'Top Row'
+      'value': {
+         'top': '125',
+         'right': '0',
+         'bottom': 'auto',
+         'left': '0'
+      },
+      'label': '1/4'
    }, {
-      'value': 'center-bottom',
-      'label': 'Center Bottom'
+      'value': {
+         'top': '0',
+         'right': '0',
+         'bottom': 'auto',
+         'left': '0'
+      },
+      'label': 'Top'
    }, {
-      'value': 'center-top',
-      'label': 'Center Top'
+      'value': {
+         'top': '35',
+         'right': '35',
+         'bottom': 'auto',
+         'left': '35'
+      },
+      'label': 'Spaced Top'
    }, {
-      'value': 'bottom-left',
-      'label': 'Bottom Left'
+      'value': {
+         'top': '0',
+         'right': '400',
+         'bottom': '0',
+         'left': '0'
+      },
+      'label': 'Left'
    }, {
-      'value': 'bottom-right',
-      'label': 'Bottom Right'
+      'value': {
+         'top': '35',
+         'right': '350',
+         'bottom': '35',
+         'left': '35'
+      },
+      'label': 'Spaced Left'
    }, {
-      'value': 'top-left',
+      'value': {
+         'top': '0',
+         'right': '0',
+         'bottom': '0',
+         'left': '400'
+      },
+      'label': 'Right'
+   }, {
+      'value': {
+         'top': '35',
+         'right': '35',
+         'bottom': '35',
+         'left': '350'
+      },
+      'label': 'Spaced Right'
+   }, {
+      'value': {
+         'top': '0',
+         'right': '400',
+         'bottom': 'auto',
+         'left': '0'
+      },
       'label': 'Top Left'
    }, {
-      'value': 'top-right',
+      'value': {
+         'top': '0',
+         'right': '0',
+         'bottom': 'auto',
+         'left': '400'
+      },
       'label': 'Top Right'
    }, {
-      'value': 'left-column',
-      'label': 'Left Column'
+      'value': {
+         'top': 'auto',
+         'right': '400',
+         'bottom': '0',
+         'left': '0'
+      },
+      'label': 'Bottom Left'
    }, {
-      'value': 'right-column',
-      'label': 'Right Column'
+      'value': {
+         'top': 'auto',
+         'right': '0',
+         'bottom': '0',
+         'left': '400'
+      },
+      'label': 'Bottom Right'
    }
 ]
 
@@ -239,4 +331,4 @@ const filters = [
    }
 ]
 
-export { defaultState, tags, slimSections, sections, alignments, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, slimFilters, filters }
+export { defaultState, tags, slimPositions, positions, alignments, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, slimFilters, filters }

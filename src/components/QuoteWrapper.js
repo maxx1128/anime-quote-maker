@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
-import { defaultState, tags, slimSections, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, slimFilters, filters } from "./QuoteProps";
+import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, slimFilters, filters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import Size from "./QuoteForm/Size";
@@ -18,7 +18,8 @@ import randomCustomQuote from "./../data/customQuotes";
 class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
-   allSlimSections = slimSections
+   allSlimPositions = slimPositions
+   allPositions = positions
    allAlignments = alignments
    allFontStyles = fontStyles
    allSlimFontStyles = slimFontStyles
@@ -73,6 +74,11 @@ class QuoteWrapper extends React.Component {
    updateWidth = (e) => this.setState({ width: e.target ? e.target.value : e });
    updateHeight = (e) => this.setState({ height: e.target ? e.target.value : e });
 
+   updateQuoteTop = (e) => this.setState({ quoteTop: e.target ? e.target.value : e });
+   updateQuoteRight = (e) => this.setState({ quoteRight: e.target ? e.target.value : e });
+   updateQuoteBottom = (e) => this.setState({ quoteBottom: e.target ? e.target.value : e });
+   updateQuoteLeft = (e) => this.setState({ quoteLeft: e.target ? e.target.value : e });
+
    shuffle = (a) => {
       var j, x, i;
       for (i = a.length - 1; i > 0; i--) {
@@ -84,11 +90,16 @@ class QuoteWrapper extends React.Component {
       return a;
    }
 
-   updateSection = (section, type = 'set') => {
-      this.setState({ section: section });
+   updatePosition = (position) => {
+      const { value } = position;
 
-      if (type === 'random') { this.fittingAlignment(section); }
-   };
+      this.setState({
+         quoteTop: value['top'],
+         quoteRight: value['right'],
+         quoteBottom: value['bottom'],
+         quoteLeft: value['left']
+      })
+   }
 
    updateFilters = (newFilterVal) => {
       let { filters } = this.state;
@@ -237,21 +248,6 @@ class QuoteWrapper extends React.Component {
       })
    }
 
-   fittingAlignment = (section) => {
-      const getAlign = (alignVal) => {
-         const alignArray = this.allAlignments.filter(alignment => alignment.label === alignVal);
-         return alignArray[0].value;
-      };
-
-      if (section.includes('left')) {
-         this.updateAlignment(getAlign('Left'));
-      } else if (section.includes('right')) {
-         this.updateAlignment(getAlign('Right'));
-      } else {
-         this.updateAlignment(getAlign('Center'));
-      }
-   }
-
    noTagImage = () => {
       this.setState({ tags: '' });
       this.refreshImage('');
@@ -259,7 +255,7 @@ class QuoteWrapper extends React.Component {
 
    refreshAll = () => {
       this.getQuote('fontSize');
-      this.updateSection(this.randomProperty(this.allSlimSections).value);
+      this.updatePosition(this.randomProperty(this.allSlimPositions));
       this.updateFontStyle(this.randomProperty(this.allSlimFontStyles).value);
       this.noTagImage();
       this.randomColorCodes();
@@ -312,8 +308,18 @@ class QuoteWrapper extends React.Component {
                   flipColorScheme={this.flipColorCodes}/>
 
                <Position
-                  selected={this.state.section}
-                  updateSection={this.updateSection}/>
+                  quoteTop={this.state.quoteTop}
+                  quoteRight={this.state.quoteRight}
+                  quoteBottom={this.state.quoteBottom}
+                  quoteLeft={this.state.quoteLeft}
+                  verticalLimit={this.state.height}
+                  horizontalLimit={this.state.width}
+                  allPositions={this.allPositions}
+                  updatePosition={this.updatePosition}
+                  updateQuoteTop={this.updateQuoteTop}
+                  updateQuoteRight={this.updateQuoteRight}
+                  updateQuoteBottom={this.updateQuoteBottom}
+                  updateQuoteLeft={this.updateQuoteLeft}/>
 
                <Filters
                   setFilters={this.state.filters}
@@ -343,12 +349,15 @@ class QuoteWrapper extends React.Component {
                   fontStyle={this.state.fontStyle}
                   fontFamily={this.state.fontFamily}
                   alignment={this.state.alignment}
-                  section={this.state.section}
                   size={this.state.size}
                   quote={this.state.quote}
                   author={this.state.author}
                   posX={this.state.posX}
-                  posY={this.state.posY} />
+                  posY={this.state.posY}
+                  top={this.state.quoteTop}
+                  right={this.state.quoteRight}
+                  bottom={this.state.quoteBottom}
+                  left={this.state.quoteLeft} />
 
                <div className="qig-l-wrapper__randomize">
                   <button className="qig-button--full" onClick={this.refreshAll}>
