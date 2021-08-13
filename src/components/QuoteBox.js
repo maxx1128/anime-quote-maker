@@ -1,8 +1,20 @@
 import React from "react";
 
-const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, filters, top, right, bottom, left}) => {
+const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, allFilters, top, right, bottom, left}) => {
 
-  let filterList = filters();
+   let compiledFilters = () => {
+      const getFilterCSS = (filter) => {
+         const nonPercentUnits = {
+            'hue-rotate': 'deg',
+            'blur': 'px'
+         };
+         const unit = nonPercentUnits[filter["name"]] || '%';
+
+         return `${filter["name"]}(${filter["value"]}${unit})`
+      }
+
+      return allFilters().map(filter => getFilterCSS(filter)).join(' ');
+   }
 
   const wrapperSizes = {
    'maxWidth': `${width}px`,
@@ -12,11 +24,10 @@ const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, si
   const wrapperStyle = {
      'backgroundImage': `url(${image})`,
      'backgroundPosition': `${posX}% ${posY}%`,
-     'filter': filterList.join(' ')
+     'filter': compiledFilters()
   };
 
    const quoteStyle = {
-
      'top': isNaN(top) ? 'auto' : `${top}px`,
      'right': isNaN(right) ? 'auto' : `${right}px`,
      'bottom': isNaN(bottom) ? 'auto' : `${bottom}px`,

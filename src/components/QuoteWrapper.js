@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
-import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, slimFilters, filters } from "./QuoteProps";
+import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, startingFullFilters, fullFilters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import Size from "./QuoteForm/Size";
@@ -18,6 +18,8 @@ import randomCustomQuote from "./../data/customQuotes";
 class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
+   allStartingFullFilters = startingFullFilters
+   allFullFilters = fullFilters
    allSlimPositions = slimPositions
    allPositions = positions
    allAlignments = alignments
@@ -26,8 +28,6 @@ class QuoteWrapper extends React.Component {
    allSlimFontFamilies = slimFontFamilies
    allFontFamilies = fontFamilies
    allColorSchemes = colorSchemes
-   allFilters = filters
-   allSlimFilters = slimFilters
 
    componentDidMount() { this.refreshAll(); }
 
@@ -74,6 +74,14 @@ class QuoteWrapper extends React.Component {
    updateWidth = (e) => this.setState({ width: e.target ? e.target.value : e });
    updateHeight = (e) => this.setState({ height: e.target ? e.target.value : e });
 
+   updateContrast = (e) => this.setState({ filterContrast: e.target ? e.target.value : e });
+   updateHueRotate = (e) => this.setState({ filterHueRotate: e.target ? e.target.value : e });
+   updateSaturate = (e) => this.setState({ filterSaturate: e.target ? e.target.value : e });
+   updateBrightness = (e) => this.setState({ filterBrightness: e.target ? e.target.value : e });
+   updateSepia = (e) => this.setState({ filterSepia: e.target ? e.target.value : e });
+   updateBlur = (e) => this.setState({ filterBlur: e.target ? e.target.value : e });
+   updateInvert = (e) => this.setState({ filterInvert: e.target ? e.target.value : e });
+
    updateQuoteTop = (e) => this.setState({ quoteTop: e.target ? e.target.value : e });
    updateQuoteRight = (e) => this.setState({ quoteRight: e.target ? e.target.value : e });
    updateQuoteBottom = (e) => this.setState({ quoteBottom: e.target ? e.target.value : e });
@@ -101,14 +109,46 @@ class QuoteWrapper extends React.Component {
       })
    }
 
-   updateFilters = (newFilterVal) => {
-      let { filters } = this.state;
+   updateFullFilter = (fullFilter) => {
+      const filterVals = fullFilter["values"];
+      const setters = {
+         "contrast": this.updateContrast,
+         "hueRotate": this.updateHueRotate,
+         "saturate": this.updateSaturate,
+         "brightness": this.updateBrightness,
+         "sepia": this.updateSepia,
+         "blur": this.updateBlur,
+         "invert": this.updateInvert
+      }
 
-      filters.includes(newFilterVal)
-         ? filters.splice(filters.indexOf(newFilterVal), 1)
-         : filters.push(newFilterVal);
+      for (let filter in filterVals) {
+         const setter = setters[filter];
+         setter(filterVals[filter]);
+      }
+   }
 
-      this.setState({ filters: filters });
+   randomFilters = () => {
+      const randomRange = (min, max) => {
+         return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+
+      this.updateContrast(randomRange(60, 140));
+      this.updateHueRotate(randomRange(0, 180));
+      this.updateSaturate(randomRange(85, 150));
+      this.updateBrightness(randomRange(100, 110));
+      this.updateSepia(randomRange(0, 25));
+      this.updateBlur(0);
+      this.updateInvert(0);
+   }
+
+   setRandomFullFilter = () => {
+      const useRandomFilters = Math.random() >= 0.75;
+
+      if (useRandomFilters) {
+         this.randomFilters();
+      } else {
+         this.updateFullFilter(this.randomProperty(this.allStartingFullFilters));
+      }
    }
 
    updateColorScheme = (calledScheme, swap = false) => {
@@ -137,11 +177,30 @@ class QuoteWrapper extends React.Component {
    }
 
    getFilterValues = () => {
-      const { filters } = this.state,
-            activeFilters = this.allFilters.filter(filterItem => filters.includes(filterItem.value)),
-            filterValues = activeFilters.map(filter => filter.cssValue);
-
-      return filterValues;
+      return [
+         {
+            "name": "contrast",
+            "value": this.state.filterContrast
+         }, {
+            "name": "hue-rotate",
+            "value": this.state.filterHueRotate
+         }, {
+            "name": "saturate",
+            "value": this.state.filterSaturate
+         }, {
+            "name": "brightness",
+            "value": this.state.filterBrightness
+         }, {
+            "name": "sepia",
+            "value": this.state.filterSepia
+         }, {
+            "name": "blur",
+            "value": this.state.filterBlur
+         }, {
+            "name": "invert",
+            "value": this.state.filterInvert
+         }
+      ];
    }
 
    refreshImage = (newTags) => {
@@ -161,26 +220,6 @@ class QuoteWrapper extends React.Component {
       const number = Math.floor(Math.random() * (ceiling - bottom) + bottom),
             weightedNumber = number > floor ? number : floor;
       this.setState({ size: weightedNumber });
-   }
-
-   randomFilter = () => {
-      let numberOfFilters;
-
-      if (Math.random() >= 0.6) {
-         numberOfFilters = 1;
-      } else if (Math.random() >= 0.5) {
-         numberOfFilters = 2;
-      } else {
-         numberOfFilters = 3;
-      }
-
-      const invertFilter = (filter) => filter === 'invert' && (Math.random() <= 0.85),
-            shuffledFilters = this.shuffle(this.allSlimFilters
-                                .map(filter => filter.value)
-                                .filter(filter => !invertFilter(filter))),
-            randomFilters = shuffledFilters.slice(0, numberOfFilters);
-
-      this.setState({ filters: randomFilters });
    }
 
    randomColorScheme = () => {
@@ -260,7 +299,7 @@ class QuoteWrapper extends React.Component {
       this.noTagImage();
       this.randomColorCodes();
       this.randomFontFamily();
-      this.randomFilter();
+      this.setRandomFullFilter();
 
       this.updateAlignment('center');
    }
@@ -322,9 +361,23 @@ class QuoteWrapper extends React.Component {
                   updateQuoteLeft={this.updateQuoteLeft}/>
 
                <Filters
-                  setFilters={this.state.filters}
-                  updateFilters={this.updateFilters}
-                  randomFilter={this.randomFilter}/>
+                  contrast={this.state.filterContrast}
+                  updateContrast={this.updateContrast}
+                  hueRotate={this.state.filterHueRotate}
+                  updateHueRotate={this.updateHueRotate}
+                  saturate={this.state.filterSaturate}
+                  updateSaturate={this.updateSaturate}
+                  brightness={this.state.filterBrightness}
+                  updateBrightness={this.updateBrightness}
+                  sepia={this.state.filterSepia}
+                  updateSepia={this.updateSepia}
+                  blur={this.state.filterBlur}
+                  updateBlur={this.updateBlur}
+                  invert={this.state.filterInvert}
+                  updateInvert={this.updateInvert}
+                  fullFilters={this.allFullFilters}
+                  updateFullFilter={this.updateFullFilter}
+                  randomFilters={this.randomFilters} />
 
                <Alignment
                   setPosX={this.state.posX}
@@ -345,7 +398,7 @@ class QuoteWrapper extends React.Component {
                   height={this.state.height}
                   bgColor={this.state.bgColor}
                   textColor={this.state.textColor}
-                  filters={this.getFilterValues}
+                  allFilters={this.getFilterValues}
                   fontStyle={this.state.fontStyle}
                   fontFamily={this.state.fontFamily}
                   alignment={this.state.alignment}

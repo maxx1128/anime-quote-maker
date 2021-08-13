@@ -6,6 +6,13 @@ const defaultState = {
   size: 20,
   fontStyle: 'base',
   filters: [],
+  filterContrast: 100,
+  filterHueRotate: 0,
+  filterSaturate: 100,
+  filterBrightness: 100,
+  filterSepia: 0,
+  filterBlur: 0,
+  filterInvert: 0,
   posX: 50,
   posY: 0,
   quoteTop: 'auto',
@@ -20,7 +27,7 @@ const defaultState = {
   height: 700
 }
 
-const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_hair', 'long_hair', 'hat', 'outdoors', 'day', 'night', 'rain', 'forest', 'building', 'water', 'instrument', 'running', 'heart', 'animal', 'ponytail', 'weapon', '1girl', '1boy']
+const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_hair', 'long_hair', 'hat', 'outdoors', 'day', 'night', 'rain', 'forest', 'building', 'water', 'instrument', 'running', 'heart', 'animal', 'ponytail', 'weapon', '1girl', '1boy', 'game_cg']
 
 const slimPositions = [
    {
@@ -282,53 +289,92 @@ const colorSchemes = [
   }
 ]
 
-const slimFilters = [
-   {
-      'label': 'Grayscale',
-      'value': 'grayscale',
-      'cssValue': 'grayscale(95%) contrast(125%)'
-   }, {
-      'label': 'Saturate',
-      'value': 'saturate',
-      'cssValue': 'saturate(190%)'
-   }, {
-      'label': 'Invert',
-      'value': 'invert',
-      'cssValue': 'invert(100%) contrast(150%) brightness(105%)'
-   }, {
-      'label': 'Soft Light',
-      'value': 'soft_light',
-      'cssValue': 'contrast(115%) saturate(115%)'
-   }, {
-      'label': 'Tilt',
-      'value': 'tilt',
-      'cssValue': 'brightness(105%) hue-rotate(90deg) saturate(110%) contrast(105%)'
-   }, {
-      'label': 'Reverse',
-      'value': 'reverse',
-      'cssValue': 'brightness(105%) hue-rotate(180deg) saturate(125%) contrast(110%)'
-   }
-];
+const baseFilterValues = {
+   "contrast": 100,
+   "hueRotate": 0,
+   "saturate": 100,
+   "brightness": 100,
+   "sepia": 0,
+   "blur": 0,
+   "invert": 0
+}
 
-const filters = [
-   ...slimFilters,
+const startingFullFilters = [
    {
-      'label': 'Sepia',
-      'value': 'sepia',
-      'cssValue': 'sepia(90%) contrast(90%) brightness(90%)'
+      "label": "None",
+      "values": {
+         ...baseFilterValues
+      }
    }, {
-      'label': 'Contrast',
-      'value': 'contrast',
-      'cssValue': 'contrast(150%)'
+      "label": "Soft Light",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 115,
+         "saturate": 150,
+         "brightness": 105
+      }
    }, {
-      'label': 'Hard Light',
-      'value': 'hard_light',
-      'cssValue': 'contrast(140%) saturate(140%)'
+      "label": "LoFi",
+      "values": {
+         ...baseFilterValues,
+         "hueRotate": 15,
+         "contrast": 150,
+         "saturate": 110,
+         "brightness": 110
+      }
    }, {
-      'label': 'Heavy Light',
-      'value': 'heavy_light',
-      'cssValue': 'contrast(170%) saturate(170%) blur(0.3px)'
+      "label": "Old Photo",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 150,
+         "saturate": 10,
+         "brightness": 85,
+         "sepia": 5
+      }
+   }, {
+      "label": "Trippy",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 135,
+         "hueRotate": 180,
+         "saturate": 150,
+         "brightness": 125
+      }
+   }, {
+      "label": "Nightmare",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 120,
+         "hueRotate": 135,
+         "saturate": 80,
+         "brightness": 90,
+         "invert": 100
+      }
+   }, {
+      "label": "Fond Memory",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 115,
+         "saturate": 60,
+         "brightness": 110,
+         "sepia": 75,
+         "blur": 0.4
+      }
    }
 ]
 
-export { defaultState, tags, slimPositions, positions, alignments, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, slimFilters, filters }
+const fullFilters = [
+   ...startingFullFilters,
+   {
+      "label": "Backdrop",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 75,
+         "saturate": 50,
+         "brightness": 110,
+         "blur": 3
+      }
+   }
+]
+
+export { defaultState, tags, slimPositions, positions, alignments, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, startingFullFilters, fullFilters }
