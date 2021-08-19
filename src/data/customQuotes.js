@@ -758,7 +758,8 @@ const allQuotes = [
   mq("Are we living a life that is safe from harm? Of course not. We never are. But that’s not the right question. The question is are we living a life that is worth the harm?", "Cecil Palmer"),
   mq("I like my coffee like I like my nights: dark, endless and impossible to sleep through.", "Cecil Palmer"),
   mq("If you would like to learn more about starting a militia, simply learn to be a true American.", "Cecil Palmer"),
-  mq("The living tell the dying not to leave, and the dying do not listen. The dying tell us not to be sad for them, and we do not listen. The dialogue between the living and the dead is full of misunderstanding and silence.", "Cecil Palmer")
+  mq("The living tell the dying not to leave, and the dying do not listen. The dying tell us not to be sad for them, and we do not listen. The dialogue between the living and the dead is full of misunderstanding and silence.", "Cecil Palmer"),
+  mq("Dying is easy, young man. Living is harder.", "Christopher Jackson")
 ]
 
 const randomCustomQuote = () => allQuotes[Math.floor(Math.random() * allQuotes.length)];

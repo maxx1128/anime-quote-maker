@@ -11,6 +11,7 @@ import Quote from "./QuoteForm/Quote";
 import Styling from "./QuoteForm/Styling";
 import Position from "./QuoteForm/Position";
 import Filters from "./QuoteForm/Filters";
+import Transform from "./QuoteForm/Transform";
 import Alignment from "./QuoteForm/Alignment";
 
 import randomCustomQuote from "./../data/customQuotes";
@@ -86,6 +87,19 @@ class QuoteWrapper extends React.Component {
    updateQuoteRight = (e) => this.setState({ quoteRight: e.target ? e.target.value : e });
    updateQuoteBottom = (e) => this.setState({ quoteBottom: e.target ? e.target.value : e });
    updateQuoteLeft = (e) => this.setState({ quoteLeft: e.target ? e.target.value : e });
+
+   updateBoxShadow = (e) => this.setState({ boxShadow: e.target ? e.target.value : e });
+   updateOpacity = (e) => this.setState({ opacity: e.target ? e.target.value : e });
+   updatePaddingX = (e) => this.setState({ paddingX: e.target ? e.target.value : e });
+   updatePaddingY = (e) => this.setState({ paddingY: e.target ? e.target.value : e });
+
+   updateTransformScaleX = (e) => this.setState({ transformScaleX: e.target ? e.target.value : e });
+   updateTransformScaleY = (e) => this.setState({ transformScaleY: e.target ? e.target.value : e });
+   updateTransformSkewX = (e) => this.setState({ transformSkewX: e.target ? e.target.value : e });
+   updateTransformSkewY = (e) => this.setState({ transformSkewY: e.target ? e.target.value : e });
+   updateTransformTranslateX = (e) => this.setState({ transformTranslateX: e.target ? e.target.value : e });
+   updateTransformTranslateY = (e) => this.setState({ transformTranslateY: e.target ? e.target.value : e });
+   updateTransformRotate = (e) => this.setState({ transformRotate: e.target ? e.target.value : e });
 
    shuffle = (a) => {
       var j, x, i;
@@ -201,6 +215,33 @@ class QuoteWrapper extends React.Component {
             "value": this.state.filterInvert
          }
       ];
+   }
+
+   getTransformValues = () => {
+      return [
+         {
+            "name": "scaleX",
+            "value": this.state.transformScaleX
+         }, {
+            "name": "scaleY",
+            "value": this.state.transformScaleY
+         }, {
+            "name": "skewX",
+            "value": this.state.transformSkewX
+         }, {
+            "name": "skewY",
+            "value": this.state.transformSkewY
+         }, {
+            "name": "translateX",
+            "value": this.state.transformTranslateX
+         }, {
+            "name": "translateY",
+            "value": this.state.transformTranslateY
+         }, {
+            "name": "rotate",
+            "value": this.state.transformRotate
+         },
+      ]
    }
 
    refreshImage = (newTags) => {
@@ -379,6 +420,32 @@ class QuoteWrapper extends React.Component {
                   updateFullFilter={this.updateFullFilter}
                   randomFilters={this.randomFilters} />
 
+               <Transform
+                  verticalLimit={this.state.height}
+                  horizontalLimit={this.state.width}
+                  boxShadow={this.state.boxShadow}
+                  updateBoxShadow={this.updateBoxShadow}
+                  opacity={this.state.opacity}
+                  updateOpacity={this.updateOpacity}
+                  paddingX={this.state.paddingX}
+                  updatePaddingX={this.updatePaddingX}
+                  paddingY={this.state.paddingY}
+                  updatePaddingY={this.updatePaddingY}
+                  scaleX={this.state.transformScaleX}
+                  updateScaleX={this.updateTransformScaleX}
+                  scaleY={this.state.transformScaleY}
+                  updateScaleY={this.updateTransformScaleY}
+                  skewX={this.state.transformSkewX}
+                  updateSkewX={this.updateTransformSkewX}
+                  skewY={this.state.transformSkewY}
+                  updateSkewY={this.updateTransformSkewY}
+                  translateX={this.state.transformTranslateX}
+                  updateTranslateX={this.updateTransformTranslateX}
+                  translateY={this.state.transformTranslateY}
+                  updateTranslateY={this.updateTransformTranslateY}
+                  rotate={this.state.transformRotate}
+                  updateRotate={this.updateTransformRotate} />
+
                <Alignment
                   setPosX={this.state.posX}
                   updatePosX={this.updatePosX}
@@ -399,6 +466,7 @@ class QuoteWrapper extends React.Component {
                   bgColor={this.state.bgColor}
                   textColor={this.state.textColor}
                   allFilters={this.getFilterValues}
+                  allTransforms={this.getTransformValues}
                   fontStyle={this.state.fontStyle}
                   fontFamily={this.state.fontFamily}
                   alignment={this.state.alignment}
@@ -407,6 +475,10 @@ class QuoteWrapper extends React.Component {
                   author={this.state.author}
                   posX={this.state.posX}
                   posY={this.state.posY}
+                  boxShadow={this.state.boxShadow}
+                  opacity={this.state.opacity}
+                  paddingX={this.state.paddingX}
+                  paddingY={this.state.paddingY}
                   top={this.state.quoteTop}
                   right={this.state.quoteRight}
                   bottom={this.state.quoteBottom}
