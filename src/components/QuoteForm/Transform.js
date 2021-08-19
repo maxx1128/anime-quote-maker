@@ -1,6 +1,6 @@
 import React from "react";
 
-const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, opacity, updateOpacity, paddingX, updatePaddingX, paddingY, updatePaddingY, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotate, updateRotate }) => (
+const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotate, updateRotate }) => (
   <div className="qig-l-wrapper__form-item">
     <h4 className="qig-l-wrapper__form-header">
       Transform the Quote
@@ -19,22 +19,6 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
         Box Shadow: <input type="number" min="0" max="1" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
       </span>
       <input type="range" min="0" max="1" id="box-shadow" name="box-shadow" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
-    </label>
-    <br />
-
-    <label htmlFor="padding-x" className="qig-l-slider__label">
-      <span>
-        Padding X: <input type="number" min="0" max={horizontalLimit / 2} value={paddingX} step="1" onChange={updatePaddingX} />
-      </span>
-      <input type="range" min="0" max={horizontalLimit / 2} id="padding-x" name="padding-x" value={paddingX} step="1" onChange={updatePaddingX} />
-    </label>
-    <br />
-
-    <label htmlFor="padding-y" className="qig-l-slider__label">
-      <span>
-        Padding Y: <input type="number" min="0" max={verticalLimit / 2} value={paddingY} step="1" onChange={updatePaddingY} />
-      </span>
-      <input type="range" min="0" max={verticalLimit / 2} id="padding-y" name="padding-y" value={paddingY} step="1" onChange={updatePaddingY} />
     </label>
     <br />
 

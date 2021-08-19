@@ -87,11 +87,13 @@ class QuoteWrapper extends React.Component {
    updateQuoteRight = (e) => this.setState({ quoteRight: e.target ? e.target.value : e });
    updateQuoteBottom = (e) => this.setState({ quoteBottom: e.target ? e.target.value : e });
    updateQuoteLeft = (e) => this.setState({ quoteLeft: e.target ? e.target.value : e });
+   updatePaddingTop = (e) => this.setState({ paddingTop: e.target ? e.target.value : e });
+   updatePaddingRight = (e) => this.setState({ paddingRight: e.target ? e.target.value : e });
+   updatePaddingBottom = (e) => this.setState({ paddingBottom: e.target ? e.target.value : e });
+   updatePaddingLeft = (e) => this.setState({ paddingLeft: e.target ? e.target.value : e });
 
    updateBoxShadow = (e) => this.setState({ boxShadow: e.target ? e.target.value : e });
    updateOpacity = (e) => this.setState({ opacity: e.target ? e.target.value : e });
-   updatePaddingX = (e) => this.setState({ paddingX: e.target ? e.target.value : e });
-   updatePaddingY = (e) => this.setState({ paddingY: e.target ? e.target.value : e });
 
    updateTransformScaleX = (e) => this.setState({ transformScaleX: e.target ? e.target.value : e });
    updateTransformScaleY = (e) => this.setState({ transformScaleY: e.target ? e.target.value : e });
@@ -376,6 +378,28 @@ class QuoteWrapper extends React.Component {
                   update={this.updateQuote}
                   get={this.getQuote}/>
 
+               <Position
+                  quoteTop={this.state.quoteTop}
+                  quoteRight={this.state.quoteRight}
+                  quoteBottom={this.state.quoteBottom}
+                  quoteLeft={this.state.quoteLeft}
+                  verticalLimit={this.state.height}
+                  horizontalLimit={this.state.width}
+                  allPositions={this.allPositions}
+                  updatePosition={this.updatePosition}
+                  updateQuoteTop={this.updateQuoteTop}
+                  updateQuoteRight={this.updateQuoteRight}
+                  updateQuoteBottom={this.updateQuoteBottom}
+                  updateQuoteLeft={this.updateQuoteLeft}
+                  paddingTop={this.state.paddingTop}
+                  updatePaddingTop={this.updatePaddingTop}
+                  paddingRight={this.state.paddingRight}
+                  updatePaddingRight={this.updatePaddingRight}
+                  paddingBottom={this.state.paddingBottom}
+                  updatePaddingBottom={this.updatePaddingBottom}
+                  paddingLeft={this.state.paddingLeft}
+                  updatePaddingLeft={this.updatePaddingLeft} />
+
                <Styling
                   bg={this.state.bgColor}
                   updateBg={this.updateBgColor}
@@ -392,20 +416,6 @@ class QuoteWrapper extends React.Component {
                   updateColorScheme={this.updateColorScheme}
                   randomColorScheme={this.randomColorCodes}
                   flipColorScheme={this.flipColorCodes}/>
-
-               <Position
-                  quoteTop={this.state.quoteTop}
-                  quoteRight={this.state.quoteRight}
-                  quoteBottom={this.state.quoteBottom}
-                  quoteLeft={this.state.quoteLeft}
-                  verticalLimit={this.state.height}
-                  horizontalLimit={this.state.width}
-                  allPositions={this.allPositions}
-                  updatePosition={this.updatePosition}
-                  updateQuoteTop={this.updateQuoteTop}
-                  updateQuoteRight={this.updateQuoteRight}
-                  updateQuoteBottom={this.updateQuoteBottom}
-                  updateQuoteLeft={this.updateQuoteLeft}/>
 
                <Filters
                   contrast={this.state.filterContrast}
@@ -433,10 +443,6 @@ class QuoteWrapper extends React.Component {
                   updateBoxShadow={this.updateBoxShadow}
                   opacity={this.state.opacity}
                   updateOpacity={this.updateOpacity}
-                  paddingX={this.state.paddingX}
-                  updatePaddingX={this.updatePaddingX}
-                  paddingY={this.state.paddingY}
-                  updatePaddingY={this.updatePaddingY}
                   scaleX={this.state.transformScaleX}
                   updateScaleX={this.updateTransformScaleX}
                   scaleY={this.state.transformScaleY}
@@ -477,8 +483,10 @@ class QuoteWrapper extends React.Component {
                   posY={this.state.posY}
                   boxShadow={this.state.boxShadow}
                   opacity={this.state.opacity}
-                  paddingX={this.state.paddingX}
-                  paddingY={this.state.paddingY}
+                  paddingTop={this.state.paddingTop}
+                  paddingRight={this.state.paddingRight}
+                  paddingBottom={this.state.paddingBottom}
+                  paddingLeft={this.state.paddingLeft}
                   top={this.state.quoteTop}
                   right={this.state.quoteRight}
                   bottom={this.state.quoteBottom}

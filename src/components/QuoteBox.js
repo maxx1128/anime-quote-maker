@@ -7,7 +7,7 @@ function hexToRgb(hex) {
       : null;
 }
 
-const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, allFilters, allTransforms, boxShadow, opacity, paddingX, paddingY, top, right, bottom, left }) => {
+const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, allFilters, allTransforms, boxShadow, opacity, paddingTop, paddingRight, paddingBottom, paddingLeft, top, right, bottom, left }) => {
 
    let compiledFilters = () => {
       const getFilterCSS = (filter) => {
@@ -68,7 +68,7 @@ const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, si
    }
 
    const quoteTextStyle = {
-      'padding': `${paddingY}px ${paddingX}px`,
+      'padding': `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
    }
 
    return (

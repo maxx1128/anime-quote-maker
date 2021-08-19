@@ -1,6 +1,6 @@
 import React from "react";
 
-const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, horizontalLimit, allPositions, updatePosition, updateQuoteTop, updateQuoteRight, updateQuoteBottom, updateQuoteLeft }) => (
+const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, horizontalLimit, allPositions, paddingTop, updatePaddingTop, paddingRight, updatePaddingRight, paddingBottom, updatePaddingBottom, paddingLeft, updatePaddingLeft, updatePosition, updateQuoteTop, updateQuoteRight, updateQuoteBottom, updateQuoteLeft }) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__position">
     <h4 className="qig-l-wrapper__form-header">
       Change the Quote's Position
@@ -69,6 +69,50 @@ const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, 
         <button onClick={() => updateQuoteLeft('auto')}>
           Set to None
         </button>
+      </div>
+    </div>
+
+    <br />
+
+    <h4 className="qig-l-wrapper__form-header">
+      Change the Quote's Padding
+    </h4>
+
+    <div className="qig-l-slider__container">
+      <div>
+        <label htmlFor="padding-top" className="qig-l-slider__label">
+          <span className="qig-l-slider__label-inline-text">
+            Top: <input type="number" min="0" max={verticalLimit / 2} value={paddingTop} onChange={updatePaddingTop} />
+          </span>
+          <input type="range" min="0" max={verticalLimit / 2} name="padding-top" value={paddingTop} onChange={updatePaddingTop} />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="padding-right" className="qig-l-slider__label">
+          <span className="qig-l-slider__label-inline-text">
+            Right: <input type="number" min="0" max={horizontalLimit / 2} value={paddingRight} onChange={updatePaddingRight} />
+          </span>
+          <input type="range" min="0" max={horizontalLimit / 2} name="padding-right" value={paddingRight} onChange={updatePaddingRight} />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="padding-bottom" className="qig-l-slider__label">
+          <span className="qig-l-slider__label-inline-text">
+            Bottom: <input type="number" min="0" max={verticalLimit / 2} value={paddingBottom} onChange={updatePaddingBottom} />
+          </span>
+          <input type="range" min="0" max={verticalLimit / 2} name="padding-bottom" value={paddingBottom} onChange={updatePaddingBottom} />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="padding-left" className="qig-l-slider__label">
+          <span className="qig-l-slider__label-inline-text">
+            Left: <input type="number" min="0" max={horizontalLimit / 2} value={paddingLeft} onChange={updatePaddingLeft} />
+          </span>
+          <input type="range" min="0" max={horizontalLimit / 2} name="padding-left" value={paddingLeft} onChange={updatePaddingLeft} />
+        </label>
       </div>
     </div>
 
