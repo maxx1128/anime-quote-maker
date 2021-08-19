@@ -365,6 +365,12 @@ class QuoteWrapper extends React.Component {
                   height={this.state.height}
                   updateHeight={this.updateHeight}/>
 
+               <Alignment
+                  setPosX={this.state.posX}
+                  updatePosX={this.updatePosX}
+                  setPosY={this.state.posY}
+                  updatePosY={this.updatePosY}/>
+
                <Quote
                   quote={this.state.quote}
                   update={this.updateQuote}
@@ -445,12 +451,6 @@ class QuoteWrapper extends React.Component {
                   updateTranslateY={this.updateTransformTranslateY}
                   rotate={this.state.transformRotate}
                   updateRotate={this.updateTransformRotate} />
-
-               <Alignment
-                  setPosX={this.state.posX}
-                  updatePosX={this.updatePosX}
-                  setPosY={this.state.posY}
-                  updatePosY={this.updatePosY}/>
 
                <button className="qig-button--full" onClick={this.toggleVertical}>
                  {this.state.vertical ? 'Horizontal' : 'Vertical'} View
