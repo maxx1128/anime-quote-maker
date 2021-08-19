@@ -327,6 +327,15 @@ const startingFullFilters = [
          "brightness": 105
       }
    }, {
+      "label": "Hard Light",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 140,
+         "hueRotate": 340,
+         "saturate": 45,
+         "brightness": 115
+      }
+   }, {
       "label": "LoFi",
       "values": {
          ...baseFilterValues,
@@ -382,9 +391,9 @@ const fullFilters = [
       "label": "Backdrop",
       "values": {
          ...baseFilterValues,
-         "contrast": 75,
+         "contrast": 70,
          "saturate": 50,
-         "brightness": 110,
+         "brightness": 120,
          "blur": 3
       }
    }
