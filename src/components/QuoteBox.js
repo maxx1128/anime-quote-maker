@@ -7,7 +7,7 @@ function hexToRgb(hex) {
       : null;
 }
 
-const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, allFilters, allTransforms, boxShadow, opacity, paddingTop, paddingRight, paddingBottom, paddingLeft, top, right, bottom, left }) => {
+const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, allFilters, allTransforms, boxShadow, opacity, paddingTop, paddingRight, paddingBottom, paddingLeft, top, right, bottom, left, perspective, perspectiveOriginX, perspectiveOriginY }) => {
 
    let compiledFilters = () => {
       const getFilterCSS = (filter) => {
@@ -27,6 +27,8 @@ const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, si
       const getTransformCSS = (transform) => {
          const nonPixelUnits = {
             'rotate': 'deg',
+            'rotateX': 'deg',
+            'rotateY': 'deg',
             'skewX': 'deg',
             'skewY': 'deg',
             'scaleX': ' ',
@@ -40,12 +42,15 @@ const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, si
       return allTransforms().map(transform => getTransformCSS(transform)).join(' ');
    }
 
-  const wrapperSizes = {
+  const wrapperStyles = {
    'maxWidth': `${width}px`,
-   'maxHeight': `${height}px`
+   'maxHeight': `${height}px`,
+
+   'perspective': perspective === 0 ? 'initial' : `${perspective}px`,
+   'perspectiveOrigin': `${perspectiveOriginY}% ${perspectiveOriginX}%`
   };
 
-  const wrapperStyle = {
+  const imageWrapperStyle = {
      'backgroundImage': `url(${image})`,
      'backgroundPosition': `${posX}% ${posY}%`,
      'filter': compiledFilters()
@@ -72,8 +77,8 @@ const QuoteBox = ({width, height, quote, author, image, alignment, fontStyle, si
    }
 
    return (
-      <div className="qig__image-wrapper" style={wrapperSizes}>
-         <div className="qig__image-bg" style={wrapperStyle}></div>
+      <div className="qig__image-wrapper" style={wrapperStyles}>
+         <div className="qig__image-bg" style={imageWrapperStyle}></div>
          <div className={`qig__quote qig__quote--font-${fontStyle}`} style={quoteStyle}>
             <p className="qig__quote-text" style={quoteTextStyle}>{quote}</p>
             <span className="qig__quote-author">

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotate, updateRotate }) => (
+const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
   <div className="qig-l-wrapper__form-item">
     <h4 className="qig-l-wrapper__form-header">
       Transform the Quote
@@ -72,10 +72,15 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
 
     <label htmlFor="transform-rotate" className="qig-l-slider__label">
       <span>
-        Rotate: <input type="number" min="0" max="360" value={rotate} step="1" onChange={updateRotate} /> deg
+        Rotate (Full): <input type="number" min="0" max="360" value={rotateFull} step="1" onChange={updateRotateFull} /> deg
       </span>
-      <input type="range" min="0" max="360" id="transform-rotate" name="transform-rotate" value={rotate} step="0.05" onChange={updateRotate} />
+      <input type="range" min="0" max="360" id="transform-rotate" name="transform-rotate" value={rotateFull} step="0.05" onChange={updateRotateFull} />
     </label>
+    <br />
+
+    <button onClick={() => resetTransforms()}>
+      Reset Transforms
+    </button>
   </div>
 );
 

@@ -6,13 +6,14 @@ import { defaultState, tags, slimPositions, positions, alignments, fontStyles, s
 
 import Intro from "./QuoteForm/Intro";
 import Size from "./QuoteForm/Size";
+import Alignment from "./QuoteForm/Alignment";
 import Tags from "./QuoteForm/Tags";
 import Quote from "./QuoteForm/Quote";
 import Styling from "./QuoteForm/Styling";
 import Position from "./QuoteForm/Position";
 import Filters from "./QuoteForm/Filters";
 import Transform from "./QuoteForm/Transform";
-import Alignment from "./QuoteForm/Alignment";
+import Perspective from "./QuoteForm/Perspective";
 
 import randomCustomQuote from "./../data/customQuotes";
 
@@ -101,7 +102,13 @@ class QuoteWrapper extends React.Component {
    updateTransformSkewY = (e) => this.setState({ transformSkewY: e.target ? e.target.value : e });
    updateTransformTranslateX = (e) => this.setState({ transformTranslateX: e.target ? e.target.value : e });
    updateTransformTranslateY = (e) => this.setState({ transformTranslateY: e.target ? e.target.value : e });
-   updateTransformRotate = (e) => this.setState({ transformRotate: e.target ? e.target.value : e });
+   updateTransformRotateFull = (e) => this.setState({ transformRotateFull: e.target ? e.target.value : e });
+   updateTransformRotateX = (e) => this.setState({ transformRotateX: e.target ? e.target.value : e });
+   updateTransformRotateY = (e) => this.setState({ transformRotateY: e.target ? e.target.value : e });
+
+   updatePerspective = (e) => this.setState({ perspective: e.target ? e.target.value : e });
+   updatePerspectiveOriginX = (e) => this.setState({ perspectiveOriginX: e.target ? e.target.value : e });
+   updatePerspectiveOriginY = (e) => this.setState({ perspectiveOriginY: e.target ? e.target.value : e });
 
    shuffle = (a) => {
       var j, x, i;
@@ -241,8 +248,14 @@ class QuoteWrapper extends React.Component {
             "value": this.state.transformTranslateY
          }, {
             "name": "rotate",
-            "value": this.state.transformRotate
-         },
+            "value": this.state.transformRotateFull
+         }, {
+            "name": "rotateX",
+            "value": this.state.transformRotateX
+         }, {
+            "name": "rotateY",
+            "value": this.state.transformRotateY
+         }
       ]
    }
 
@@ -335,6 +348,30 @@ class QuoteWrapper extends React.Component {
       this.refreshImage('');
    }
 
+   resetTransforms = () => {
+      this.setState({
+         boxShadow: .2,
+         opacity: 0.925,
+         transformScaleX: 1,
+         transformScaleY: 1,
+         transformSkewX: 0,
+         transformSkewY: 0,
+         transformTranslateX: 0,
+         transformTranslateY: 0,
+         transformRotateFull: 0
+      })
+   }
+
+   resetPerspective = () => {
+      this.setState({
+         perspective: 0,
+         perspectiveOriginX: 0,
+         perspectiveOriginY: 0,
+         transformRotateX: 0,
+         transformRotateY: 0
+      })
+   }
+
    refreshAll = () => {
       this.getQuote('fontSize');
       this.updatePosition(this.randomProperty(this.allSlimPositions));
@@ -343,6 +380,8 @@ class QuoteWrapper extends React.Component {
       this.randomColorCodes();
       this.randomFontFamily();
       this.setRandomFullFilter();
+      this.resetTransforms();
+      this.resetPerspective();
 
       this.updateAlignment('center');
    }
@@ -455,8 +494,22 @@ class QuoteWrapper extends React.Component {
                   updateTranslateX={this.updateTransformTranslateX}
                   translateY={this.state.transformTranslateY}
                   updateTranslateY={this.updateTransformTranslateY}
-                  rotate={this.state.transformRotate}
-                  updateRotate={this.updateTransformRotate} />
+                  rotateFull={this.state.transformRotateFull}
+                  updateRotateFull={this.updateTransformRotateFull}
+                  resetTransforms={this.resetTransforms} />
+
+               <Perspective
+                  rotateX={this.state.transformRotateX}
+                  updateRotateX={this.updateTransformRotateX}
+                  rotateY={this.state.transformRotateY}
+                  updateRotateY={this.updateTransformRotateY}
+                  perspective={this.state.perspective}
+                  updatePerspective={this.updatePerspective}
+                  perspectiveOriginX={this.state.perspectiveOriginX}
+                  updatePerspectiveOriginX={this.updatePerspectiveOriginX}
+                  perspectiveOriginY={this.state.perspectiveOriginY}
+                  updatePerspectiveOriginY={this.updatePerspectiveOriginY}
+                  resetPerspective={this.resetPerspective} />
 
                <button className="qig-button--full" onClick={this.toggleVertical}>
                  {this.state.vertical ? 'Horizontal' : 'Vertical'} View
@@ -490,7 +543,10 @@ class QuoteWrapper extends React.Component {
                   top={this.state.quoteTop}
                   right={this.state.quoteRight}
                   bottom={this.state.quoteBottom}
-                  left={this.state.quoteLeft} />
+                  left={this.state.quoteLeft}
+                  perspective={this.state.perspective}
+                  perspectiveOriginX={this.state.perspectiveOriginX}
+                  perspectiveOriginY={this.state.perspectiveOriginY} />
 
                <div className="qig-l-wrapper__randomize">
                   <button className="qig-button--full" onClick={this.refreshAll}>
