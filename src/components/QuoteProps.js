@@ -24,6 +24,7 @@ const defaultState = {
   paddingBottom: 20,
   paddingLeft: 20,
   boxShadow: .2,
+  boxShadowColor: '#000000',
   opacity: 0.925,
   borderRadius: 0,
   transformScaleX: 1,

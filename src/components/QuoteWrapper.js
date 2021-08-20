@@ -94,6 +94,7 @@ class QuoteWrapper extends React.Component {
    updatePaddingLeft = (e) => this.setState({ paddingLeft: e.target ? e.target.value : e });
 
    updateBoxShadow = (e) => this.setState({ boxShadow: e.target ? e.target.value : e });
+   updateBoxShadowColor = (e) => this.setState({ boxShadowColor: e.target ? e.target.value : e });
    updateBorderRadius = (e) => this.setState({ borderRadius: e.target ? e.target.value : e });
    updateOpacity = (e) => this.setState({ opacity: e.target ? e.target.value : e });
 
@@ -352,6 +353,7 @@ class QuoteWrapper extends React.Component {
    resetTransforms = () => {
       this.setState({
          boxShadow: .2,
+         boxShadowColor: '#000000',
          opacity: 0.925,
          transformScaleX: 1,
          transformScaleY: 1,
@@ -481,6 +483,8 @@ class QuoteWrapper extends React.Component {
                   horizontalLimit={this.state.width}
                   boxShadow={this.state.boxShadow}
                   updateBoxShadow={this.updateBoxShadow}
+                  boxShadowColor={this.state.boxShadowColor}
+                  updateBoxShadowColor={this.updateBoxShadowColor}
                   borderRadius={this.state.borderRadius}
                   updateBorderRadius={this.updateBorderRadius}
                   opacity={this.state.opacity}
@@ -538,6 +542,7 @@ class QuoteWrapper extends React.Component {
                   posX={this.state.posX}
                   posY={this.state.posY}
                   boxShadow={this.state.boxShadow}
+                  boxShadowColor={this.state.boxShadowColor}
                   opacity={this.state.opacity}
                   borderRadius={this.state.borderRadius}
                   paddingTop={this.state.paddingTop}

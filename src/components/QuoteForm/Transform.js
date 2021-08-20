@@ -1,6 +1,6 @@
 import React from "react";
 
-const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, borderRadius, updateBorderRadius, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
+const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, boxShadowColor, updateBoxShadowColor, borderRadius, updateBorderRadius, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
   <div className="qig-l-wrapper__form-item">
     <h4 className="qig-l-wrapper__form-header">
       Transform the Quote
@@ -17,6 +17,7 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
     <label htmlFor="box-shadow" className="qig-l-slider__label">
       <span>
         Box Shadow: <input type="number" min="0" max="1" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
+        <input type="color" name="box-shadow-color" onChange={updateBoxShadowColor} value={boxShadowColor} />
       </span>
       <input type="range" min="0" max="1" id="box-shadow" name="box-shadow" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
     </label>
