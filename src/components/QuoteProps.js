@@ -25,6 +25,7 @@ const defaultState = {
   paddingLeft: 20,
   boxShadow: .2,
   opacity: 0.925,
+  borderRadius: 0,
   transformScaleX: 1,
   transformScaleY: 1,
   transformSkewX: 0,

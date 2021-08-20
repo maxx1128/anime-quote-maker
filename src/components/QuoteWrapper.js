@@ -94,6 +94,7 @@ class QuoteWrapper extends React.Component {
    updatePaddingLeft = (e) => this.setState({ paddingLeft: e.target ? e.target.value : e });
 
    updateBoxShadow = (e) => this.setState({ boxShadow: e.target ? e.target.value : e });
+   updateBorderRadius = (e) => this.setState({ borderRadius: e.target ? e.target.value : e });
    updateOpacity = (e) => this.setState({ opacity: e.target ? e.target.value : e });
 
    updateTransformScaleX = (e) => this.setState({ transformScaleX: e.target ? e.target.value : e });
@@ -480,6 +481,8 @@ class QuoteWrapper extends React.Component {
                   horizontalLimit={this.state.width}
                   boxShadow={this.state.boxShadow}
                   updateBoxShadow={this.updateBoxShadow}
+                  borderRadius={this.state.borderRadius}
+                  updateBorderRadius={this.updateBorderRadius}
                   opacity={this.state.opacity}
                   updateOpacity={this.updateOpacity}
                   scaleX={this.state.transformScaleX}
@@ -536,6 +539,7 @@ class QuoteWrapper extends React.Component {
                   posY={this.state.posY}
                   boxShadow={this.state.boxShadow}
                   opacity={this.state.opacity}
+                  borderRadius={this.state.borderRadius}
                   paddingTop={this.state.paddingTop}
                   paddingRight={this.state.paddingRight}
                   paddingBottom={this.state.paddingBottom}

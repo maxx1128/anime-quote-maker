@@ -1,6 +1,6 @@
 import React from "react";
 
-const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
+const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, borderRadius, updateBorderRadius, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
   <div className="qig-l-wrapper__form-item">
     <h4 className="qig-l-wrapper__form-header">
       Transform the Quote
@@ -19,6 +19,14 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
         Box Shadow: <input type="number" min="0" max="1" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
       </span>
       <input type="range" min="0" max="1" id="box-shadow" name="box-shadow" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
+    </label>
+    <br />
+
+    <label htmlFor="border-radius" className="qig-l-slider__label">
+      <span>
+        Border Radius: <input type="number" min="0" max="150" value={borderRadius} step="1" onChange={updateBorderRadius} /> px
+      </span>
+      <input type="range" min="0" max="150" id="border-radius" name="border-radius" value={borderRadius} step="1" onChange={updateBorderRadius} />
     </label>
     <br />
 
