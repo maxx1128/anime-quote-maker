@@ -59,8 +59,6 @@ const allQuotes = [
   mq("There is always fear, always doubt. The only thing that matters is that you push forward.", "Bayron"),
   mq("You know, like brilliance, I never find [being drunk] a decent excuse for being an asshole.", "Roberts"),
   mq("Never trust your future self", "Anonymous"),
-
-
   mq("Be yourself; everyone else is already taken.", "Oscar Wilde"),
   mq("I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.", "Marilyn Monroe"),
   mq("Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.", "Albert Einstein"),
@@ -242,7 +240,7 @@ const allQuotes = [
   mq("I declare after all there is no enjoyment like reading! How much sooner one tires of any thing than of a book! -- When I have a house of my own, I shall be miserable if I have not an excellent library.", "Jane Austen"),
   mq("I love mankind ... it's people I can't stand!!", "Charles M. Schulz"),
   mq("You don't forget the face of the person who was your last hope.", "Suzanne Collins"),
-  mq(" ²Classic ² - a book which people praise and don't read.", "Mark Twain"),
+  mq("Classic - a book which people praise and don't read.", "Mark Twain"),
   mq("I am free of all prejudice. I hate everyone equally. ", "W.C. Fields"),
   mq("Finish each day and be done with it. You have done what you could. Some blunders and absurdities no doubt crept in; forget them as soon as you can. Tomorrow is a new day. You shall begin it serenely and with too high a spirit to be encumbered with your old nonsense.", "Ralph Waldo Emerson"),
   mq("I have never let my schooling interfere with my education.", "Mark Twain"),
@@ -690,7 +688,7 @@ const allQuotes = [
   mq("To douchebags! To girls that break your heart. To the absolute fucking horror of losing your best friend because you were stupid enough to fall in love with her.", "Jamie McGuire"),
   mq("Kiss me, and you will see how important I am.", "Sylvia Plath"),
   mq("Whatever it is you're seeking won't come in the form you're expecting.", "Haruki Marukami"),
-  mq("Everyone sees what you appear to be, few experience what you really are.", "NiccolÃ² Machiavelli"),
+  mq("Everyone sees what you appear to be, few experience what you really are.", "Nicolas Machiavelli"),
   mq("What matters in life is not what happens to you but what you remember and how you remember it.", "Gabriel Garcia Marquez"),
   mq("That's the thing about books. They let you travel without moving your feet.", "Jhumpa Lahiri"),
   mq("Everyone should be able to do one card trick, tell two jokes, and recite three poems, in case they are ever trapped in an elevator.", "Lemony Snicket"),
@@ -779,9 +777,9 @@ const allQuotes = [
   mq("I’m past patiently waitin’ I’m passionately smashin’ every expectation. Every action’s an act of creation!", "Alexander Hamilton"),
   mq("We push away what we can never understand. We push away the unimaginable.", "Angelica Schuyler"),
   mq("God help and forgive me, I wanna build something that’s gonna outlive me.", "Alexander Hamilton"),
-  mq("When you got skin in the game, you stay in the game. But you don’t get a win unless you play in the game. Oh, you get love for it. You get hate for it. You get nothing if you...wait for it, wait for it, wait!", "Alexander Hamilton"),
-  mq("And when you said ‘Hi,’ I forgot my dang name, set my heart aflame, ev’ry part aflame", "Angelica Schuyler")
-
+  mq("When you got skin in the game, you stay in the game. But you don’t get a win unless you play in the game.", "Alexander Hamilton"),
+  mq("And when you said ‘Hi,’ I forgot my dang name, set my heart aflame, ev’ry part aflame", "Angelica Schuyler"),
+  mq("Happiness is a bagel", "Anonymous")
 ]
 
 const randomCustomQuote = () => allQuotes[Math.floor(Math.random() * allQuotes.length)];
