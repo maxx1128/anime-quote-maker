@@ -1,4 +1,5 @@
 const defaultState = {
+  customImageUrl: '',
   quote: '',
   hash: '123',
   tags: '',

@@ -5,6 +5,7 @@ import QuoteBox from "./QuoteBox";
 import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, startingFullFilters, fullFilters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
+import CustomImage from "./QuoteForm/CustomImage";
 import Size from "./QuoteForm/Size";
 import Alignment from "./QuoteForm/Alignment";
 import Tags from "./QuoteForm/Tags";
@@ -63,6 +64,7 @@ class QuoteWrapper extends React.Component {
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.setState({ filters: [] });
    updateAlignment = (alignment) => this.setState({ alignment: alignment });
+   updateCustomImageUrl = (e) => this.setState({ customImageUrl: e.target ? e.target.value : e  })
    updatePosX = (e) => this.setState({ posX: e.target.value });
    updatePosY = (e) => this.setState({ posY: e.target.value });
    updateQuote = (e) => this.setState({ quote: e.target.value })
@@ -390,7 +392,7 @@ class QuoteWrapper extends React.Component {
    }
 
    render() {
-      const image = `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${this.state.tags}#${this.state.hash}`;
+      const image = this.state.customImageUrl ? this.state.customImageUrl : `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${this.state.tags}#${this.state.hash}`;
       return (
          <div className={`qig-l-wrapper ${this.state.vertical ? 'qig-l-wrapper--vertical' : ''}`}>
             <div className="qig-l-wrapper__form">
@@ -408,6 +410,10 @@ class QuoteWrapper extends React.Component {
                   updateWidth={this.updateWidth}
                   height={this.state.height}
                   updateHeight={this.updateHeight}/>
+
+               <CustomImage
+                  url={this.state.customImageUrl}
+                  updateUrl={this.updateCustomImageUrl}/>
 
                <Alignment
                   setPosX={this.state.posX}
