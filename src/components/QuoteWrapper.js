@@ -10,6 +10,7 @@ import Size from "./QuoteForm/Size";
 import Alignment from "./QuoteForm/Alignment";
 import Tags from "./QuoteForm/Tags";
 import Quote from "./QuoteForm/Quote";
+import Shape from "./QuoteForm/Shape";
 import Styling from "./QuoteForm/Styling";
 import Position from "./QuoteForm/Position";
 import Filters from "./QuoteForm/Filters";
@@ -64,6 +65,9 @@ class QuoteWrapper extends React.Component {
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.setState({ filters: [] });
    updateAlignment = (alignment) => this.setState({ alignment: alignment });
+   updateShape = (shape) => this.setState({ shape: shape });
+   updateShapeSize = (e) => this.setState({ shapeSize: e.target ? e.target.value : e })
+   updateShapePosition = (e) => this.setState({ shapePosition: e.target ? e.target.value : e })
    updateCustomImageUrl = (e) => this.setState({ customImageUrl: e.target ? e.target.value : e  })
    updatePosX = (e) => this.setState({ posX: e.target.value });
    updatePosY = (e) => this.setState({ posY: e.target.value });
@@ -448,6 +452,14 @@ class QuoteWrapper extends React.Component {
                   paddingLeft={this.state.paddingLeft}
                   updatePaddingLeft={this.updatePaddingLeft} />
 
+               <Shape
+                  shape={this.state.shape}
+                  updateShape={this.updateShape}
+                  shapeSize={this.state.shapeSize}
+                  updateShapeSize={this.updateShapeSize}
+                  shapePosition={this.state.shapePosition}
+                  updateShapePosition={this.updateShapePosition} />
+
                <Styling
                   bg={this.state.bgColor}
                   updateBg={this.updateBgColor}
@@ -535,6 +547,9 @@ class QuoteWrapper extends React.Component {
                   image={image}
                   width={this.state.width}
                   height={this.state.height}
+                  shape={this.state.shape}
+                  shapeSize={this.state.shapeSize}
+                  shapePosition={this.state.shapePosition}
                   bgColor={this.state.bgColor}
                   textColor={this.state.textColor}
                   allFilters={this.getFilterValues}

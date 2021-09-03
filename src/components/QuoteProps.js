@@ -6,6 +6,9 @@ const defaultState = {
   alignment: 'left',
   size: 20,
   fontStyle: 'base',
+  shape: 'none',
+  shapeSize: 20,
+  shapePosition: 50,
   filters: [],
   filterContrast: 100,
   filterHueRotate: 0,
@@ -58,7 +61,7 @@ const slimPositions = [
          'bottom': '0',
          'left': '0'
       },
-      'label': 'Bottom '
+      'label': 'Bottom'
    }, {
       'value': {
          'top': 'auto',
@@ -184,6 +187,75 @@ const positions = [
          'left': '400'
       },
       'label': 'Bottom Right'
+   }
+]
+
+const verticalShapes = [
+   {
+      'value': 'diamond-top',
+      'label': 'Diamond Top'
+   }, {
+      'value': 'diamond-bottom',
+      'label': 'Diamond Bottom'
+   }, {
+      'value': 'diamond-vertical',
+      'label': 'Diamond Vertical'
+   }, {
+      'value': 'ribbon-top',
+      'label': 'Ribbon Top'
+   }, {
+      'value': 'ribbon-bottom',
+      'label': 'Ribbon Bottom'
+   }, {
+      'value': 'ribbon-vertical',
+      'label': 'Ribbon Vertical'
+   }
+]
+
+const slimShapes = [
+   {
+      'value': 'diamond-right',
+      'label': 'Diamond Right'
+   }, {
+      'value': 'diamond-left',
+      'label': 'Diamond Left'
+   }, {
+      'value': 'diamond-horizontal',
+      'label': 'Diamond Horizontal'
+   }, {
+      'value': 'ribbon-right',
+      'label': 'Ribbon Right'
+   }, {
+      'value': 'ribbon-left',
+      'label': 'Ribbon Left'
+   }, {
+      'value': 'ribbon-horizontal',
+      'label': 'Ribbon Horizontal'
+   }
+];
+
+const shapes = [
+   {
+      'value': 'none',
+      'label': 'None'
+   },
+   ...slimShapes,
+   ...verticalShapes,
+   {
+      'value': 'triangle-top',
+      'label': 'Triangle Top'
+   }, {
+      'value': 'triangle-right',
+      'label': 'Triangle Right'
+   }, {
+      'value': 'triangle-bottom',
+      'label': 'Triangle Bottom'
+   }, {
+      'value': 'triangle-left',
+      'label': 'Triangle Left'
+   }, {
+      'value': 'diamond-full',
+      'label': 'Diamond Full'
    }
 ]
 
@@ -407,4 +479,4 @@ const fullFilters = [
    }
 ]
 
-export { defaultState, tags, slimPositions, positions, alignments, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, startingFullFilters, fullFilters }
+export { defaultState, tags, slimPositions, positions, alignments, slimShapes, verticalShapes, shapes, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, startingFullFilters, fullFilters }
