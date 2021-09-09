@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
-import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, startingFullFilters, fullFilters } from "./QuoteProps";
+import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, startingFullFilters, fullFilters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import CustomImage from "./QuoteForm/CustomImage";
@@ -344,6 +344,24 @@ class QuoteWrapper extends React.Component {
       });
    }
 
+   randomShape = (position) => {
+      let shape = false;
+
+      if (position === '3/4') {
+         shape = this.randomProperty(verticalShapes)["value"];
+      } else if (position === 'Spaced Bottom') {
+         shape = this.randomProperty(slimShapes)["value"];
+      } else {
+         shape = 'none'
+      }
+
+      if (shape) {
+         this.setState({
+            shape: shape
+         });
+      }
+   }
+
    flipColorCodes = () => {
       this.setState({
          textColor: this.state.bgColor,
@@ -378,12 +396,14 @@ class QuoteWrapper extends React.Component {
          perspectiveOriginY: 0,
          transformRotateX: 0,
          transformRotateY: 0
-      })
+      });
    }
 
    refreshAll = () => {
+      const position = this.randomProperty(this.allSlimPositions);
+
       this.getQuote('fontSize');
-      this.updatePosition(this.randomProperty(this.allSlimPositions));
+      this.updatePosition(position);
       this.updateFontStyle(this.randomProperty(this.allSlimFontStyles).value);
       this.noTagImage();
       this.randomColorCodes();
@@ -391,6 +411,7 @@ class QuoteWrapper extends React.Component {
       this.setRandomFullFilter();
       this.resetTransforms();
       this.resetPerspective();
+      this.randomShape(position["label"]);
 
       this.updateAlignment('center');
    }
