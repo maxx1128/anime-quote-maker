@@ -48,7 +48,7 @@ const QuoteBox = ({ image, width, height, shape, shapeSize, shapePosition, quote
          case 'triangle-left':
             return `polygon(100% 0, 100% 100%, 0 ${shapePosition}%)`;
          default:
-            return 'polygon(0 0, 0 100%, 100% 100%, 100% 0)';
+            return null;
       }
    }
 
