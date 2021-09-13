@@ -1,9 +1,9 @@
 import React from "react";
 import RadioItems from "./../RadioItems";
 
-import { alignments, fontStyles, fontFamilies, colorSchemes } from "./../QuoteProps";
+import { alignments, fontStyles, fontFamilies } from "./../QuoteProps";
 
-const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fontStyle, updateFontStyle, size, updateSize, fontFamily, updateFontFamily, updateColorScheme, randomColorScheme, flipColorScheme}) => (
+const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fontStyle, updateFontStyle, size, updateSize, fontFamily, updateFontFamily, randomColorScheme, flipColorScheme}) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__styling">
     <h4 className="qig-l-wrapper__form-header">
       Change the Quote Styling
@@ -64,33 +64,6 @@ const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fo
           {fontFamilies.map((fontFamily, i) => <option key={i} value={fontFamily}>{fontFamily}</option>)}
         </select>
       </label>
-    </div>
-
-    <br />
-    <br />
-
-    <h5 className="qig-l-wrapper__form-subheader">
-      Preset Color Palettes
-    </h5>
-
-    <div>
-      {colorSchemes.map((color, i) => {
-        const styles = {
-            'backgroundColor': color.values.bgColor,
-            'color': color.values.color,
-            'fontFamily': color.values.fontFamily
-        };
-
-        return (
-          <button
-              key={i}
-              style={styles}
-              className="qig-button--right-space"
-              onClick={() => updateColorScheme(color.label)}>
-            {color.label.toUpperCase()}
-          </button>
-        )
-      })}
     </div>
   </div>
 );

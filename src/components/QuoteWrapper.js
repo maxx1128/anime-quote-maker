@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import QuoteBox from "./QuoteBox";
-import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, colorSchemes, startingFullFilters, fullFilters } from "./QuoteProps";
+import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./QuoteProps";
 
 import Intro from "./QuoteForm/Intro";
 import CustomImage from "./QuoteForm/CustomImage";
@@ -31,7 +31,6 @@ class QuoteWrapper extends React.Component {
    allSlimFontStyles = slimFontStyles
    allSlimFontFamilies = slimFontFamilies
    allFontFamilies = fontFamilies
-   allColorSchemes = colorSchemes
 
    componentDidMount() { this.refreshAll(); }
 
@@ -182,19 +181,6 @@ class QuoteWrapper extends React.Component {
       }
    }
 
-   updateColorScheme = (calledScheme, swap = false) => {
-      const selectedScheme  = this.allColorSchemes.find(scheme => scheme.label === calledScheme)['values'],
-            willSwap        = (swap && Math.random() >= 0.5),
-            backgroundColor = willSwap ? selectedScheme['color'] : selectedScheme['bgColor'],
-            textColor       = willSwap ? selectedScheme['bgColor'] : selectedScheme['color'];
-
-      this.setState({
-         bgColor: backgroundColor,
-         textColor: textColor,
-         fontFamily: selectedScheme['fontFamily']
-      })
-   }
-
    toggleVertical = () => {
       const isNowVertical = !this.state.vertical,
             width = isNowVertical ? 1024 : 700,
@@ -284,11 +270,6 @@ class QuoteWrapper extends React.Component {
       const number = Math.floor(Math.random() * (ceiling - bottom) + bottom),
             weightedNumber = number > floor ? number : floor;
       this.setState({ size: weightedNumber });
-   }
-
-   randomColorScheme = () => {
-      const randomScheme = this.randomProperty(this.allColorSchemes)['label'];
-      this.updateColorScheme(randomScheme, true);
    }
 
    randomFontFamily = () => {
@@ -494,7 +475,6 @@ class QuoteWrapper extends React.Component {
                   updateSize={this.updateSize}
                   fontFamily={this.state.fontFamily}
                   updateFontFamily={this.updateFontFamily}
-                  updateColorScheme={this.updateColorScheme}
                   randomColorScheme={this.randomColorCodes}
                   flipColorScheme={this.flipColorCodes}/>
 

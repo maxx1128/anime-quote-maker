@@ -294,94 +294,6 @@ const slimFontFamilies = ['Archivo Black', 'Abril Fatface', 'Futura', 'Dosis', '
 
 const fontFamilies = [...slimFontFamilies, 'Baumans', 'Risque', 'Dancing Script', 'MedievalSharp', 'Aclonica'].sort()
 
-const colorSchemes = [
-  {
-     'label': 'light',
-     'values': {
-        'bgColor': '#ffffff',
-        'color': '#111111',
-        'fontFamily': 'Open Sans'
-     }
-  }, {
-     'label': 'dark',
-     'values': {
-        'bgColor': '#000000',
-        'color': '#fffefc',
-        'fontFamily': 'Open Sans'
-     }
-  }, {
-      'label': 'fuscia',
-      'values': {
-         'bgColor': '#F9CAFF',
-         'color': '#6D1172',
-         'fontFamily': 'PT Serif'
-      }
-   }, {
-      'label': 'orange',
-      'values': {
-         'bgColor': '#FFAF4D',
-         'color': '#001F3F',
-         'fontFamily': 'Poppins'
-      }
-   }, {
-      'label': 'teal',
-      'values': {
-         'bgColor': '#005661',
-         'color': '#BBFEE8',
-         'fontFamily': 'Montserrat'
-      }
-   }, {
-      'label': 'navy',
-      'values': {
-         'bgColor': '#001F3F',
-         'color': '#FFE747',
-         'fontFamily': 'Montserrat'
-      }
-   }, {
-      'label': 'watermelon',
-      'values': {
-         'bgColor': '#BF1303',
-         'color': '#AAF3B3',
-         'fontFamily': 'Abril Fatface'
-      }
-   }, {
-      'label': 'silver',
-      'values': {
-         'bgColor': '#DDDDDD',
-         'color': '#575260',
-         'fontFamily': 'Roboto Slab'
-      }
-   }, {
-     'label': 'royal',
-     'values': {
-        'bgColor': '#FFDC00',
-        'color': '#85144B',
-        'fontFamily': 'Raleway'
-     }
-  }, {
-     'label': 'heavy',
-     'values': {
-        'bgColor': '#221111',
-        'color': '#FF4136',
-        'fontFamily': 'Archivo Black'
-     }
-  }, {
-     'label': 'sad',
-     'values': {
-        'bgColor': '#0074D9',
-        'color': '#dddddd',
-        'fontFamily': 'Dosis'
-     }
-  }, {
-     'label': 'computer',
-     'values': {
-        'bgColor': '#332d31',
-        'color': '#01FF70',
-        'fontFamily': 'Space Mono'
-     }
-  }
-]
-
 const baseFilterValues = {
    "contrast": 100,
    "hueRotate": 0,
@@ -479,4 +391,4 @@ const fullFilters = [
    }
 ]
 
-export { defaultState, tags, slimPositions, positions, alignments, slimShapes, verticalShapes, shapes, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, colorSchemes, startingFullFilters, fullFilters }
+export { defaultState, tags, slimPositions, positions, alignments, slimShapes, verticalShapes, shapes, slimFontStyles, fontStyles, slimFontFamilies, fontFamilies, startingFullFilters, fullFilters }
