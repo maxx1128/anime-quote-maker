@@ -350,9 +350,9 @@ class QuoteWrapper extends React.Component {
       })
    }
 
-   noTagImage = () => {
-      this.setState({ tags: '' });
-      this.refreshImage('');
+   setInitialImageTags = () => {
+      this.setState({ tags: 'highres' });
+      this.refreshImage('highres');
    }
 
    resetTransforms = () => {
@@ -386,7 +386,7 @@ class QuoteWrapper extends React.Component {
       this.getQuote('fontSize');
       this.updatePosition(position);
       this.updateFontStyle(this.randomProperty(this.allSlimFontStyles).value);
-      this.noTagImage();
+      this.setInitialImageTags();
       this.randomColorCodes();
       this.randomFontFamily();
       this.setRandomFullFilter();
@@ -398,6 +398,7 @@ class QuoteWrapper extends React.Component {
    }
 
    render() {
+      console.log(this.state.tags);
       const image = this.state.customImageUrl ? this.state.customImageUrl : `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${this.state.tags}#${this.state.hash}`;
       return (
          <div className={`qig-l-wrapper ${this.state.vertical ? 'qig-l-wrapper--vertical' : ''}`}>

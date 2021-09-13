@@ -2,7 +2,7 @@ const defaultState = {
   customImageUrl: '',
   quote: '',
   hash: '123',
-  tags: '',
+  tags: 'highres',
   alignment: 'left',
   size: 20,
   fontStyle: 'base',
@@ -51,7 +51,7 @@ const defaultState = {
   height: 700
 }
 
-const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_hair', 'long_hair', 'hat', 'outdoors', 'day', 'night', 'rain', 'forest', 'building', 'water', 'instrument', 'running', 'heart', 'animal', 'ponytail', 'weapon', '1girl', '1boy', 'game_cg']
+const tags = ['absurdres', 'scenery', 'tears', 'smile', 'eyes_closed', 'short_hair', 'long_hair', 'hat', 'outdoors', 'day', 'night', 'rain', 'forest', 'building', 'water', 'instrument', 'running', 'heart', 'animal', 'ponytail', 'weapon', '1girl', '1boy', 'game_cg', 'highres'];
 
 const slimPositions = [
    {
