@@ -290,9 +290,9 @@ const fontStyles = [
    }
 ]
 
-const slimFontFamilies = ['Open Sans', 'Archivo Black', 'Abril Fatface', 'Dosis', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Poppins', 'PT Serif'];
+const slimFontFamilies = ['Archivo Black', 'Abril Fatface', 'Futura', 'Dosis', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Indie Flower', 'Cormorant Garamond', 'Satisfy', 'Merienda', 'DM Serif Display', 'Special Elite', 'Unna', 'Philosopher', 'Economica', 'Carter One', 'Amita', 'Lucida Grande', "Josefin Slab"];
 
-const fontFamilies = [...slimFontFamilies, 'Baumans', 'Gloria Hallelujah', 'Risque'].sort()
+const fontFamilies = [...slimFontFamilies, 'Baumans', 'Risque', 'Dancing Script', 'MedievalSharp', 'Aclonica'].sort()
 
 const colorSchemes = [
   {
