@@ -188,7 +188,7 @@ const positions = [
       },
       'label': 'Bottom Right'
    }
-]
+].sort((a, b) => a.label > b.label && 1 || -1)
 
 const verticalShapes = [
    {
@@ -257,7 +257,7 @@ const shapes = [
       'value': 'diamond-full',
       'label': 'Diamond Full'
    }
-]
+].sort((a, b) => a.label > b.label && 1 || -1)
 
 const alignments = [
   {
