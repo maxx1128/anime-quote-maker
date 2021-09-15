@@ -290,9 +290,9 @@ const fontStyles = [
    }
 ]
 
-const slimFontFamilies = ['Archivo Black', 'Abril Fatface', 'Futura', 'Dosis', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Indie Flower', 'Cormorant Garamond', 'Satisfy', 'Merienda', 'DM Serif Display', 'Special Elite', 'Unna', 'Philosopher', 'Economica', 'Carter One', 'Amita', 'Lucida Grande', "Josefin Slab"];
+const slimFontFamilies = ['Archivo Black', 'Abril Fatface', 'Futura', 'Dosis', 'Raleway', 'Space Mono', 'Montserrat', 'Roboto Slab', 'Indie Flower', 'Cormorant Garamond', 'Merienda', 'DM Serif Display', 'Special Elite', 'Unna', 'Philosopher', 'Economica', 'Carter One', 'Amita', 'Lucida Grande', "Josefin Slab"];
 
-const fontFamilies = [...slimFontFamilies, 'Baumans', 'Risque', 'Dancing Script', 'MedievalSharp', 'Aclonica'].sort()
+const fontFamilies = [...slimFontFamilies, 'Baumans', 'Risque', 'Satisfy', 'Dancing Script', 'MedievalSharp', 'Aclonica'].sort()
 
 const baseFilterValues = {
    "contrast": 100,
