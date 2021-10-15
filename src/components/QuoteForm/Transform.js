@@ -7,7 +7,7 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
       Transform the Quote
     </h4>
 
-    <label htmlFor="box-shadow-color" >
+    <label htmlFor="box-shadow-color">
       Box Shadow Color
       <input type="color" id="box-shadow-color" name="box-shadow-color" onChange={updateBoxShadowColor} value={boxShadowColor} />
     </label>
@@ -42,6 +42,7 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
       value={scaleX}
       max={"5"}
       step={"0.05"}
+      unit={""}
       updateValue={updateScaleX} />
 
     <RangeSlider
@@ -49,6 +50,7 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
       value={scaleY}
       max={"5"}
       step={"0.05"}
+      unit={""}
       updateValue={updateScaleY} />
 
     <RangeSlider
