@@ -59,17 +59,6 @@ class QuoteWrapper extends React.Component {
       });
    }
 
-   randomizeImage = () => {
-      const newTags = shuffle(this.allTags),
-            tagLimit = Math.floor(Math.random() * (3) + 1),
-            randomTags = newTags.slice(0, tagLimit)
-                                .map(tag => tagLimit > 1 && Math.random() >= 0.8 ? `-${tag}` : tag)
-                                .join(',');
-
-      this.setState({ tags: randomTags });
-      this.reset().image(randomTags);
-   }
-
    flipColorCodes = () => {
       this.setState({
          textColor: this.state.bgColor,
@@ -89,7 +78,7 @@ class QuoteWrapper extends React.Component {
                   tags={this.state.tags}
                   update={this.update().tags}
                   refresh={this.reset().image}
-                  random={this.randomizeImage}/>
+                  random={this.random().tags}/>
 
                <Size
                   width={this.state.width}

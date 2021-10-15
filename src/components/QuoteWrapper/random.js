@@ -1,5 +1,5 @@
-import { startingFullFilters, slimFontFamilies, slimShapes, verticalShapes } from "./state";
-import { randomProperty, randomColorCode } from "./core";
+import { startingFullFilters, slimFontFamilies, slimShapes, verticalShapes, tags } from "./state";
+import { randomProperty, randomColorCode, shuffle } from "./core";
 
 export function random(update) {
   const baseRandoms = {
@@ -67,6 +67,16 @@ export function random(update) {
     } else {
       update().fullFilter(randomProperty(startingFullFilters));
     }
+  }
+
+  baseRandoms.tags = () => {
+    const newTags = shuffle(tags),
+          tagLimit = Math.floor(Math.random() * (3) + 1),
+          randomTags = newTags.slice(0, tagLimit)
+                              .map(tag => tagLimit > 1 && Math.random() >= 0.8 ? `-${tag}` : tag)
+                              .join(',');
+
+    update().tags(randomTags);
   }
 
   return baseRandoms;
