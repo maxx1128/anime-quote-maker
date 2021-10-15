@@ -1,75 +1,80 @@
 import React from "react";
 import RangeSlider from "./../RangeSlider";
+import { fullFilters } from "../QuoteWrapper/state";
 
-const Filters = ({ contrast, updateContrast, hueRotate, updateHueRotate, saturate, updateSaturate, brightness, updateBrightness, sepia, updateSepia, blur, updateBlur, invert, updateInvert, fullFilters, updateFullFilter, randomFilters }) => (
-  <div className="qig-l-wrapper__form-item">
-    <h4 className="qig-l-wrapper__form-header">
-      Restyle the Image
-    </h4>
+const Filters = ({ state, update, random }) => {
+  const { filterContrast, filterHueRotate, filterSaturate, filterBrightness, filterSepia, filterBlur, filterInvert } = state;
 
-    <RangeSlider
-      label={"Contrast"}
-      value={contrast}
-      unit={"%"}
-      max={"400"}
-      updateValue={updateContrast} />
+  return (
+    <div className="qig-l-wrapper__form-item">
+      <h4 className="qig-l-wrapper__form-header">
+        Restyle the Image
+      </h4>
 
-    <RangeSlider
-      label={"Hue-Rotate"}
-      value={hueRotate}
-      unit={"deg"}
-      max={"360"}
-      updateValue={updateHueRotate} />
+      <RangeSlider
+        label={"Contrast"}
+        value={filterContrast}
+        unit={"%"}
+        max={"400"}
+        updateValue={update().contrast} />
 
-    <RangeSlider
-      label={"Saturation"}
-      value={saturate}
-      unit={"%"}
-      max={"400"}
-      updateValue={updateSaturate} />
+      <RangeSlider
+        label={"Hue-Rotate"}
+        value={filterHueRotate}
+        unit={"deg"}
+        max={"360"}
+        updateValue={update().hueRotate} />
 
-    <RangeSlider
-      label={"Brightness"}
-      value={brightness}
-      unit={"%"}
-      max={"400"}
-      updateValue={updateBrightness} />
+      <RangeSlider
+        label={"Saturation"}
+        value={filterSaturate}
+        unit={"%"}
+        max={"400"}
+        updateValue={update().saturate} />
 
-    <RangeSlider
-      label={"Sepia"}
-      value={sepia}
-      unit={"%"}
-      max={"100"}
-      updateValue={updateSepia} />
+      <RangeSlider
+        label={"Brightness"}
+        value={filterBrightness}
+        unit={"%"}
+        max={"400"}
+        updateValue={update().brightness} />
 
-    <RangeSlider
-      label={"Blur"}
-      value={blur}
-      max={"10"}
-      step={"0.1"}
-      updateValue={updateBlur} />
+      <RangeSlider
+        label={"Sepia"}
+        value={filterSepia}
+        unit={"%"}
+        max={"100"}
+        updateValue={update().sepia} />
 
-    <label htmlFor="filterInvert">
-      Invert
-    </label>
-    <input type="checkbox" id="filterInvert" onChange={() => updateInvert(invert > 0 ? 0 : 100)} name="filterInvert" value={100} checked={invert > 0} />
+      <RangeSlider
+        label={"Blur"}
+        value={filterBlur}
+        max={"10"}
+        step={"0.1"}
+        updateValue={update().blur} />
 
-    <h4>
-      Preset Filters
-    </h4>
+      <label htmlFor="filterInvert">
+        Invert
+      </label>
+      <input type="checkbox" id="filterInvert" onChange={() => update().invert(filterInvert > 0 ? 0 : 100)} name="filterInvert" value={100} checked={filterInvert > 0} />
 
-    <div className="qig__long-buttons-wrapper">
-      {fullFilters.map((filter, i) =>
-        <button key={i} onClick={() => updateFullFilter(filter)}>
-          {filter["label"]}
+      <h4>
+        Preset Filters
+      </h4>
+
+      <div className="qig__long-buttons-wrapper">
+        {fullFilters.map((filter, i) =>
+          <button key={i} onClick={() => update().fullFilter(filter)}>
+            {filter["label"]}
+          </button>
+        )}
+
+        <button onClick={() => random().filters()}>
+          Random
         </button>
-      )}
-
-      <button onClick={() => randomFilters()}>
-        Random
-      </button>
+      </div>
     </div>
-  </div>
-);
+  )
+};
 
 export default Filters;

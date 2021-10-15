@@ -1,5 +1,6 @@
 import React from "react";
 import RangeSlider from "./../RangeSlider";
+import { positions } from "../QuoteWrapper/state";
 
 const LocationSlider = ({label, value, updateValue, limit}) => (
   <div>
@@ -19,92 +20,96 @@ const LocationSlider = ({label, value, updateValue, limit}) => (
   </div>
 );
 
-const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, horizontalLimit, allPositions, paddingTop, updatePaddingTop, paddingRight, updatePaddingRight, paddingBottom, updatePaddingBottom, paddingLeft, updatePaddingLeft, updatePosition, updateQuoteTop, updateQuoteRight, updateQuoteBottom, updateQuoteLeft }) => (
-  <div className="qig-l-wrapper__form-item qig-l-controls__position">
-    <h4 className="qig-l-wrapper__form-header">
-      Change the Quote's Position
-    </h4>
+const Position = ({ state, update }) => {
+  const { quoteTop, quoteRight, quoteBottom, quoteLeft, height, width, paddingTop, paddingRight, paddingBottom, paddingLeft } = state;
 
-    <div className="qig-l-slider__container">
-      <LocationSlider
-        label={"Top"}
-        value={quoteTop}
-        updateValue={updateQuoteTop}
-        limit={verticalLimit} />
+  return (
+    <div className="qig-l-wrapper__form-item qig-l-controls__position">
+      <h4 className="qig-l-wrapper__form-header">
+        Change the Quote's Position
+      </h4>
 
-      <LocationSlider
-        label={"Right"}
-        value={quoteRight}
-        updateValue={updateQuoteRight}
-        limit={horizontalLimit} />
+      <div className="qig-l-slider__container">
+        <LocationSlider
+          label={"Top"}
+          value={quoteTop}
+          updateValue={update().quoteTop}
+          limit={height} />
 
-      <LocationSlider
-        label={"Bottom"}
-        value={quoteBottom}
-        updateValue={updateQuoteBottom}
-        limit={verticalLimit} />
+        <LocationSlider
+          label={"Right"}
+          value={quoteRight}
+          updateValue={update().quoteRight}
+          limit={width} />
 
-      <LocationSlider
-        label={"Left"}
-        value={quoteLeft}
-        updateValue={updateQuoteLeft}
-        limit={horizontalLimit} />
+        <LocationSlider
+          label={"Bottom"}
+          value={quoteBottom}
+          updateValue={update().quoteBottom}
+          limit={height} />
+
+        <LocationSlider
+          label={"Left"}
+          value={quoteLeft}
+          updateValue={update().quoteLeft}
+          limit={width} />
+      </div>
+
+      <br />
+
+      <h4 className="qig-l-wrapper__form-header">
+        Change the Quote's Padding
+      </h4>
+
+      <div className="qig-l-slider__container">
+        <RangeSlider
+          label={"Top"}
+          inline={true}
+          value={paddingTop}
+          max={height / 2}
+          unit={""}
+          updateValue={update().paddingTop} />
+
+        <RangeSlider
+          label={"Right"}
+          inline={true}
+          value={paddingRight}
+          max={width / 2}
+          unit={""}
+          updateValue={update().paddingRight} />
+
+        <RangeSlider
+          label={"Bottom"}
+          inline={true}
+          value={paddingBottom}
+          max={height / 2}
+          unit={""}
+          updateValue={update().paddingBottom} />
+
+        <RangeSlider
+          label={"Left"}
+          inline={true}
+          value={paddingLeft}
+          max={width / 2}
+          unit={""}
+          updateValue={update().paddingLeft} />
+      </div>
+
+      <br />
+
+      <h4>
+        Preset Positions
+      </h4>
+
+      <div className="qig__long-buttons-wrapper">
+        {positions.map((position, i) =>
+          <button key={i} onClick={() => update().position(position)}>
+            {position["label"]}
+          </button>
+        )}
+      </div>
     </div>
-
-    <br />
-
-    <h4 className="qig-l-wrapper__form-header">
-      Change the Quote's Padding
-    </h4>
-
-    <div className="qig-l-slider__container">
-      <RangeSlider
-        label={"Top"}
-        inline={true}
-        value={paddingTop}
-        max={verticalLimit / 2}
-        unit={""}
-        updateValue={updatePaddingTop} />
-
-      <RangeSlider
-        label={"Right"}
-        inline={true}
-        value={paddingRight}
-        max={horizontalLimit / 2}
-        unit={""}
-        updateValue={updatePaddingRight} />
-
-      <RangeSlider
-        label={"Bottom"}
-        inline={true}
-        value={paddingBottom}
-        max={verticalLimit / 2}
-        unit={""}
-        updateValue={updatePaddingBottom} />
-
-      <RangeSlider
-        label={"Left"}
-        inline={true}
-        value={paddingLeft}
-        max={horizontalLimit / 2}
-        unit={""}
-        updateValue={updatePaddingLeft} />
-    </div>
-
-    <br />
-
-    <h4>
-      Preset Positions
-    </h4>
-
-    <div className="qig__long-buttons-wrapper">
-      {allPositions.map((position, i) =>
-        <button key={i} onClick={() => updatePosition(position)}>
-          {position["label"]}
-        </button>
-      )}
-    </div>
-  </div>
-);
+  )
+};
 
 export default Position;

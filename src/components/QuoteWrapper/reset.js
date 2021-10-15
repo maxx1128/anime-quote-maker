@@ -46,6 +46,8 @@ export function reset(update) {
     update().position(position);
     update().fontStyle(randomProperty(slimFontStyles).value);
     update().alignment('center');
+    update().shapeSize(20)
+    update().shapePosition(50)
 
     random().colorCodes();
     random().fontFamily();

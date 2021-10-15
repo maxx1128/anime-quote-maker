@@ -7,7 +7,9 @@ function hexToRgb(hex) {
       : null;
 }
 
-const QuoteBox = ({ image, width, height, shape, shapeSize, shapePosition, quote, author, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, allFilters, allTransforms, boxShadow, boxShadowColor, opacity, borderRadius, paddingTop, paddingRight, paddingBottom, paddingLeft, top, right, bottom, left, perspective, perspectiveOriginX, perspectiveOriginY }) => {
+const QuoteBox = ({ get, state }) => {
+   const { image, filters, transforms } = get;
+   const { width, height, shape, shapeSize, shapePosition, quote, author, alignment, fontStyle, size, posX, posY, bgColor, textColor, fontFamily, boxShadow, boxShadowColor, opacity, borderRadius, paddingTop, paddingRight, paddingBottom, paddingLeft, quoteTop, quoteRight, quoteBottom, quoteLeft, perspective, perspectiveOriginX, perspectiveOriginY } = state;
 
    let shapeClipPath = () => {
       switch(shape) {
@@ -104,7 +106,7 @@ const QuoteBox = ({ image, width, height, shape, shapeSize, shapePosition, quote
          return `${filter["name"]}(${filter["value"]}${unit})`
       }
 
-      return allFilters().map(filter => getFilterCSS(filter)).join(' ');
+      return filters().map(filter => getFilterCSS(filter)).join(' ');
    }
 
    let compiledTransforms = () => {
@@ -123,7 +125,7 @@ const QuoteBox = ({ image, width, height, shape, shapeSize, shapePosition, quote
          return `${transform["name"]}(${transform["value"]}${unit})`
       }
 
-      return allTransforms().map(transform => getTransformCSS(transform)).join(' ');
+      return transforms().map(transform => getTransformCSS(transform)).join(' ');
    }
 
   const wrapperStyles = {
@@ -135,16 +137,16 @@ const QuoteBox = ({ image, width, height, shape, shapeSize, shapePosition, quote
   };
 
   const imageWrapperStyle = {
-     'backgroundImage': `url(${image})`,
+     'backgroundImage': `url(${image()})`,
      'backgroundPosition': `${posX}% ${posY}%`,
      'filter': compiledFilters()
   };
 
    const quoteStyle = {
-     'top': isNaN(top) ? 'auto' : `${top}px`,
-     'right': isNaN(right) ? 'auto' : `${right}px`,
-     'bottom': isNaN(bottom) ? 'auto' : `${bottom}px`,
-     'left': isNaN(left) ? 'auto' : `${left}px`,
+     'top': isNaN(quoteTop) ? 'auto' : `${quoteTop}px`,
+     'right': isNaN(quoteRight) ? 'auto' : `${quoteRight}px`,
+     'bottom': isNaN(quoteBottom) ? 'auto' : `${quoteBottom}px`,
+     'left': isNaN(quoteLeft) ? 'auto' : `${quoteLeft}px`,
 
      'padding': shapePadding(),
 

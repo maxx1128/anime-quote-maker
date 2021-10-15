@@ -1,98 +1,102 @@
 import React from "react";
 import RangeSlider from "./../RangeSlider";
 
-const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, boxShadowColor, updateBoxShadowColor, borderRadius, updateBorderRadius, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
-  <div className="qig-l-wrapper__form-item">
-    <h4 className="qig-l-wrapper__form-header">
-      Transform the Quote
-    </h4>
+const Transform = ({ state, update, reset }) => {
+  const { height, width, boxShadow, boxShadowColor, borderRadius, opacity, transformScaleX, transformScaleY, transformSkewX, transformSkewY, transformTranslateX, transformTranslateY, transformRotateFull } = state;
 
-    <label htmlFor="box-shadow-color">
-      Box Shadow Color
-      <input type="color" id="box-shadow-color" name="box-shadow-color" onChange={updateBoxShadowColor} value={boxShadowColor} />
-    </label>
+  return (
+    <div className="qig-l-wrapper__form-item">
+      <h4 className="qig-l-wrapper__form-header">
+        Transform the Quote
+      </h4>
 
-    <br />
-    <br />
+      <label htmlFor="box-shadow-color">
+        Box Shadow Color
+        <input type="color" id="box-shadow-color" name="box-shadow-color" onChange={update().boxShadowColor} value={boxShadowColor} />
+      </label>
 
-    <RangeSlider
-      label={"Box Shadow"}
-      value={boxShadow}
-      max={"1"}
-      unit={""}
-      step={"0.025"}
-      updateValue={updateBoxShadow} />
+      <br />
+      <br />
 
-    <RangeSlider
-      label={"Opacity"}
-      value={opacity}
-      max={"1"}
-      unit={""}
-      step={"0.025"}
-      updateValue={updateOpacity} />
+      <RangeSlider
+        label={"Box Shadow"}
+        value={boxShadow}
+        max={"1"}
+        unit={""}
+        step={"0.025"}
+        updateValue={update().boxShadow} />
 
-    <RangeSlider
-      label={"Border Radius"}
-      value={borderRadius}
-      max={"150"}
-      updateValue={updateBorderRadius} />
+      <RangeSlider
+        label={"Opacity"}
+        value={opacity}
+        max={"1"}
+        unit={""}
+        step={"0.025"}
+        updateValue={update().opacity} />
 
-    <RangeSlider
-      label={"Scale X"}
-      value={scaleX}
-      max={"5"}
-      step={"0.05"}
-      unit={""}
-      updateValue={updateScaleX} />
+      <RangeSlider
+        label={"Border Radius"}
+        value={borderRadius}
+        max={"150"}
+        updateValue={update().borderRadius} />
 
-    <RangeSlider
-      label={"Scale Y"}
-      value={scaleY}
-      max={"5"}
-      step={"0.05"}
-      unit={""}
-      updateValue={updateScaleY} />
+      <RangeSlider
+        label={"Scale X"}
+        value={transformScaleX}
+        max={"5"}
+        step={"0.05"}
+        unit={""}
+        updateValue={update().transformScaleX} />
 
-    <RangeSlider
-      label={"Skew X"}
-      value={skewX}
-      min={"-90"}
-      max={"90"}
-      updateValue={updateSkewX} />
+      <RangeSlider
+        label={"Scale Y"}
+        value={transformScaleY}
+        max={"5"}
+        step={"0.05"}
+        unit={""}
+        updateValue={update().transformScaleY} />
 
-    <RangeSlider
-      label={"Skew Y"}
-      value={skewY}
-      min={"-90"}
-      max={"90"}
-      updateValue={updateSkewY} />
+      <RangeSlider
+        label={"Skew X"}
+        value={transformSkewX}
+        min={"-90"}
+        max={"90"}
+        updateValue={update().transformSkewX} />
 
-    <RangeSlider
-      label={"Translate X"}
-      value={translateX}
-      min={horizontalLimit * -1}
-      max={horizontalLimit}
-      updateValue={updateTranslateX} />
+      <RangeSlider
+        label={"Skew Y"}
+        value={transformSkewY}
+        min={"-90"}
+        max={"90"}
+        updateValue={update().transformSkewY} />
 
-    <RangeSlider
-      label={"Translate Y"}
-      value={translateY}
-      min={verticalLimit * -1}
-      max={verticalLimit}
-      updateValue={updateTranslateY} />
+      <RangeSlider
+        label={"Translate X"}
+        value={transformTranslateX}
+        min={width * -1}
+        max={width}
+        updateValue={update().transformTranslateX} />
 
-    <RangeSlider
-      label={"Rotate (Full)"}
-      value={rotateFull}
-      max={"360"}
-      step={"0.05"}
-      unit={"deg"}
-      updateValue={updateRotateFull} />
+      <RangeSlider
+        label={"Translate Y"}
+        value={transformTranslateY}
+        min={height * -1}
+        max={height}
+        updateValue={update().transformTranslateY} />
 
-    <button onClick={() => resetTransforms()}>
-      Reset Transforms
-    </button>
-  </div>
-);
+      <RangeSlider
+        label={"Rotate (Full)"}
+        value={transformRotateFull}
+        max={"360"}
+        step={"0.05"}
+        unit={"deg"}
+        updateValue={update().transformRotateFull} />
+
+      <button onClick={() => reset().transforms()}>
+        Reset Transforms
+      </button>
+    </div>
+  );
+}
 
 export default Transform;

@@ -1,5 +1,7 @@
 export function update(quoteThis) {
   const allUpdates = {
+    quote: (e) => quoteThis.setState({ quote: e.target ? e.target.value : e }),
+    author: (e) => quoteThis.setState({ author: e.target ? e.target.value : e }),
     hash: (hash) => quoteThis.setState({ hash: hash }),
 
     alignment: (alignment) => quoteThis.setState({ alignment: alignment }),
@@ -9,7 +11,6 @@ export function update(quoteThis) {
     customImageUrl: (e) => quoteThis.setState({ customImageUrl: e.target ? e.target.value : e  }),
     posX: (e) => quoteThis.setState({ posX: e.target ? e.target.value : e }),
     posY: (e) => quoteThis.setState({ posY: e.target ? e.target.value : e }),
-    quote: (e) => quoteThis.setState({ quote: e.target ? e.target.value : e }),
     bgColor: (e) => quoteThis.setState({ bgColor: e.target ? e.target.value : e }),
     textColor: (e) => quoteThis.setState({ textColor: e.target ? e.target.value : e }),
     style: (style) => quoteThis.setState({ style: style }),

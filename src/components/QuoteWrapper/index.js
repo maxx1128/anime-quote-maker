@@ -8,7 +8,7 @@ import { get } from "./get";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
-import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./state";
+import { defaultState } from "./state";
 
 import Intro from "../QuoteForm/Intro";
 import CustomImage from "../QuoteForm/CustomImage";
@@ -25,20 +25,8 @@ import Perspective from "../QuoteForm/Perspective";
 
 class QuoteWrapper extends React.Component {
    state = defaultState
-   allTags = tags
-   allStartingFullFilters = startingFullFilters
-   allFullFilters = fullFilters
-   allSlimPositions = slimPositions
-   allPositions = positions
-   allAlignments = alignments
-   allFontStyles = fontStyles
-   allSlimFontStyles = slimFontStyles
-   allSlimFontFamilies = slimFontFamilies
-   allFontFamilies = fontFamilies
 
    componentDidMount() { this.refreshAll(); }
-
-   getQuote = (set) => getQuote(this, set)
 
    get = () => get(this.state);
    update = () => update(this);
@@ -46,13 +34,13 @@ class QuoteWrapper extends React.Component {
    reset = () => reset(this.update);
    toggle = () => toggle(this.update, this.state);
 
+   getQuote = (set) => getQuote(this.update, this.random, set)
    refreshAll = () => this.reset().all(this.getQuote, this.random)
 
    render() {
       return (
          <div className={`qig-l-wrapper ${this.state.vertical ? 'qig-l-wrapper--vertical' : ''}`}>
             <div className="qig-l-wrapper__form">
-
                <Intro />
 
                <Tags
@@ -62,130 +50,50 @@ class QuoteWrapper extends React.Component {
                   random={this.random().tags}/>
 
                <Size
-                  width={this.state.width}
-                  updateWidth={this.update().width}
-                  height={this.state.height}
-                  updateHeight={this.update().height}/>
+                  state={this.state}
+                  update={this.update} />
 
                <CustomImage
                   url={this.state.customImageUrl}
                   updateUrl={this.update().customImageUrl}/>
 
                <Alignment
-                  setPosX={this.state.posX}
-                  updatePosX={this.update().posX}
-                  setPosY={this.state.posY}
-                  updatePosY={this.update().posY}/>
+                  state={this.state}
+                  update={this.update} />
 
                <Quote
                   quote={this.state.quote}
                   update={this.update().quote}
-                  get={this.getQuote}/>
+                  getQuote={this.getQuote}/>
 
                <Position
-                  quoteTop={this.state.quoteTop}
-                  quoteRight={this.state.quoteRight}
-                  quoteBottom={this.state.quoteBottom}
-                  quoteLeft={this.state.quoteLeft}
-                  verticalLimit={this.state.height}
-                  horizontalLimit={this.state.width}
-                  allPositions={this.allPositions}
-                  updatePosition={this.update().position}
-                  updateQuoteTop={this.update().quoteTop}
-                  updateQuoteRight={this.update().quoteRight}
-                  updateQuoteBottom={this.update().quoteBottom}
-                  updateQuoteLeft={this.update().quoteLeft}
-                  paddingTop={this.state.paddingTop}
-                  updatePaddingTop={this.update().paddingTop}
-                  paddingRight={this.state.paddingRight}
-                  updatePaddingRight={this.update().paddingRight}
-                  paddingBottom={this.state.paddingBottom}
-                  updatePaddingBottom={this.update().paddingBottom}
-                  paddingLeft={this.state.paddingLeft}
-                  updatePaddingLeft={this.update().paddingLeft} />
+                  state={this.state}
+                  update={this.update} />
 
                <Shape
-                  shape={this.state.shape}
-                  updateShape={this.update().shape}
-                  shapeSize={this.state.shapeSize}
-                  updateShapeSize={this.update().shapeSize}
-                  shapePosition={this.state.shapePosition}
-                  updateShapePosition={this.update().shapePosition} />
+                  state={this.state}
+                  update={this.update} />
 
                <Styling
-                  bg={this.state.bgColor}
-                  updateBg={this.update().bgColor}
-                  text={this.state.textColor}
-                  updateText={this.update().textColor}
-                  alignment={this.state.alignment}
-                  updateAlignment={this.update().alignment}
-                  fontStyle={this.state.fontStyle}
-                  updateFontStyle={this.update().fontStyle}
-                  size={this.state.size}
-                  updateSize={this.update().size}
-                  fontFamily={this.state.fontFamily}
-                  updateFontFamily={this.update().fontFamily}
-                  randomColorScheme={this.random().colorCodes}
-                  flipColorScheme={this.toggle().colorCodes}/>
+                  state={this.state}
+                  update={this.update}
+                  random={this.random}
+                  toggle={this.toggle} />
 
                <Filters
-                  contrast={this.state.filterContrast}
-                  updateContrast={this.update().contrast}
-                  hueRotate={this.state.filterHueRotate}
-                  updateHueRotate={this.update().hueRotate}
-                  saturate={this.state.filterSaturate}
-                  updateSaturate={this.update().saturate}
-                  brightness={this.state.filterBrightness}
-                  updateBrightness={this.update().brightness}
-                  sepia={this.state.filterSepia}
-                  updateSepia={this.update().sepia}
-                  blur={this.state.filterBlur}
-                  updateBlur={this.update().blur}
-                  invert={this.state.filterInvert}
-                  updateInvert={this.update().invert}
-                  fullFilters={this.allFullFilters}
-                  updateFullFilter={this.update().fullFilter}
-                  randomFilters={this.random().filters} />
+                  state={this.state}
+                  update={this.update}
+                  random={this.random} />
 
                <Transform
-                  verticalLimit={this.state.height}
-                  horizontalLimit={this.state.width}
-                  boxShadow={this.state.boxShadow}
-                  updateBoxShadow={this.update().boxShadow}
-                  boxShadowColor={this.state.boxShadowColor}
-                  updateBoxShadowColor={this.update().boxShadowColor}
-                  borderRadius={this.state.borderRadius}
-                  updateBorderRadius={this.update().borderRadius}
-                  opacity={this.state.opacity}
-                  updateOpacity={this.update().opacity}
-                  scaleX={this.state.transformScaleX}
-                  updateScaleX={this.update().transformScaleX}
-                  scaleY={this.state.transformScaleY}
-                  updateScaleY={this.update().transformScaleY}
-                  skewX={this.state.transformSkewX}
-                  updateSkewX={this.update().transformSkewX}
-                  skewY={this.state.transformSkewY}
-                  updateSkewY={this.update().transformSkewY}
-                  translateX={this.state.transformTranslateX}
-                  updateTranslateX={this.update().transformTranslateX}
-                  translateY={this.state.transformTranslateY}
-                  updateTranslateY={this.update().transformTranslateY}
-                  rotateFull={this.state.transformRotateFull}
-                  updateRotateFull={this.update().transformRotateFull}
-                  resetTransforms={this.reset().transforms} />
+                  state={this.state}
+                  update={this.update}
+                  reset={this.reset} />
 
                <Perspective
-                  rotateX={this.state.transformRotateX}
-                  updateRotateX={this.update().transformRotateX}
-                  rotateY={this.state.transformRotateY}
-                  updateRotateY={this.update().transformRotateY}
-                  perspective={this.state.perspective}
-                  updatePerspective={this.update().perspective}
-                  perspectiveOriginX={this.state.perspectiveOriginX}
-                  updatePerspectiveOriginX={this.update().perspectiveOriginX}
-                  perspectiveOriginY={this.state.perspectiveOriginY}
-                  updatePerspectiveOriginY={this.update().perspectiveOriginY}
-                  resetPerspective={this.reset().perspective} />
+                  state={this.state}
+                  update={this.update}
+                  reset={this.reset} />
 
                <button className="qig-button--full" onClick={this.toggle().verticalMode}>
                  {this.state.vertical ? 'Horizontal' : 'Vertical'} View
@@ -195,39 +103,8 @@ class QuoteWrapper extends React.Component {
 
             <div className="qig-l-wrapper__result">
                <QuoteBox
-                  image={this.get().image()}
-                  width={this.state.width}
-                  height={this.state.height}
-                  shape={this.state.shape}
-                  shapeSize={this.state.shapeSize}
-                  shapePosition={this.state.shapePosition}
-                  bgColor={this.state.bgColor}
-                  textColor={this.state.textColor}
-                  allFilters={this.get().filters}
-                  allTransforms={this.get().transforms}
-                  fontStyle={this.state.fontStyle}
-                  fontFamily={this.state.fontFamily}
-                  alignment={this.state.alignment}
-                  size={this.state.size}
-                  quote={this.state.quote}
-                  author={this.state.author}
-                  posX={this.state.posX}
-                  posY={this.state.posY}
-                  boxShadow={this.state.boxShadow}
-                  boxShadowColor={this.state.boxShadowColor}
-                  opacity={this.state.opacity}
-                  borderRadius={this.state.borderRadius}
-                  paddingTop={this.state.paddingTop}
-                  paddingRight={this.state.paddingRight}
-                  paddingBottom={this.state.paddingBottom}
-                  paddingLeft={this.state.paddingLeft}
-                  top={this.state.quoteTop}
-                  right={this.state.quoteRight}
-                  bottom={this.state.quoteBottom}
-                  left={this.state.quoteLeft}
-                  perspective={this.state.perspective}
-                  perspectiveOriginX={this.state.perspectiveOriginX}
-                  perspectiveOriginY={this.state.perspectiveOriginY} />
+                  get={this.get()}
+                  state={this.state} />
 
                <div className="qig-l-wrapper__randomize">
                   <button className="qig-button--full" onClick={this.refreshAll}>

@@ -1,7 +1,7 @@
 import React from "react";
 import RangeSlider from "./../RangeSlider";
 
-const Size = ({ width, height, updateWidth, updateHeight }) => (
+const Size = ({ state, update }) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__size">
     <h4 className="qig-l-wrapper__form-header">
       Change the Quote Size
@@ -10,37 +10,37 @@ const Size = ({ width, height, updateWidth, updateHeight }) => (
     <div className="qig-l-slider__container">
       <RangeSlider
         label={"Width"}
-        value={width}
+        value={state.width}
         min={300}
         max={1200}
         unit={"px"}
-        updateValue={updateWidth} />
+        updateValue={update().width} />
 
       <RangeSlider
         label={"Height"}
-        value={height}
+        value={state.height}
         min={300}
         max={1200}
         unit={"px"}
-        updateValue={updateHeight} />
+        updateValue={update().height} />
     </div>
 
     <br />
 
     <div className="qig__long-buttons-wrapper">
-      <button onClick={() => {updateHeight(700), updateWidth(700)}}>
+      <button onClick={() => {update().height(700), update().width(700)}}>
         Square
       </button>
 
-      <button onClick={() => {updateHeight(500), updateWidth(800)}}>
+      <button onClick={() => {update().height(500), update().width(800)}}>
         Landscape
       </button>
 
-      <button onClick={() => {updateHeight(800), updateWidth(500)}}>
+      <button onClick={() => {update().height(800), update().width(500)}}>
         Portrait
       </button>
 
-      <button onClick={() => {updateHeight(667), updateWidth(375)}}>
+      <button onClick={() => {update().height(667), update().width(375)}}>
         iPhone 8
       </button>
     </div>
