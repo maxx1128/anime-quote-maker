@@ -1,8 +1,9 @@
 import React from "react";
 
-import { randomProperty, shuffle } from "./core";
+import { shuffle } from "./core";
 import { update } from "./update";
 import { random } from "./random";
+import { reset } from "./reset";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
@@ -38,10 +39,11 @@ class QuoteWrapper extends React.Component {
 
    getQuote = (set) => getQuote(this, set)
 
-   emptyFilters = () => this.setState({ filters: [] });
-
    update = () => update(this);
    random = () => random(this.update);
+   reset = () => reset(this.update);
+
+   refreshAll = () => this.reset().all(this.getQuote, this.random)
 
    toggleVertical = () => {
       const isNowVertical = !this.state.vertical,
@@ -115,13 +117,6 @@ class QuoteWrapper extends React.Component {
       ]
    }
 
-   refreshImage = (newTags) => {
-      this.setState({
-         tags: newTags,
-         hash: Math.floor(Math.random() * 100)
-      });
-   }
-
    randomizeImage = () => {
       const newTags = shuffle(this.allTags),
             tagLimit = Math.floor(Math.random() * (3) + 1),
@@ -130,7 +125,7 @@ class QuoteWrapper extends React.Component {
                                 .join(',');
 
       this.setState({ tags: randomTags });
-      this.refreshImage(randomTags);
+      this.reset().image(randomTags);
    }
 
    flipColorCodes = () => {
@@ -138,53 +133,6 @@ class QuoteWrapper extends React.Component {
          textColor: this.state.bgColor,
          bgColor: this.state.textColor
       })
-   }
-
-   setInitialImageTags = () => {
-      this.setState({ tags: 'highres' });
-      this.refreshImage('highres');
-   }
-
-   resetTransforms = () => {
-      this.setState({
-         boxShadow: .2,
-         boxShadowColor: '#000000',
-         opacity: 0.925,
-         transformScaleX: 1,
-         transformScaleY: 1,
-         transformSkewX: 0,
-         transformSkewY: 0,
-         transformTranslateX: 0,
-         transformTranslateY: 0,
-         transformRotateFull: 0
-      })
-   }
-
-   resetPerspective = () => {
-      this.setState({
-         perspective: 0,
-         perspectiveOriginX: 0,
-         perspectiveOriginY: 0,
-         transformRotateX: 0,
-         transformRotateY: 0
-      });
-   }
-
-   refreshAll = () => {
-      const position = randomProperty(this.allSlimPositions);
-
-      this.getQuote('fontSize');
-      this.update().position(position);
-      this.update().fontStyle(randomProperty(this.allSlimFontStyles).value);
-      this.setInitialImageTags();
-      this.random().colorCodes();
-      this.random().fontFamily();
-      this.random().fullFilter();
-      this.resetTransforms();
-      this.resetPerspective();
-      this.random().shape(position["label"]);
-
-      this.update().alignment('center');
    }
 
    render() {
@@ -198,7 +146,7 @@ class QuoteWrapper extends React.Component {
                <Tags
                   tags={this.state.tags}
                   update={this.update().tags}
-                  refresh={this.refreshImage}
+                  refresh={this.reset().image}
                   random={this.randomizeImage}/>
 
                <Size
@@ -312,7 +260,7 @@ class QuoteWrapper extends React.Component {
                   updateTranslateY={this.update().transformTranslateY}
                   rotateFull={this.state.transformRotateFull}
                   updateRotateFull={this.update().transformRotateFull}
-                  resetTransforms={this.resetTransforms} />
+                  resetTransforms={this.reset().transforms} />
 
                <Perspective
                   rotateX={this.state.transformRotateX}
@@ -325,7 +273,7 @@ class QuoteWrapper extends React.Component {
                   updatePerspectiveOriginX={this.update().perspectiveOriginX}
                   perspectiveOriginY={this.state.perspectiveOriginY}
                   updatePerspectiveOriginY={this.update().perspectiveOriginY}
-                  resetPerspective={this.resetPerspective} />
+                  resetPerspective={this.reset().perspective} />
 
                <button className="qig-button--full" onClick={this.toggleVertical}>
                  {this.state.vertical ? 'Horizontal' : 'Vertical'} View

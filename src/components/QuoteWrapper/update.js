@@ -1,5 +1,7 @@
 export function update(quoteThis) {
   const allUpdates = {
+    hash: (hash) => quoteThis.setState({ hash: hash }),
+
     alignment: (alignment) => quoteThis.setState({ alignment: alignment }),
     shape: (shape) => quoteThis.setState({ shape: shape }),
     shapeSize: (e) => quoteThis.setState({ shapeSize: e.target ? e.target.value : e }),
@@ -18,6 +20,7 @@ export function update(quoteThis) {
     width: (e) => quoteThis.setState({ width: e.target ? e.target.value : e }),
     height: (e) => quoteThis.setState({ height: e.target ? e.target.value : e }),
 
+    filters: (e) => quoteThis.setState({ filters: e.target ? e.target.value : e }),
     contrast: (e) => quoteThis.setState({ filterContrast: e.target ? e.target.value : e }),
     hueRotate: (e) => quoteThis.setState({ filterHueRotate: e.target ? e.target.value : e }),
     saturate: (e) => quoteThis.setState({ filterSaturate: e.target ? e.target.value : e }),

@@ -9,7 +9,6 @@ const defaultState = {
   shape: 'none',
   shapeSize: 20,
   shapePosition: 50,
-  filters: [],
   filterContrast: 100,
   filterHueRotate: 0,
   filterSaturate: 100,
