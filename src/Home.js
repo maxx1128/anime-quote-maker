@@ -1,5 +1,5 @@
 import React from "react";
-import QuoteWrapper from "./components/QuoteWrapper";
+import QuoteWrapper from "./components/QuoteWrapper/index";
 
 class Home extends React.Component {
   render() {

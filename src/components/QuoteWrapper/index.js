@@ -1,23 +1,25 @@
 import React from "react";
 import axios from "axios";
 
-import QuoteBox from "./QuoteBox";
+import { shuffle, randomColorCode } from "./core";
+
+import QuoteBox from "../QuoteBox";
 import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./QuoteProps";
 
-import Intro from "./QuoteForm/Intro";
-import CustomImage from "./QuoteForm/CustomImage";
-import Size from "./QuoteForm/Size";
-import Alignment from "./QuoteForm/Alignment";
-import Tags from "./QuoteForm/Tags";
-import Quote from "./QuoteForm/Quote";
-import Shape from "./QuoteForm/Shape";
-import Styling from "./QuoteForm/Styling";
-import Position from "./QuoteForm/Position";
-import Filters from "./QuoteForm/Filters";
-import Transform from "./QuoteForm/Transform";
-import Perspective from "./QuoteForm/Perspective";
+import Intro from "../QuoteForm/Intro";
+import CustomImage from "../QuoteForm/CustomImage";
+import Size from "../QuoteForm/Size";
+import Alignment from "../QuoteForm/Alignment";
+import Tags from "../QuoteForm/Tags";
+import Quote from "../QuoteForm/Quote";
+import Shape from "../QuoteForm/Shape";
+import Styling from "../QuoteForm/Styling";
+import Position from "../QuoteForm/Position";
+import Filters from "../QuoteForm/Filters";
+import Transform from "../QuoteForm/Transform";
+import Perspective from "../QuoteForm/Perspective";
 
-import randomCustomQuote from "./../data/customQuotes";
+import randomCustomQuote from "../../data/customQuotes";
 
 class QuoteWrapper extends React.Component {
    state = defaultState
@@ -116,17 +118,6 @@ class QuoteWrapper extends React.Component {
    updatePerspective = (e) => this.setState({ perspective: e.target ? e.target.value : e });
    updatePerspectiveOriginX = (e) => this.setState({ perspectiveOriginX: e.target ? e.target.value : e });
    updatePerspectiveOriginY = (e) => this.setState({ perspectiveOriginY: e.target ? e.target.value : e });
-
-   shuffle = (a) => {
-      var j, x, i;
-      for (i = a.length - 1; i > 0; i--) {
-          j = Math.floor(Math.random() * (i + 1));
-          x = a[i];
-          a[i] = a[j];
-          a[j] = x;
-      }
-      return a;
-   }
 
    updatePosition = (position) => {
       const { value } = position;
@@ -278,25 +269,6 @@ class QuoteWrapper extends React.Component {
    }
 
    randomizeImage = () => {
-      const shuffle = (array) => {
-         var currentIndex = array.length, temporaryValue, randomIndex;
-
-         // While there remain elements to shuffle...
-         while (0 !== currentIndex) {
-
-           // Pick a remaining element...
-           randomIndex = Math.floor(Math.random() * currentIndex);
-           currentIndex -= 1;
-
-           // And swap it with the current element.
-           temporaryValue = array[currentIndex];
-           array[currentIndex] = array[randomIndex];
-           array[randomIndex] = temporaryValue;
-         }
-
-         return array;
-      };
-
       const newTags = shuffle(this.allTags),
             tagLimit = Math.floor(Math.random() * (3) + 1),
             randomTags = newTags.slice(0, tagLimit)
@@ -307,15 +279,9 @@ class QuoteWrapper extends React.Component {
       this.refreshImage(randomTags);
    }
 
-   randomColorCode = (characters) => {
-      const getRandomChar = () => characters[Math.floor(Math.random()*characters.length)];
-
-      return `#${getRandomChar()}${getRandomChar()}${getRandomChar()}${getRandomChar()}${getRandomChar()}${getRandomChar()}`
-   }
-
    randomColorCodes = () => {
-      const lightColor  = this.randomColorCode(['F', 'E', 'D', 'C']),
-            darkColor   = this.randomColorCode([0, 1, 2, 3]),
+      const lightColor  = randomColorCode(['F', 'E', 'D', 'C']),
+            darkColor   = randomColorCode([0, 1, 2, 3]),
             hasDarkText = Math.random() >= 0.5;
 
 

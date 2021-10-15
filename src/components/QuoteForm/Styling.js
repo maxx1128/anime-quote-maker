@@ -2,7 +2,7 @@ import React from "react";
 import RadioItems from "./../RadioItems";
 import RangeSlider from "./../RangeSlider";
 
-import { alignments, fontStyles, fontFamilies } from "./../QuoteProps";
+import { alignments, fontStyles, fontFamilies } from "./../QuoteWrapper/QuoteProps";
 
 const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fontStyle, updateFontStyle, size, updateSize, fontFamily, updateFontFamily, randomColorScheme, flipColorScheme}) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__styling">
