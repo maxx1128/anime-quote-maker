@@ -1,7 +1,7 @@
 import React from "react";
-import axios from "axios";
 
 import { shuffle, randomColorCode } from "./core";
+import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
 import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./state";
@@ -19,8 +19,6 @@ import Filters from "../QuoteForm/Filters";
 import Transform from "../QuoteForm/Transform";
 import Perspective from "../QuoteForm/Perspective";
 
-import randomCustomQuote from "../../data/customQuotes";
-
 class QuoteWrapper extends React.Component {
    state = defaultState
    allTags = tags
@@ -36,32 +34,7 @@ class QuoteWrapper extends React.Component {
 
    componentDidMount() { this.refreshAll(); }
 
-   getQuote = (set) => {
-      let quote, author;
-      const randomQuote = randomCustomQuote();
-
-      axios.get('https://api.quotable.io/random').then(response => {
-         const useRandomQuote = Math.floor(Math.random() * 4) === 0;
-
-         if (useRandomQuote) {
-            quote = randomQuote.content;
-            author = randomQuote.author;
-         } else {
-            quote = response.data.content;
-            author = response.data.author;
-         }
-      }).catch(() => {
-         quote = randomQuote.content;
-         author = randomQuote.author;
-      }).finally(() => {
-         this.setState({
-            quote: quote,
-            author: author
-         });
-
-         if (set === 'fontSize') { this.randomizeFontSize(quote); }
-      });
-   };
+   getQuote = (set) => getQuote(this, set)
 
    randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.setState({ filters: [] });
