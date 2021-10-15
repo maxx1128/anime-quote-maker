@@ -1,9 +1,9 @@
 import React from "react";
 
-import { shuffle } from "./core";
 import { update } from "./update";
 import { random } from "./random";
 import { reset } from "./reset";
+import { toggle } from "./toggle";
 import { getValues } from "./getValues";
 import { getQuote } from "./getQuote";
 
@@ -43,28 +43,10 @@ class QuoteWrapper extends React.Component {
    update = () => update(this);
    random = () => random(this.update);
    reset = () => reset(this.update);
+   toggle = () => toggle(this.update, this.state);
    getValues = () => getValues(this.state);
 
    refreshAll = () => this.reset().all(this.getQuote, this.random)
-
-   toggleVertical = () => {
-      const isNowVertical = !this.state.vertical,
-            width = isNowVertical ? 1024 : 700,
-            height = isNowVertical ? 300 : 700;
-
-      this.setState({
-         vertical: isNowVertical,
-         width: width,
-         height: height
-      });
-   }
-
-   flipColorCodes = () => {
-      this.setState({
-         textColor: this.state.bgColor,
-         bgColor: this.state.textColor
-      })
-   }
 
    render() {
       const image = this.state.customImageUrl ? this.state.customImageUrl : `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${this.state.tags}#${this.state.hash}`;
@@ -145,7 +127,7 @@ class QuoteWrapper extends React.Component {
                   fontFamily={this.state.fontFamily}
                   updateFontFamily={this.update().fontFamily}
                   randomColorScheme={this.random().colorCodes}
-                  flipColorScheme={this.flipColorCodes}/>
+                  flipColorScheme={this.toggle().colorCodes}/>
 
                <Filters
                   contrast={this.state.filterContrast}
@@ -206,7 +188,7 @@ class QuoteWrapper extends React.Component {
                   updatePerspectiveOriginY={this.update().perspectiveOriginY}
                   resetPerspective={this.reset().perspective} />
 
-               <button className="qig-button--full" onClick={this.toggleVertical}>
+               <button className="qig-button--full" onClick={this.toggle().verticalMode}>
                  {this.state.vertical ? 'Horizontal' : 'Vertical'} View
                </button>
                <br/>

@@ -19,6 +19,7 @@ export function update(quoteThis) {
     size: (e) => quoteThis.setState({ size: e.target ? e.target.value : e }),
     width: (e) => quoteThis.setState({ width: e.target ? e.target.value : e }),
     height: (e) => quoteThis.setState({ height: e.target ? e.target.value : e }),
+    vertical: (e) => quoteThis.setState({ vertical: e.target ? e.target.value : e }),
 
     filters: (e) => quoteThis.setState({ filters: e.target ? e.target.value : e }),
     contrast: (e) => quoteThis.setState({ filterContrast: e.target ? e.target.value : e }),
