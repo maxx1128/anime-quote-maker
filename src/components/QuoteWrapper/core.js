@@ -1,3 +1,7 @@
+export function randomProperty(array) {
+  return array[Math.floor(Math.random()*array.length)];
+}
+
 export function shuffle(a) {
   var j, x, i;
   for (i = a.length - 1; i > 0; i--) {

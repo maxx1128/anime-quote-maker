@@ -1,6 +1,6 @@
 import React from "react";
 
-import { shuffle, randomColorCode } from "./core";
+import { randomProperty, shuffle, randomColorCode } from "./core";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
@@ -36,8 +36,8 @@ class QuoteWrapper extends React.Component {
 
    getQuote = (set) => getQuote(this, set)
 
-   randomProperty = (array) => array[Math.floor(Math.random()*array.length)]
    emptyFilters = () => this.setState({ filters: [] });
+
    updateAlignment = (alignment) => this.setState({ alignment: alignment });
    updateShape = (shape) => this.setState({ shape: shape });
    updateShapeSize = (e) => this.setState({ shapeSize: e.target ? e.target.value : e })
@@ -141,7 +141,7 @@ class QuoteWrapper extends React.Component {
       if (useRandomFilters) {
          this.randomFilters();
       } else {
-         this.updateFullFilter(this.randomProperty(this.allStartingFullFilters));
+         this.updateFullFilter(randomProperty(this.allStartingFullFilters));
       }
    }
 
@@ -237,7 +237,7 @@ class QuoteWrapper extends React.Component {
    }
 
    randomFontFamily = () => {
-      const randomFamily = this.randomProperty(this.allSlimFontFamilies);
+      const randomFamily = randomProperty(this.allSlimFontFamilies);
       this.setState({ fontFamily: randomFamily });
    }
 
@@ -268,9 +268,9 @@ class QuoteWrapper extends React.Component {
       let shape = false;
 
       if (position === '3/4') {
-         shape = this.randomProperty(verticalShapes)["value"];
+         shape = randomProperty(verticalShapes)["value"];
       } else if (position === 'Spaced Bottom') {
-         shape = this.randomProperty(slimShapes)["value"];
+         shape = randomProperty(slimShapes)["value"];
       } else {
          shape = 'none'
       }
@@ -320,11 +320,11 @@ class QuoteWrapper extends React.Component {
    }
 
    refreshAll = () => {
-      const position = this.randomProperty(this.allSlimPositions);
+      const position = randomProperty(this.allSlimPositions);
 
       this.getQuote('fontSize');
       this.updatePosition(position);
-      this.updateFontStyle(this.randomProperty(this.allSlimFontStyles).value);
+      this.updateFontStyle(randomProperty(this.allSlimFontStyles).value);
       this.setInitialImageTags();
       this.randomColorCodes();
       this.randomFontFamily();
