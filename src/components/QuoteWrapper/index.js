@@ -1,6 +1,7 @@
 import React from "react";
 
 import { randomProperty, shuffle, randomColorCode } from "./core";
+import { update } from "./update";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
@@ -38,101 +39,20 @@ class QuoteWrapper extends React.Component {
 
    emptyFilters = () => this.setState({ filters: [] });
 
-   updateAlignment = (alignment) => this.setState({ alignment: alignment });
-   updateShape = (shape) => this.setState({ shape: shape });
-   updateShapeSize = (e) => this.setState({ shapeSize: e.target ? e.target.value : e })
-   updateShapePosition = (e) => this.setState({ shapePosition: e.target ? e.target.value : e })
-   updateCustomImageUrl = (e) => this.setState({ customImageUrl: e.target ? e.target.value : e  })
-   updatePosX = (e) => this.setState({ posX: e.target.value });
-   updatePosY = (e) => this.setState({ posY: e.target.value });
-   updateQuote = (e) => this.setState({ quote: e.target.value })
-   updateBgColor = (e) => this.setState({ bgColor: e.target.value })
-   updateTextColor = (e) => this.setState({ textColor: e.target.value })
-   updateStyle = (style) => this.setState({ style: style })
-   updateFontStyle = (fontStyle) => this.setState({ fontStyle: fontStyle })
-   updateFontFamily = (e) => this.setState({ fontFamily: e.target.value })
-   updateTags = (newTags) => this.setState({ tags: newTags });
-   updateSize = (e) => this.setState({ size: e.target.value });
-   updateWidth = (e) => this.setState({ width: e.target ? e.target.value : e });
-   updateHeight = (e) => this.setState({ height: e.target ? e.target.value : e });
-
-   updateContrast = (e) => this.setState({ filterContrast: e.target ? e.target.value : e });
-   updateHueRotate = (e) => this.setState({ filterHueRotate: e.target ? e.target.value : e });
-   updateSaturate = (e) => this.setState({ filterSaturate: e.target ? e.target.value : e });
-   updateBrightness = (e) => this.setState({ filterBrightness: e.target ? e.target.value : e });
-   updateSepia = (e) => this.setState({ filterSepia: e.target ? e.target.value : e });
-   updateBlur = (e) => this.setState({ filterBlur: e.target ? e.target.value : e });
-   updateInvert = (e) => this.setState({ filterInvert: e.target ? e.target.value : e });
-
-   updateQuoteTop = (e) => this.setState({ quoteTop: e.target ? e.target.value : e });
-   updateQuoteRight = (e) => this.setState({ quoteRight: e.target ? e.target.value : e });
-   updateQuoteBottom = (e) => this.setState({ quoteBottom: e.target ? e.target.value : e });
-   updateQuoteLeft = (e) => this.setState({ quoteLeft: e.target ? e.target.value : e });
-   updatePaddingTop = (e) => this.setState({ paddingTop: e.target ? e.target.value : e });
-   updatePaddingRight = (e) => this.setState({ paddingRight: e.target ? e.target.value : e });
-   updatePaddingBottom = (e) => this.setState({ paddingBottom: e.target ? e.target.value : e });
-   updatePaddingLeft = (e) => this.setState({ paddingLeft: e.target ? e.target.value : e });
-
-   updateBoxShadow = (e) => this.setState({ boxShadow: e.target ? e.target.value : e });
-   updateBoxShadowColor = (e) => this.setState({ boxShadowColor: e.target ? e.target.value : e });
-   updateBorderRadius = (e) => this.setState({ borderRadius: e.target ? e.target.value : e });
-   updateOpacity = (e) => this.setState({ opacity: e.target ? e.target.value : e });
-
-   updateTransformScaleX = (e) => this.setState({ transformScaleX: e.target ? e.target.value : e });
-   updateTransformScaleY = (e) => this.setState({ transformScaleY: e.target ? e.target.value : e });
-   updateTransformSkewX = (e) => this.setState({ transformSkewX: e.target ? e.target.value : e });
-   updateTransformSkewY = (e) => this.setState({ transformSkewY: e.target ? e.target.value : e });
-   updateTransformTranslateX = (e) => this.setState({ transformTranslateX: e.target ? e.target.value : e });
-   updateTransformTranslateY = (e) => this.setState({ transformTranslateY: e.target ? e.target.value : e });
-   updateTransformRotateFull = (e) => this.setState({ transformRotateFull: e.target ? e.target.value : e });
-   updateTransformRotateX = (e) => this.setState({ transformRotateX: e.target ? e.target.value : e });
-   updateTransformRotateY = (e) => this.setState({ transformRotateY: e.target ? e.target.value : e });
-
-   updatePerspective = (e) => this.setState({ perspective: e.target ? e.target.value : e });
-   updatePerspectiveOriginX = (e) => this.setState({ perspectiveOriginX: e.target ? e.target.value : e });
-   updatePerspectiveOriginY = (e) => this.setState({ perspectiveOriginY: e.target ? e.target.value : e });
-
-   updatePosition = (position) => {
-      const { value } = position;
-
-      this.setState({
-         quoteTop: value['top'],
-         quoteRight: value['right'],
-         quoteBottom: value['bottom'],
-         quoteLeft: value['left']
-      })
-   }
-
-   updateFullFilter = (fullFilter) => {
-      const filterVals = fullFilter["values"];
-      const setters = {
-         "contrast": this.updateContrast,
-         "hueRotate": this.updateHueRotate,
-         "saturate": this.updateSaturate,
-         "brightness": this.updateBrightness,
-         "sepia": this.updateSepia,
-         "blur": this.updateBlur,
-         "invert": this.updateInvert
-      }
-
-      for (let filter in filterVals) {
-         const setter = setters[filter];
-         setter(filterVals[filter]);
-      }
-   }
+   update = () => update(this);
 
    randomFilters = () => {
       const randomRange = (min, max) => {
          return Math.floor(Math.random() * (max - min + 1) + min)
       }
 
-      this.updateContrast(randomRange(60, 140));
-      this.updateHueRotate(randomRange(0, 180));
-      this.updateSaturate(randomRange(85, 150));
-      this.updateBrightness(randomRange(100, 110));
-      this.updateSepia(randomRange(0, 25));
-      this.updateBlur(0);
-      this.updateInvert(0);
+      this.update().contrast(randomRange(60, 140));
+      this.update().hueRotate(randomRange(0, 180));
+      this.update().saturate(randomRange(85, 150));
+      this.update().brightness(randomRange(100, 110));
+      this.update().sepia(randomRange(0, 25));
+      this.update().blur(0);
+      this.update().invert(0);
    }
 
    setRandomFullFilter = () => {
@@ -141,7 +61,7 @@ class QuoteWrapper extends React.Component {
       if (useRandomFilters) {
          this.randomFilters();
       } else {
-         this.updateFullFilter(randomProperty(this.allStartingFullFilters));
+         this.update().fullFilter(randomProperty(this.allStartingFullFilters));
       }
    }
 
@@ -323,8 +243,8 @@ class QuoteWrapper extends React.Component {
       const position = randomProperty(this.allSlimPositions);
 
       this.getQuote('fontSize');
-      this.updatePosition(position);
-      this.updateFontStyle(randomProperty(this.allSlimFontStyles).value);
+      this.update().position(position);
+      this.update().fontStyle(randomProperty(this.allSlimFontStyles).value);
       this.setInitialImageTags();
       this.randomColorCodes();
       this.randomFontFamily();
@@ -333,7 +253,7 @@ class QuoteWrapper extends React.Component {
       this.resetPerspective();
       this.randomShape(position["label"]);
 
-      this.updateAlignment('center');
+      this.update().alignment('center');
    }
 
    render() {
@@ -346,29 +266,29 @@ class QuoteWrapper extends React.Component {
 
                <Tags
                   tags={this.state.tags}
-                  update={this.updateTags}
+                  update={this.update().tags}
                   refresh={this.refreshImage}
                   random={this.randomizeImage}/>
 
                <Size
                   width={this.state.width}
-                  updateWidth={this.updateWidth}
+                  updateWidth={this.update().width}
                   height={this.state.height}
-                  updateHeight={this.updateHeight}/>
+                  updateHeight={this.update().height}/>
 
                <CustomImage
                   url={this.state.customImageUrl}
-                  updateUrl={this.updateCustomImageUrl}/>
+                  updateUrl={this.update().customImageUrl}/>
 
                <Alignment
                   setPosX={this.state.posX}
-                  updatePosX={this.updatePosX}
+                  updatePosX={this.update().posX}
                   setPosY={this.state.posY}
-                  updatePosY={this.updatePosY}/>
+                  updatePosY={this.update().posY}/>
 
                <Quote
                   quote={this.state.quote}
-                  update={this.updateQuote}
+                  update={this.update().quote}
                   get={this.getQuote}/>
 
                <Position
@@ -379,101 +299,101 @@ class QuoteWrapper extends React.Component {
                   verticalLimit={this.state.height}
                   horizontalLimit={this.state.width}
                   allPositions={this.allPositions}
-                  updatePosition={this.updatePosition}
-                  updateQuoteTop={this.updateQuoteTop}
-                  updateQuoteRight={this.updateQuoteRight}
-                  updateQuoteBottom={this.updateQuoteBottom}
-                  updateQuoteLeft={this.updateQuoteLeft}
+                  updatePosition={this.update().position}
+                  updateQuoteTop={this.update().quoteTop}
+                  updateQuoteRight={this.update().quoteRight}
+                  updateQuoteBottom={this.update().quoteBottom}
+                  updateQuoteLeft={this.update().quoteLeft}
                   paddingTop={this.state.paddingTop}
-                  updatePaddingTop={this.updatePaddingTop}
+                  updatePaddingTop={this.update().paddingTop}
                   paddingRight={this.state.paddingRight}
-                  updatePaddingRight={this.updatePaddingRight}
+                  updatePaddingRight={this.update().paddingRight}
                   paddingBottom={this.state.paddingBottom}
-                  updatePaddingBottom={this.updatePaddingBottom}
+                  updatePaddingBottom={this.update().paddingBottom}
                   paddingLeft={this.state.paddingLeft}
-                  updatePaddingLeft={this.updatePaddingLeft} />
+                  updatePaddingLeft={this.update().paddingLeft} />
 
                <Shape
                   shape={this.state.shape}
-                  updateShape={this.updateShape}
+                  updateShape={this.update().shape}
                   shapeSize={this.state.shapeSize}
-                  updateShapeSize={this.updateShapeSize}
+                  updateShapeSize={this.update().shapeSize}
                   shapePosition={this.state.shapePosition}
-                  updateShapePosition={this.updateShapePosition} />
+                  updateShapePosition={this.update().shapePosition} />
 
                <Styling
                   bg={this.state.bgColor}
-                  updateBg={this.updateBgColor}
+                  updateBg={this.update().bgColor}
                   text={this.state.textColor}
-                  updateText={this.updateTextColor}
+                  updateText={this.update().textColor}
                   alignment={this.state.alignment}
-                  updateAlignment={this.updateAlignment}
+                  updateAlignment={this.update().alignment}
                   fontStyle={this.state.fontStyle}
-                  updateFontStyle={this.updateFontStyle}
+                  updateFontStyle={this.update().fontStyle}
                   size={this.state.size}
-                  updateSize={this.updateSize}
+                  updateSize={this.update().size}
                   fontFamily={this.state.fontFamily}
-                  updateFontFamily={this.updateFontFamily}
+                  updateFontFamily={this.update().fontFamily}
                   randomColorScheme={this.randomColorCodes}
                   flipColorScheme={this.flipColorCodes}/>
 
                <Filters
                   contrast={this.state.filterContrast}
-                  updateContrast={this.updateContrast}
+                  updateContrast={this.update().contrast}
                   hueRotate={this.state.filterHueRotate}
-                  updateHueRotate={this.updateHueRotate}
+                  updateHueRotate={this.update().hueRotate}
                   saturate={this.state.filterSaturate}
-                  updateSaturate={this.updateSaturate}
+                  updateSaturate={this.update().saturate}
                   brightness={this.state.filterBrightness}
-                  updateBrightness={this.updateBrightness}
+                  updateBrightness={this.update().brightness}
                   sepia={this.state.filterSepia}
-                  updateSepia={this.updateSepia}
+                  updateSepia={this.update().sepia}
                   blur={this.state.filterBlur}
-                  updateBlur={this.updateBlur}
+                  updateBlur={this.update().blur}
                   invert={this.state.filterInvert}
-                  updateInvert={this.updateInvert}
+                  updateInvert={this.update().invert}
                   fullFilters={this.allFullFilters}
-                  updateFullFilter={this.updateFullFilter}
+                  updateFullFilter={this.update().fullFilter}
                   randomFilters={this.randomFilters} />
 
                <Transform
                   verticalLimit={this.state.height}
                   horizontalLimit={this.state.width}
                   boxShadow={this.state.boxShadow}
-                  updateBoxShadow={this.updateBoxShadow}
+                  updateBoxShadow={this.update().boxShadow}
                   boxShadowColor={this.state.boxShadowColor}
-                  updateBoxShadowColor={this.updateBoxShadowColor}
+                  updateBoxShadowColor={this.update().boxShadowColor}
                   borderRadius={this.state.borderRadius}
-                  updateBorderRadius={this.updateBorderRadius}
+                  updateBorderRadius={this.update().borderRadius}
                   opacity={this.state.opacity}
-                  updateOpacity={this.updateOpacity}
+                  updateOpacity={this.update().opacity}
                   scaleX={this.state.transformScaleX}
-                  updateScaleX={this.updateTransformScaleX}
+                  updateScaleX={this.update().transformScaleX}
                   scaleY={this.state.transformScaleY}
-                  updateScaleY={this.updateTransformScaleY}
+                  updateScaleY={this.update().transformScaleY}
                   skewX={this.state.transformSkewX}
-                  updateSkewX={this.updateTransformSkewX}
+                  updateSkewX={this.update().transformSkewX}
                   skewY={this.state.transformSkewY}
-                  updateSkewY={this.updateTransformSkewY}
+                  updateSkewY={this.update().transformSkewY}
                   translateX={this.state.transformTranslateX}
-                  updateTranslateX={this.updateTransformTranslateX}
+                  updateTranslateX={this.update().transformTranslateX}
                   translateY={this.state.transformTranslateY}
-                  updateTranslateY={this.updateTransformTranslateY}
+                  updateTranslateY={this.update().transformTranslateY}
                   rotateFull={this.state.transformRotateFull}
-                  updateRotateFull={this.updateTransformRotateFull}
+                  updateRotateFull={this.update().transformRotateFull}
                   resetTransforms={this.resetTransforms} />
 
                <Perspective
                   rotateX={this.state.transformRotateX}
-                  updateRotateX={this.updateTransformRotateX}
+                  updateRotateX={this.update().transformRotateX}
                   rotateY={this.state.transformRotateY}
-                  updateRotateY={this.updateTransformRotateY}
+                  updateRotateY={this.update().transformRotateY}
                   perspective={this.state.perspective}
-                  updatePerspective={this.updatePerspective}
+                  updatePerspective={this.update().perspective}
                   perspectiveOriginX={this.state.perspectiveOriginX}
-                  updatePerspectiveOriginX={this.updatePerspectiveOriginX}
+                  updatePerspectiveOriginX={this.update().perspectiveOriginX}
                   perspectiveOriginY={this.state.perspectiveOriginY}
-                  updatePerspectiveOriginY={this.updatePerspectiveOriginY}
+                  updatePerspectiveOriginY={this.update().perspectiveOriginY}
                   resetPerspective={this.resetPerspective} />
 
                <button className="qig-button--full" onClick={this.toggleVertical}>
