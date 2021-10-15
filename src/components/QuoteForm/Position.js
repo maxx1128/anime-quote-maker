@@ -1,4 +1,23 @@
 import React from "react";
+import RangeSlider from "./../RangeSlider";
+
+const LocationSlider = ({label, value, updateValue, limit}) => (
+  <div>
+    <label htmlFor={label} className={`qig-l-slider__label ${isNaN(value) ? 'qig-l-slider__label--disabled' : ''}`}>
+      <span className="qig-l-slider__label-inline-text">
+        {label}:
+        {isNaN(value)
+          ? <strong>None</strong>
+          : <input type="number" min="0" max={limit} value={value} onChange={updateValue} />
+        }
+      </span>
+      <input type="range" min="0" max={limit} name={label} value={isNaN(value) ? 0 : value} onChange={updateValue} />
+    </label>
+    <button onClick={() => updateValue('auto')}>
+      Set to None
+    </button>
+  </div>
+);
 
 const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, horizontalLimit, allPositions, paddingTop, updatePaddingTop, paddingRight, updatePaddingRight, paddingBottom, updatePaddingBottom, paddingLeft, updatePaddingLeft, updatePosition, updateQuoteTop, updateQuoteRight, updateQuoteBottom, updateQuoteLeft }) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__position">
@@ -7,69 +26,29 @@ const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, 
     </h4>
 
     <div className="qig-l-slider__container">
-      <div>
-        <label htmlFor="posTop" className={`qig-l-slider__label ${isNaN(quoteTop) ? 'qig-l-slider__label--disabled' : ''}`}>
-          <span className="qig-l-slider__label-inline-text">
-            Top:
-            {isNaN(quoteTop)
-              ? <strong>None</strong>
-              : <input type="number" min="0" max={verticalLimit} value={quoteTop} onChange={updateQuoteTop} />
-            }
-          </span>
-          <input type="range" min="0" max={verticalLimit} name="posTop" value={isNaN(quoteTop) ? 0 : quoteTop} onChange={updateQuoteTop} />
-        </label>
-        <button onClick={() => updateQuoteTop('auto')}>
-          Set to None
-        </button>
-      </div>
+      <LocationSlider
+        label={"Top"}
+        value={quoteTop}
+        updateValue={updateQuoteTop}
+        limit={verticalLimit} />
 
-      <div>
-        <label htmlFor="posRight" className={`qig-l-slider__label ${isNaN(quoteRight) ? 'qig-l-slider__label--disabled' : ''}`}>
-          <span className="qig-l-slider__label-inline-text">
-            Right:
-            {isNaN(quoteRight)
-              ? <strong>None</strong>
-              : <input type="number" min="0" max={horizontalLimit} value={quoteRight} onChange={updateQuoteRight} />
-            }
-          </span>
-          <input type="range" min="0" max={horizontalLimit} name="posRight" value={isNaN(quoteRight) ? 0 : quoteRight} onChange={updateQuoteRight} />
-        </label>
-        <button onClick={() => updateQuoteRight('auto')}>
-          Set to None
-        </button>
-      </div>
+      <LocationSlider
+        label={"Right"}
+        value={quoteRight}
+        updateValue={updateQuoteRight}
+        limit={horizontalLimit} />
 
-      <div>
-        <label htmlFor="posBottom" className={`qig-l-slider__label ${isNaN(quoteBottom) ? 'qig-l-slider__label--disabled' : ''}`}>
-          <span className="qig-l-slider__label-inline-text">
-            Bottom:
-            {isNaN(quoteBottom)
-              ? <strong>None</strong>
-              : <input type="number" min="0" max={verticalLimit} value={quoteBottom} onChange={updateQuoteBottom} />
-            }
-          </span>
-          <input type="range" min="0" max={verticalLimit} name="posBottom" value={isNaN(quoteBottom) ? 0 : quoteBottom} onChange={updateQuoteBottom} />
-        </label>
-        <button onClick={() => updateQuoteBottom('auto')}>
-          Set to None
-        </button>
-      </div>
+      <LocationSlider
+        label={"Bottom"}
+        value={quoteBottom}
+        updateValue={updateQuoteBottom}
+        limit={verticalLimit} />
 
-      <div>
-        <label htmlFor="posLeft" className={`qig-l-slider__label ${isNaN(quoteLeft) ? 'qig-l-slider__label--disabled' : ''}`}>
-          <span className="qig-l-slider__label-inline-text">
-            Left:
-            {isNaN(quoteLeft)
-              ? <strong>None</strong>
-              : <input type="number" min="0" max={horizontalLimit} value={quoteLeft} onChange={updateQuoteLeft} />
-            }
-          </span>
-          <input type="range" min="0" max={horizontalLimit} name="posLeft" value={isNaN(quoteLeft) ? 0 : quoteLeft} onChange={updateQuoteLeft} />
-        </label>
-        <button onClick={() => updateQuoteLeft('auto')}>
-          Set to None
-        </button>
-      </div>
+      <LocationSlider
+        label={"Left"}
+        value={quoteLeft}
+        updateValue={updateQuoteLeft}
+        limit={horizontalLimit} />
     </div>
 
     <br />
@@ -79,41 +58,37 @@ const Position = ({quoteTop, quoteRight, quoteBottom, quoteLeft, verticalLimit, 
     </h4>
 
     <div className="qig-l-slider__container">
-      <div>
-        <label htmlFor="padding-top" className="qig-l-slider__label">
-          <span className="qig-l-slider__label-inline-text">
-            Top: <input type="number" min="0" max={verticalLimit / 2} value={paddingTop} onChange={updatePaddingTop} />
-          </span>
-          <input type="range" min="0" max={verticalLimit / 2} name="padding-top" value={paddingTop} onChange={updatePaddingTop} />
-        </label>
-      </div>
+      <RangeSlider
+        label={"Top"}
+        inline={true}
+        value={paddingTop}
+        max={verticalLimit / 2}
+        unit={""}
+        updateValue={updatePaddingTop} />
 
-      <div>
-        <label htmlFor="padding-right" className="qig-l-slider__label">
-          <span className="qig-l-slider__label-inline-text">
-            Right: <input type="number" min="0" max={horizontalLimit / 2} value={paddingRight} onChange={updatePaddingRight} />
-          </span>
-          <input type="range" min="0" max={horizontalLimit / 2} name="padding-right" value={paddingRight} onChange={updatePaddingRight} />
-        </label>
-      </div>
+      <RangeSlider
+        label={"Right"}
+        inline={true}
+        value={paddingRight}
+        max={horizontalLimit / 2}
+        unit={""}
+        updateValue={updatePaddingRight} />
 
-      <div>
-        <label htmlFor="padding-bottom" className="qig-l-slider__label">
-          <span className="qig-l-slider__label-inline-text">
-            Bottom: <input type="number" min="0" max={verticalLimit / 2} value={paddingBottom} onChange={updatePaddingBottom} />
-          </span>
-          <input type="range" min="0" max={verticalLimit / 2} name="padding-bottom" value={paddingBottom} onChange={updatePaddingBottom} />
-        </label>
-      </div>
+      <RangeSlider
+        label={"Bottom"}
+        inline={true}
+        value={paddingBottom}
+        max={verticalLimit / 2}
+        unit={""}
+        updateValue={updatePaddingBottom} />
 
-      <div>
-        <label htmlFor="padding-left" className="qig-l-slider__label">
-          <span className="qig-l-slider__label-inline-text">
-            Left: <input type="number" min="0" max={horizontalLimit / 2} value={paddingLeft} onChange={updatePaddingLeft} />
-          </span>
-          <input type="range" min="0" max={horizontalLimit / 2} name="padding-left" value={paddingLeft} onChange={updatePaddingLeft} />
-        </label>
-      </div>
+      <RangeSlider
+        label={"Left"}
+        inline={true}
+        value={paddingLeft}
+        max={horizontalLimit / 2}
+        unit={""}
+        updateValue={updatePaddingLeft} />
     </div>
 
     <br />

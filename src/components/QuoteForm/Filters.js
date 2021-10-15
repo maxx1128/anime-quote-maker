@@ -1,4 +1,5 @@
 import React from "react";
+import RangeSlider from "./../RangeSlider";
 
 const Filters = ({ contrast, updateContrast, hueRotate, updateHueRotate, saturate, updateSaturate, brightness, updateBrightness, sepia, updateSepia, blur, updateBlur, invert, updateInvert, fullFilters, updateFullFilter, randomFilters }) => (
   <div className="qig-l-wrapper__form-item">
@@ -6,53 +7,47 @@ const Filters = ({ contrast, updateContrast, hueRotate, updateHueRotate, saturat
       Restyle the Image
     </h4>
 
-    <label htmlFor="filter-contrast" className="qig-l-slider__label">
-      <span>
-        Contrast: {contrast}%
-      </span>
-      <input type="range" min="0" max="400" id="filter-contrast" name="filter-contrast" value={contrast} onChange={updateContrast} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Contrast"}
+      value={contrast}
+      unit={"%"}
+      max={"400"}
+      updateValue={updateContrast} />
 
-    <label htmlFor="filter-hue-rotate" className="qig-l-slider__label">
-      <span>
-        Hue-Rotate: {hueRotate} deg
-      </span>
-      <input type="range" min="0" max="360" id="filter-hue-rotate" name="filter-hue-rotate" value={hueRotate} onChange={updateHueRotate} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Hue-Rotate"}
+      value={hueRotate}
+      unit={"deg"}
+      max={"360"}
+      updateValue={updateHueRotate} />
 
-    <label htmlFor="filter-saturate" className="qig-l-slider__label">
-      <span>
-        Saturation: {saturate}%
-      </span>
-      <input type="range" min="0" max="400" id="filter-saturate" name="filter-saturate" value={saturate} onChange={updateSaturate} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Saturation"}
+      value={saturate}
+      unit={"%"}
+      max={"400"}
+      updateValue={updateSaturate} />
 
-    <label htmlFor="filter-brightness" className="qig-l-slider__label">
-      <span>
-        Brightness: {brightness}%
-      </span>
-      <input type="range" min="0" max="400" id="filter-brightness" name="filter-brightness" value={brightness} onChange={updateBrightness} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Brightness"}
+      value={brightness}
+      unit={"%"}
+      max={"400"}
+      updateValue={updateBrightness} />
 
-    <label htmlFor="filter-sepia" className="qig-l-slider__label">
-      <span>
-        Sepia: {sepia}%
-      </span>
-      <input type="range" min="0" max="100" id="filter-sepia" name="filter-sepia" value={sepia} onChange={updateSepia} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Sepia"}
+      value={sepia}
+      unit={"%"}
+      max={"100"}
+      updateValue={updateSepia} />
 
-    <label htmlFor="filter-blur" className="qig-l-slider__label">
-      <span>
-        Blur: {blur} px
-      </span>
-      <input type="range" min="0" max="10" id="filter-blur" name="filter-blur" value={blur} step="0.1" onChange={updateBlur} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Blur"}
+      value={blur}
+      max={"10"}
+      step={"0.1"}
+      updateValue={updateBlur} />
 
     <label htmlFor="filterInvert">
       Invert

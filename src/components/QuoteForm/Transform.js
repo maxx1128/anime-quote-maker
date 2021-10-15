@@ -1,4 +1,5 @@
 import React from "react";
+import RangeSlider from "./../RangeSlider";
 
 const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow, boxShadowColor, updateBoxShadowColor, borderRadius, updateBorderRadius, opacity, updateOpacity, scaleX, updateScaleX, scaleY, updateScaleY, skewX, updateSkewX, skewY, updateSkewY, translateX, updateTranslateX, translateY, updateTranslateY, rotateFull, updateRotateFull, resetTransforms }) => (
   <div className="qig-l-wrapper__form-item">
@@ -6,86 +7,85 @@ const Transform = ({ verticalLimit, horizontalLimit, boxShadow, updateBoxShadow,
       Transform the Quote
     </h4>
 
-    <label htmlFor="opacity" className="qig-l-slider__label">
-      <span>
-        Opacity: <input type="number" min="0" max="1" value={opacity} step="0.025" onChange={updateOpacity} />
-      </span>
-      <input type="range" min="0" max="1" id="opacity" name="opacity" value={opacity} step="0.025" onChange={updateOpacity} />
+    <label htmlFor="box-shadow-color" >
+      Box Shadow Color
+      <input type="color" id="box-shadow-color" name="box-shadow-color" onChange={updateBoxShadowColor} value={boxShadowColor} />
     </label>
+
+    <br />
     <br />
 
-    <label htmlFor="box-shadow" className="qig-l-slider__label">
-      <span>
-        Box Shadow: <input type="number" min="0" max="1" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
-        <input type="color" name="box-shadow-color" onChange={updateBoxShadowColor} value={boxShadowColor} />
-      </span>
-      <input type="range" min="0" max="1" id="box-shadow" name="box-shadow" value={boxShadow} step="0.025" onChange={updateBoxShadow} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Box Shadow"}
+      value={boxShadow}
+      max={"1"}
+      unit={""}
+      step={"0.025"}
+      updateValue={updateBoxShadow} />
 
-    <label htmlFor="border-radius" className="qig-l-slider__label">
-      <span>
-        Border Radius: <input type="number" min="0" max="150" value={borderRadius} step="1" onChange={updateBorderRadius} /> px
-      </span>
-      <input type="range" min="0" max="150" id="border-radius" name="border-radius" value={borderRadius} step="1" onChange={updateBorderRadius} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Opacity"}
+      value={opacity}
+      max={"1"}
+      unit={""}
+      step={"0.025"}
+      updateValue={updateOpacity} />
 
-    <label htmlFor="transform-scale-x" className="qig-l-slider__label">
-      <span>
-        Scale X: <input type="number" min="0" max="5" value={scaleX} step="0.05" onChange={updateScaleX} />
-      </span>
-      <input type="range" min="0" max="5" id="transform-scale-x" name="transform-scale-x" value={scaleX} step="0.05" onChange={updateScaleX} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Border Radius"}
+      value={borderRadius}
+      max={"150"}
+      updateValue={updateBorderRadius} />
 
-    <label htmlFor="transform-scale-y" className="qig-l-slider__label">
-      <span>
-        Scale Y: <input type="number" min="0" max="5" value={scaleY} step="0.05" onChange={updateScaleY} />
-      </span>
-      <input type="range" min="0" max="5" id="transform-scale-y" name="transform-scale-y" value={scaleY} step="0.05" onChange={updateScaleY} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Scale X"}
+      value={scaleX}
+      max={"5"}
+      step={"0.05"}
+      updateValue={updateScaleX} />
 
-    <label htmlFor="transform-skew-x" className="qig-l-slider__label">
-      <span>
-        Skew X: <input type="number" min="-90" max="90" value={skewX} step="1" onChange={updateSkewX} /> deg
-      </span>
-      <input type="range" min="-90" max="90" id="transform-skew-x" name="transform-skew-x" value={skewX} step="1" onChange={updateSkewX} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Scale Y"}
+      value={scaleY}
+      max={"5"}
+      step={"0.05"}
+      updateValue={updateScaleY} />
 
-    <label htmlFor="transform-skew-y" className="qig-l-slider__label">
-      <span>
-        Skew Y: <input type="number" min="-90" max="90" value={skewY} step="1" onChange={updateSkewY} /> deg
-      </span>
-      <input type="range" min="-90" max="90" id="transform-skew-y" name="transform-skew-y" value={skewY} step="1" onChange={updateSkewY} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Skew X"}
+      value={skewX}
+      min={"-90"}
+      max={"90"}
+      updateValue={updateSkewX} />
 
-    <label htmlFor="transform-translate-x" className="qig-l-slider__label">
-      <span>
-        Translate X: <input type="number" min={horizontalLimit * -1} max={horizontalLimit} value={translateX} step="1" onChange={updateTranslateX} /> px
-      </span>
-      <input type="range" min={horizontalLimit * -1} max={horizontalLimit} id="transform-translate-x" name="transform-translate-x" value={translateX} step="1" onChange={updateTranslateX} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Skew Y"}
+      value={skewY}
+      min={"-90"}
+      max={"90"}
+      updateValue={updateSkewY} />
 
-    <label htmlFor="transform-translate-y" className="qig-l-slider__label">
-      <span>
-        Translate Y: <input type="number" min={verticalLimit * -1} max={verticalLimit} value={translateY} step="1" onChange={updateTranslateY} /> px
-      </span>
-      <input type="range" min={verticalLimit * -1} max={verticalLimit} id="transform-translate-y" name="transform-translate-y" value={translateY} step="1" onChange={updateTranslateY} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Translate X"}
+      value={translateX}
+      min={horizontalLimit * -1}
+      max={horizontalLimit}
+      updateValue={updateTranslateX} />
 
-    <label htmlFor="transform-rotate" className="qig-l-slider__label">
-      <span>
-        Rotate (Full): <input type="number" min="0" max="360" value={rotateFull} step="1" onChange={updateRotateFull} /> deg
-      </span>
-      <input type="range" min="0" max="360" id="transform-rotate" name="transform-rotate" value={rotateFull} step="0.05" onChange={updateRotateFull} />
-    </label>
-    <br />
+    <RangeSlider
+      label={"Translate Y"}
+      value={translateY}
+      min={verticalLimit * -1}
+      max={verticalLimit}
+      updateValue={updateTranslateY} />
+
+    <RangeSlider
+      label={"Rotate (Full)"}
+      value={rotateFull}
+      max={"360"}
+      step={"0.05"}
+      unit={"deg"}
+      updateValue={updateRotateFull} />
 
     <button onClick={() => resetTransforms()}>
       Reset Transforms

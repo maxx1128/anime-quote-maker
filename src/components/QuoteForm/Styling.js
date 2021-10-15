@@ -1,5 +1,6 @@
 import React from "react";
 import RadioItems from "./../RadioItems";
+import RangeSlider from "./../RangeSlider";
 
 import { alignments, fontStyles, fontFamilies } from "./../QuoteProps";
 
@@ -50,12 +51,13 @@ const Styling = ({bg, updateBg, text, updateText, alignment, updateAlignment, fo
     <br />
 
     <div className="qig-l-wrapper__form-multi">
-      <label className="qig-l-slider__label">
-        <span>
-          Font size: <strong>{size} pixels</strong>
-        </span>
-        <input type="range" min="10" max="60" name="size" value={size} onChange={updateSize} />
-      </label>
+      <RangeSlider
+        label={"Font Size"}
+        value={size}
+        min={10}
+        max={60}
+        unit={"pixels"}
+        updateValue={updateSize} />
 
       <label>
         Font Family:

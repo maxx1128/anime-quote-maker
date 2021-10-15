@@ -398,7 +398,6 @@ class QuoteWrapper extends React.Component {
    }
 
    render() {
-      console.log(this.state.tags);
       const image = this.state.customImageUrl ? this.state.customImageUrl : `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${this.state.tags}#${this.state.hash}`;
       return (
          <div className={`qig-l-wrapper ${this.state.vertical ? 'qig-l-wrapper--vertical' : ''}`}>

@@ -1,4 +1,5 @@
 import React from "react";
+import RangeSlider from "./../RangeSlider";
 
 const Alignment = ({  setPosX, updatePosX,  setPosY, updatePosY }) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__image-pos">
@@ -9,19 +10,19 @@ const Alignment = ({  setPosX, updatePosX,  setPosY, updatePosY }) => (
         Both inputs represent the <strong>percentage position</strong> for horizontal and vertical alignment. Based on the image's size, one of these alignments won't change the image.
     </p>
     <div className="qig-l-slider__container">
-        <label className="qig-l-slider__label">
-          <span>
-            Horizontal: <strong>{setPosX}%</strong>
-          </span>
-          <input type="range" min="0" max="100" name="posX" value={setPosX} onChange={updatePosX} />
-        </label>
+      <RangeSlider
+        label={"Horizontal"}
+        value={setPosX}
+        max={100}
+        unit={"%"}
+        updateValue={updatePosX} />
 
-        <label className="qig-l-slider__label">
-          <span>
-            Vertical: <strong>{setPosY}%</strong>
-          </span>
-          <input type="range" min="0" max="100" name="posY" value={setPosY} onChange={updatePosY} />
-        </label>
+      <RangeSlider
+        label={"Vertical"}
+        value={setPosY}
+        max={100}
+        unit={"%"}
+        updateValue={updatePosY} />
     </div>
   </div>
 );

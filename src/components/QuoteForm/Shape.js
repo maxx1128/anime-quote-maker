@@ -1,5 +1,6 @@
 import React from "react";
 import RadioItems from "./../RadioItems";
+import RangeSlider from "./../RangeSlider";
 
 import { shapes } from "./../QuoteProps";
 
@@ -16,20 +17,20 @@ const Shape = ({ shape, updateShape, shapeSize, updateShapeSize, shapePosition, 
 
     <br />
 
-    <div className="qig-l-wrapper__form-multi">
-      <label className="qig-l-slider__label">
-        <span>
-          Shape Size: <strong>{shapeSize} pixels</strong>
-        </span>
-        <input type="range" min="1" max="300" name="size" value={shapeSize} onChange={updateShapeSize} />
-      </label>
+    <div>
+      <RangeSlider
+        label={"Shape Size"}
+        value={shapeSize}
+        max={300}
+        unit={"px"}
+        updateValue={updateShapeSize} />
 
-      <label className="qig-l-slider__label">
-        <span>
-          Shape Position: <strong>{shapePosition}%</strong>
-        </span>
-        <input type="range" min="0" max="100" name="size" value={shapePosition} onChange={updateShapePosition} />
-      </label>
+      <RangeSlider
+        label={"Shape Position"}
+        value={shapePosition}
+        max={100}
+        unit={"%"}
+        updateValue={updateShapePosition} />
     </div>
   </div>
 );

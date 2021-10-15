@@ -1,4 +1,5 @@
 import React from "react";
+import RangeSlider from "./../RangeSlider";
 
 const Size = ({ width, height, updateWidth, updateHeight }) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__size">
@@ -7,21 +8,21 @@ const Size = ({ width, height, updateWidth, updateHeight }) => (
     </h4>
 
     <div className="qig-l-slider__container">
-      <label className="qig-l-slider__label">
-        <span>
-          Width: <strong>{width} pixels</strong>
-        </span>
+      <RangeSlider
+        label={"Width"}
+        value={width}
+        min={300}
+        max={1200}
+        unit={"px"}
+        updateValue={updateWidth} />
 
-        <input type="range" min="300" max="1200" name="width" value={width} onChange={updateWidth} />
-      </label>
-
-      <label className="qig-l-slider__label">
-        <span>
-          Height: <strong>{height} pixels</strong>
-        </span>
-
-        <input type="range" min="300" max="1200" name="height" value={height} onChange={updateHeight} />
-      </label>
+      <RangeSlider
+        label={"Height"}
+        value={height}
+        min={300}
+        max={1200}
+        unit={"px"}
+        updateValue={updateHeight} />
     </div>
 
     <br />
