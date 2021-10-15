@@ -1,11 +1,12 @@
 import React from "react";
 
-import { randomProperty, shuffle, randomColorCode } from "./core";
+import { randomProperty, shuffle } from "./core";
 import { update } from "./update";
+import { random } from "./random";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
-import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./state";
+import { defaultState, tags, slimPositions, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./state";
 
 import Intro from "../QuoteForm/Intro";
 import CustomImage from "../QuoteForm/CustomImage";
@@ -40,30 +41,7 @@ class QuoteWrapper extends React.Component {
    emptyFilters = () => this.setState({ filters: [] });
 
    update = () => update(this);
-
-   randomFilters = () => {
-      const randomRange = (min, max) => {
-         return Math.floor(Math.random() * (max - min + 1) + min)
-      }
-
-      this.update().contrast(randomRange(60, 140));
-      this.update().hueRotate(randomRange(0, 180));
-      this.update().saturate(randomRange(85, 150));
-      this.update().brightness(randomRange(100, 110));
-      this.update().sepia(randomRange(0, 25));
-      this.update().blur(0);
-      this.update().invert(0);
-   }
-
-   setRandomFullFilter = () => {
-      const useRandomFilters = Math.random() >= 0.75;
-
-      if (useRandomFilters) {
-         this.randomFilters();
-      } else {
-         this.update().fullFilter(randomProperty(this.allStartingFullFilters));
-      }
-   }
+   random = () => random(this.update);
 
    toggleVertical = () => {
       const isNowVertical = !this.state.vertical,
@@ -144,23 +122,6 @@ class QuoteWrapper extends React.Component {
       });
    }
 
-   randomizeFontSize = (quote) => {
-      const quoteLength = quote.split('').length,
-            decrease = Math.floor((quoteLength - 40) / 15),
-            ceiling = 26 - decrease,
-            bottom = 24 - decrease,
-            floor = 21;
-
-      const number = Math.floor(Math.random() * (ceiling - bottom) + bottom),
-            weightedNumber = number > floor ? number : floor;
-      this.setState({ size: weightedNumber });
-   }
-
-   randomFontFamily = () => {
-      const randomFamily = randomProperty(this.allSlimFontFamilies);
-      this.setState({ fontFamily: randomFamily });
-   }
-
    randomizeImage = () => {
       const newTags = shuffle(this.allTags),
             tagLimit = Math.floor(Math.random() * (3) + 1),
@@ -170,36 +131,6 @@ class QuoteWrapper extends React.Component {
 
       this.setState({ tags: randomTags });
       this.refreshImage(randomTags);
-   }
-
-   randomColorCodes = () => {
-      const lightColor  = randomColorCode(['F', 'E', 'D', 'C']),
-            darkColor   = randomColorCode([0, 1, 2, 3]),
-            hasDarkText = Math.random() >= 0.5;
-
-
-      this.setState({
-         textColor: hasDarkText ? darkColor : lightColor,
-         bgColor:   hasDarkText ? lightColor : darkColor
-      });
-   }
-
-   randomShape = (position) => {
-      let shape = false;
-
-      if (position === '3/4') {
-         shape = randomProperty(verticalShapes)["value"];
-      } else if (position === 'Spaced Bottom') {
-         shape = randomProperty(slimShapes)["value"];
-      } else {
-         shape = 'none'
-      }
-
-      if (shape) {
-         this.setState({
-            shape: shape
-         });
-      }
    }
 
    flipColorCodes = () => {
@@ -246,12 +177,12 @@ class QuoteWrapper extends React.Component {
       this.update().position(position);
       this.update().fontStyle(randomProperty(this.allSlimFontStyles).value);
       this.setInitialImageTags();
-      this.randomColorCodes();
-      this.randomFontFamily();
-      this.setRandomFullFilter();
+      this.random().colorCodes();
+      this.random().fontFamily();
+      this.random().fullFilter();
       this.resetTransforms();
       this.resetPerspective();
-      this.randomShape(position["label"]);
+      this.random().shape(position["label"]);
 
       this.update().alignment('center');
    }
@@ -334,7 +265,7 @@ class QuoteWrapper extends React.Component {
                   updateSize={this.update().size}
                   fontFamily={this.state.fontFamily}
                   updateFontFamily={this.update().fontFamily}
-                  randomColorScheme={this.randomColorCodes}
+                  randomColorScheme={this.random().colorCodes}
                   flipColorScheme={this.flipColorCodes}/>
 
                <Filters
@@ -354,7 +285,7 @@ class QuoteWrapper extends React.Component {
                   updateInvert={this.update().invert}
                   fullFilters={this.allFullFilters}
                   updateFullFilter={this.update().fullFilter}
-                  randomFilters={this.randomFilters} />
+                  randomFilters={this.random().filters} />
 
                <Transform
                   verticalLimit={this.state.height}

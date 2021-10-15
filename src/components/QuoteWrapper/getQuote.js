@@ -24,6 +24,6 @@ export function getQuote(quoteThis, set) {
         author: author
       });
 
-      if (set === 'fontSize') { quoteThis.randomizeFontSize(quote); }
+      if (set === 'fontSize') { quoteThis.random().fontSize(quote); }
   });
 };
