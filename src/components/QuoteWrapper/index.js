@@ -4,6 +4,7 @@ import { shuffle } from "./core";
 import { update } from "./update";
 import { random } from "./random";
 import { reset } from "./reset";
+import { getValues } from "./getValues";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
@@ -42,6 +43,7 @@ class QuoteWrapper extends React.Component {
    update = () => update(this);
    random = () => random(this.update);
    reset = () => reset(this.update);
+   getValues = () => getValues(this.state);
 
    refreshAll = () => this.reset().all(this.getQuote, this.random)
 
@@ -55,66 +57,6 @@ class QuoteWrapper extends React.Component {
          width: width,
          height: height
       });
-   }
-
-   getFilterValues = () => {
-      return [
-         {
-            "name": "contrast",
-            "value": this.state.filterContrast
-         }, {
-            "name": "hue-rotate",
-            "value": this.state.filterHueRotate
-         }, {
-            "name": "saturate",
-            "value": this.state.filterSaturate
-         }, {
-            "name": "brightness",
-            "value": this.state.filterBrightness
-         }, {
-            "name": "sepia",
-            "value": this.state.filterSepia
-         }, {
-            "name": "blur",
-            "value": this.state.filterBlur
-         }, {
-            "name": "invert",
-            "value": this.state.filterInvert
-         }
-      ];
-   }
-
-   getTransformValues = () => {
-      return [
-         {
-            "name": "scaleX",
-            "value": this.state.transformScaleX
-         }, {
-            "name": "scaleY",
-            "value": this.state.transformScaleY
-         }, {
-            "name": "skewX",
-            "value": this.state.transformSkewX
-         }, {
-            "name": "skewY",
-            "value": this.state.transformSkewY
-         }, {
-            "name": "translateX",
-            "value": this.state.transformTranslateX
-         }, {
-            "name": "translateY",
-            "value": this.state.transformTranslateY
-         }, {
-            "name": "rotate",
-            "value": this.state.transformRotateFull
-         }, {
-            "name": "rotateX",
-            "value": this.state.transformRotateX
-         }, {
-            "name": "rotateY",
-            "value": this.state.transformRotateY
-         }
-      ]
    }
 
    randomizeImage = () => {
@@ -291,8 +233,8 @@ class QuoteWrapper extends React.Component {
                   shapePosition={this.state.shapePosition}
                   bgColor={this.state.bgColor}
                   textColor={this.state.textColor}
-                  allFilters={this.getFilterValues}
-                  allTransforms={this.getTransformValues}
+                  allFilters={this.getValues().filters}
+                  allTransforms={this.getValues().transforms}
                   fontStyle={this.state.fontStyle}
                   fontFamily={this.state.fontFamily}
                   alignment={this.state.alignment}
