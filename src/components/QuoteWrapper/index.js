@@ -4,7 +4,7 @@ import axios from "axios";
 import { shuffle, randomColorCode } from "./core";
 
 import QuoteBox from "../QuoteBox";
-import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./QuoteProps";
+import { defaultState, tags, slimPositions, slimShapes, verticalShapes, positions, alignments, fontStyles, slimFontStyles, fontFamilies, slimFontFamilies, startingFullFilters, fullFilters } from "./state";
 
 import Intro from "../QuoteForm/Intro";
 import CustomImage from "../QuoteForm/CustomImage";

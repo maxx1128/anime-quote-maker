@@ -2,7 +2,7 @@ import React from "react";
 import RadioItems from "./../RadioItems";
 import RangeSlider from "./../RangeSlider";
 
-import { shapes } from "./../QuoteWrapper/QuoteProps";
+import { shapes } from "../QuoteWrapper/state";
 
 const Shape = ({ shape, updateShape, shapeSize, updateShapeSize, shapePosition, updateShapePosition }) => (
   <div className="qig-l-wrapper__form-item">
