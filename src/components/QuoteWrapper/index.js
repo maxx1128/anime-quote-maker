@@ -4,7 +4,7 @@ import { update } from "./update";
 import { random } from "./random";
 import { reset } from "./reset";
 import { toggle } from "./toggle";
-import { getValues } from "./getValues";
+import { get } from "./get";
 import { getQuote } from "./getQuote";
 
 import QuoteBox from "../QuoteBox";
@@ -40,16 +40,15 @@ class QuoteWrapper extends React.Component {
 
    getQuote = (set) => getQuote(this, set)
 
+   get = () => get(this.state);
    update = () => update(this);
    random = () => random(this.update);
    reset = () => reset(this.update);
    toggle = () => toggle(this.update, this.state);
-   getValues = () => getValues(this.state);
 
    refreshAll = () => this.reset().all(this.getQuote, this.random)
 
    render() {
-      const image = this.state.customImageUrl ? this.state.customImageUrl : `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${this.state.tags}#${this.state.hash}`;
       return (
          <div className={`qig-l-wrapper ${this.state.vertical ? 'qig-l-wrapper--vertical' : ''}`}>
             <div className="qig-l-wrapper__form">
@@ -196,7 +195,7 @@ class QuoteWrapper extends React.Component {
 
             <div className="qig-l-wrapper__result">
                <QuoteBox
-                  image={image}
+                  image={this.get().image()}
                   width={this.state.width}
                   height={this.state.height}
                   shape={this.state.shape}
@@ -204,8 +203,8 @@ class QuoteWrapper extends React.Component {
                   shapePosition={this.state.shapePosition}
                   bgColor={this.state.bgColor}
                   textColor={this.state.textColor}
-                  allFilters={this.getValues().filters}
-                  allTransforms={this.getValues().transforms}
+                  allFilters={this.get().filters}
+                  allTransforms={this.get().transforms}
                   fontStyle={this.state.fontStyle}
                   fontFamily={this.state.fontFamily}
                   alignment={this.state.alignment}
