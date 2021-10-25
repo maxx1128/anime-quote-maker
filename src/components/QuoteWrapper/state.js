@@ -389,6 +389,16 @@ const startingFullFilters = [
 const fullFilters = [
    ...startingFullFilters,
    {
+      "label": "Darkness",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 250,
+         "hueRotate": 200,
+         "saturate": 110,
+         "brightness": 240,
+         "invert": 100
+      }
+   }, {
       "label": "Backdrop",
       "values": {
          ...baseFilterValues,
