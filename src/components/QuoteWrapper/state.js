@@ -315,7 +315,8 @@ const startingFullFilters = [
          ...baseFilterValues,
          "contrast": 115,
          "saturate": 150,
-         "brightness": 105
+         "brightness": 105,
+         "blur": 0.3
       }
    }, {
       "label": "Hard Light",
@@ -345,6 +346,15 @@ const startingFullFilters = [
          "sepia": 5
       }
    }, {
+      "label": "Rustic",
+      "values": {
+         ...baseFilterValues,
+         "contrast": 75,
+         "saturate": 375,
+         "brightness": 105,
+         "sepia": 50
+      }
+   }, {
       "label": "Trippy",
       "values": {
          ...baseFilterValues,
@@ -367,11 +377,11 @@ const startingFullFilters = [
       "label": "Fond Memory",
       "values": {
          ...baseFilterValues,
-         "contrast": 115,
+         "contrast": 60,
          "saturate": 60,
          "brightness": 110,
          "sepia": 75,
-         "blur": 0.4
+         "blur": 0.8
       }
    }
 ]
