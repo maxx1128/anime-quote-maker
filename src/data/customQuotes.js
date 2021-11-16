@@ -779,7 +779,8 @@ const allQuotes = [
   mq("God help and forgive me, I wanna build something that’s gonna outlive me.", "Alexander Hamilton"),
   mq("When you got skin in the game, you stay in the game. But you don’t get a win unless you play in the game.", "Alexander Hamilton"),
   mq("And when you said ‘Hi,’ I forgot my dang name, set my heart aflame, ev’ry part aflame", "Angelica Schuyler"),
-  mq("Happiness is a bagel", "Anonymous")
+  mq("Happiness is a bagel", "Anonymous"),
+  mq("When you start at a new coffeehouse, don't move the cups.", "Anonymous")
 ]
 
 const randomCustomQuote = () => allQuotes[Math.floor(Math.random() * allQuotes.length)];
