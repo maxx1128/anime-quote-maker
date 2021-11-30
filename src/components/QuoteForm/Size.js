@@ -3,9 +3,7 @@ import RangeSlider from "./../RangeSlider";
 
 const Size = ({ state, update }) => (
   <div className="qig-l-wrapper__form-item qig-l-controls__size">
-    <h4 className="qig-l-wrapper__form-header">
-      Change the Quote Size
-    </h4>
+    <h4 className="qig-l-wrapper__form-header">Change the Quote Size</h4>
 
     <div className="qig-l-slider__container">
       <RangeSlider
@@ -14,7 +12,8 @@ const Size = ({ state, update }) => (
         min={300}
         max={1200}
         unit={"px"}
-        updateValue={update().width} />
+        updateValue={update().width}
+      />
 
       <RangeSlider
         label={"Height"}
@@ -22,27 +21,57 @@ const Size = ({ state, update }) => (
         min={300}
         max={1200}
         unit={"px"}
-        updateValue={update().height} />
+        updateValue={update().height}
+      />
     </div>
 
     <br />
 
     <div className="qig__long-buttons-wrapper">
-      <button onClick={() => {update().height(700), update().width(700)}}>
+      <button
+        onClick={() => {
+          update().height(700), update().width(700);
+        }}
+      >
         Square
       </button>
 
-      <button onClick={() => {update().height(500), update().width(800)}}>
+      <button
+        onClick={() => {
+          update().height(500), update().width(800);
+        }}
+      >
         Landscape
       </button>
 
-      <button onClick={() => {update().height(800), update().width(500)}}>
+      <button
+        onClick={() => {
+          update().height(800), update().width(500);
+        }}
+      >
         Portrait
       </button>
 
-      <button onClick={() => {update().height(667), update().width(375)}}>
+      <button
+        onClick={() => {
+          update().height(667), update().width(375);
+        }}
+      >
         iPhone 8
       </button>
+    </div>
+
+    <br />
+
+    <div>
+      <label htmlFor="circular">Circular</label>
+      <input
+        type="checkbox"
+        id="circular"
+        onChange={() => update().circular(!state.circular)}
+        name="circular"
+        checked={state.circular}
+      />
     </div>
   </div>
 );
