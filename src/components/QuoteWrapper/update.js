@@ -15,6 +15,8 @@ export function update(quoteThis) {
       quoteThis.setState({ customImageUrl: e.target ? e.target.value : e }),
     posX: (e) => quoteThis.setState({ posX: e.target ? e.target.value : e }),
     posY: (e) => quoteThis.setState({ posY: e.target ? e.target.value : e }),
+    bannerStyle: (e) =>
+      quoteThis.setState({ bannerStyle: e.target ? e.target.value : e }),
     bgColor: (e) =>
       quoteThis.setState({ bgColor: e.target ? e.target.value : e }),
     textColor: (e) =>

@@ -42,6 +42,7 @@ const defaultState = {
   perspective: 0,
   perspectiveOriginX: 0,
   perspectiveOriginY: 0,
+  bannerStyle: "solid",
   bgColor: "#111111",
   textColor: "#eeeeee",
   fontFamily: "Open Sans",
@@ -77,6 +78,17 @@ const tags = [
   "1boy",
   "game_cg",
   "highres",
+];
+
+const bannerStyles = [
+  {
+    value: "solid",
+    label: "Solid",
+  },
+  {
+    value: "outline",
+    label: "Outline",
+  },
 ];
 
 const slimPositions = [
@@ -509,6 +521,7 @@ const fullFilters = [
 export {
   defaultState,
   tags,
+  bannerStyles,
   slimPositions,
   positions,
   alignments,

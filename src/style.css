@@ -7,7 +7,7 @@ body {
   max-height: 100vh;
   overflow: hidden;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 p {
@@ -149,7 +149,7 @@ button {
 
 @media (min-width: 800px) {
   .qig-l-wrapper--vertical .qig-l-wrapper__form-multi {
-    justify-content: flex-start
+    justify-content: flex-start;
   }
 
   .qig-l-wrapper__form-multi > * {
@@ -174,14 +174,27 @@ button {
   white-space: pre-line;
 }
 
-.qig__quote p {
+.qig__quote-text {
+  position: relative;
   margin: 0;
   line-height: 1.2;
 }
-.qig__quote p::first-line {
+
+.qig__quote-text--duplicate {
+  position: absolute;
+  z-index: -1;
+  filter: blur(12px);
+}
+
+.qig__quote-text--duplicate:first-of-type {
+  opacity: 0;
+}
+
+.qig__quote-text::first-line {
   font-size: 115%;
 }
-.qig__quote p::first-letter {
+
+.qig__quote-text::first-letter {
   font-size: 125%;
 }
 
@@ -293,7 +306,7 @@ button {
   font-size: 16px;
 
   border-radius: 100%;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .qig__tag-title--included,
@@ -332,10 +345,10 @@ button {
 }
 
 .qig__screenreader {
-  position:absolute;
-  left:-10000px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

@@ -1,16 +1,16 @@
-import { slimFontStyles, slimPositions } from "./state";
+import { bannerStyles, slimFontStyles, slimPositions } from "./state";
 import { randomProperty } from "./core";
 
 export function reset(update) {
   const baseReset = {
     image: (tags) => {
       update().tags(tags);
-      update().hash(Math.floor(Math.random() * 100))
+      update().hash(Math.floor(Math.random() * 100));
     },
 
     transforms: () => {
-      update().boxShadow(.2);
-      update().boxShadowColor('#000000');
+      update().boxShadow(0.2);
+      update().boxShadowColor("#000000");
       update().opacity(0.925);
       update().transformScaleX(1);
       update().transformScaleY(1);
@@ -27,33 +27,34 @@ export function reset(update) {
       update().perspectiveOriginY(0);
       update().transformRotateX(0);
       update().transformRotateY(0);
-    }
-  }
+    },
+  };
 
   baseReset.initialTags = () => {
-    update().tags('highres');
-    baseReset.image('highres');
-  }
+    update().tags("highres");
+    baseReset.image("highres");
+  };
 
   baseReset.all = (getQuote, random) => {
     const position = randomProperty(slimPositions);
 
-    getQuote('fontSize');
+    getQuote("fontSize");
     baseReset.initialTags();
     baseReset.transforms();
     baseReset.perspective();
 
+    update().bannerStyle(randomProperty(bannerStyles).value);
     update().position(position);
     update().fontStyle(randomProperty(slimFontStyles).value);
-    update().alignment('center');
-    update().shapeSize(20)
-    update().shapePosition(50)
+    update().alignment("center");
+    update().shapeSize(20);
+    update().shapePosition(50);
 
     random().colorCodes();
     random().fontFamily();
     random().fullFilter();
     random().shape(position["label"]);
-  }
+  };
 
   return baseReset;
 }

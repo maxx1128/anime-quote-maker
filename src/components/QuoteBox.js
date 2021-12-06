@@ -32,6 +32,7 @@ const QuoteBox = ({ get, state }) => {
     boxShadow,
     boxShadowColor,
     opacity,
+    bannerStyle,
     borderRadius,
     paddingTop,
     paddingRight,
@@ -47,6 +48,10 @@ const QuoteBox = ({ get, state }) => {
   } = state;
 
   let shapeClipPath = () => {
+    if (bannerStyle !== "solid") {
+      return "initial";
+    }
+
     switch (shape) {
       case "diamond-top":
         return `polygon(0 ${shapeSize}px, 0 100%, 100% 100%, 100% ${shapeSize}px, ${shapePosition}% 0)`;
@@ -62,8 +67,6 @@ const QuoteBox = ({ get, state }) => {
         return `polygon(${shapeSize}px 0, 0 ${shapePosition}%, ${shapeSize}px 100%, calc(100% - ${shapeSize}px) 100%, 100% ${shapePosition}%, calc(100% - ${shapeSize}px) 0)`;
       case "diamond-full":
         return `polygon(${shapePosition}% 0, 0 ${shapePosition}%, ${shapePosition}% 100%, 100% ${shapePosition}%)`;
-
-      // polygon(50% ${shapeSize}px, 0 50%, 50% calc(100% + ${shapeSize}px), 100% 50%)
       case "ribbon-top":
         return `polygon(0 0, ${shapePosition}% ${shapeSize}px, 100% 0, 100% 100%, 0 100%)`;
       case "ribbon-right":
@@ -198,14 +201,18 @@ const QuoteBox = ({ get, state }) => {
 
     padding: shapePadding(),
 
-    boxShadow: `0 4px 8px rgba(${hexToRgb(boxShadowColor)}, ${
-      boxShadow * 0.6
-    }), 0 0 8px rgba(${hexToRgb(boxShadowColor)}, ${boxShadow})`,
+    boxShadow:
+      bannerStyle === "solid"
+        ? `0 4px 8px rgba(${hexToRgb(boxShadowColor)}, ${boxShadow * 0.6}`
+        : "inherit",
     borderRadius: `${borderRadius}px`,
     textAlign: alignment,
     fontSize: `${size}px`,
     fontFamily: fontFamily,
-    backgroundColor: `rgba(${hexToRgb(bgColor)}, ${opacity})`,
+    backgroundColor:
+      bannerStyle === "solid"
+        ? `rgba(${hexToRgb(bgColor)}, ${opacity})`
+        : "inherit",
     color: textColor,
 
     transform: compiledTransforms(),
@@ -214,6 +221,60 @@ const QuoteBox = ({ get, state }) => {
 
   const quoteTextStyle = {
     padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`,
+  };
+
+  const quoteTextDuplicateStyleNthOf = (number) => {
+    const multiplier = Math.floor(8 % number) + 1,
+      moveBy = 2 * multiplier;
+    let top = paddingTop,
+      right = paddingRight,
+      bottom = paddingBottom,
+      left = paddingLeft;
+
+    if (isNaN(top) || isNaN(right) || isNaN(bottom) || isNaN(left)) {
+      return {
+        display: "none",
+      };
+    }
+
+    switch (number % 8) {
+      case 1:
+        top -= moveBy;
+        break;
+      case 2:
+        top -= moveBy;
+        right -= moveBy;
+        break;
+      case 3:
+        right -= moveBy;
+        break;
+      case 4:
+        right -= moveBy;
+        bottom -= moveBy;
+        break;
+      case 5:
+        bottom -= moveBy;
+        break;
+      case 6:
+        bottom -= moveBy;
+        left -= moveBy;
+        break;
+      case 7:
+        left -= moveBy;
+        break;
+      case 0:
+        left -= moveBy;
+        top -= moveBy;
+        break;
+      default:
+        break;
+    }
+
+    return {
+      inset: `${top}px ${right}px ${bottom}px ${left}px`,
+      display: bannerStyle === "outline" ? "inherit" : "none",
+      color: bgColor,
+    };
   };
 
   return (
@@ -225,7 +286,18 @@ const QuoteBox = ({ get, state }) => {
       >
         <p className="qig__quote-text" style={quoteTextStyle}>
           {quote}
+
+          {[...Array(8 * 5)].map((el, i) => (
+            <span
+              key={i}
+              className="qig__quote-text qig__quote-text--duplicate"
+              style={quoteTextDuplicateStyleNthOf(i)}
+            >
+              {quote}
+            </span>
+          ))}
         </p>
+
         <span className="qig__quote-author">{author}</span>
       </div>
     </div>
