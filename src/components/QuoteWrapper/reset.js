@@ -1,4 +1,4 @@
-import { bannerStyles, slimFontStyles, slimPositions } from "./state";
+import { slimFontStyles, slimPositions } from "./state";
 import { randomProperty } from "./core";
 
 export function reset(update) {
@@ -43,7 +43,6 @@ export function reset(update) {
     baseReset.transforms();
     baseReset.perspective();
 
-    update().bannerStyle(randomProperty(bannerStyles).value);
     update().position(position);
     update().fontStyle(randomProperty(slimFontStyles).value);
     update().alignment("center");
