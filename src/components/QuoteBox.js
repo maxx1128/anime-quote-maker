@@ -287,15 +287,16 @@ const QuoteBox = ({ get, state }) => {
         <p className="qig__quote-text" style={quoteTextStyle}>
           {quote}
 
-          {[...Array(8 * 5)].map((el, i) => (
-            <span
-              key={i}
-              className="qig__quote-text qig__quote-text--duplicate"
-              style={quoteTextDuplicateStyleNthOf(i)}
-            >
-              {quote}
-            </span>
-          ))}
+          {bannerStyle === "outline" &&
+            [...Array(8 * 5)].map((el, i) => (
+              <span
+                key={i}
+                className="qig__quote-text qig__quote-text--duplicate"
+                style={quoteTextDuplicateStyleNthOf(i)}
+              >
+                {quote}
+              </span>
+            ))}
         </p>
 
         <span className="qig__quote-author">{author}</span>
