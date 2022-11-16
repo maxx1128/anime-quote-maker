@@ -59,6 +59,14 @@ const Size = ({ state, update }) => (
       >
         iPhone 8
       </button>
+
+      <button
+        onClick={() => {
+          update().height(844), update().width(390);
+        }}
+      >
+        iPhone 14
+      </button>
     </div>
 
     <br />
