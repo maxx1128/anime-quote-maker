@@ -1,6 +1,6 @@
 export function get(state) {
    return {
-      image: () => state.customImageUrl ? state.customImageUrl : `https://ruby-anime-newsletter.herokuapp.com/?min_width=700&min_height=700&tags=${state.tags}#${state.hash}`,
+      image: () => state.customImageUrl ? state.customImageUrl : `https://anime-endpoint.herokuapp.com/?min_width=700&min_height=700&tags=${state.tags}#${state.hash}`,
 
       filters: () => {
          return [
